@@ -1,0 +1,37 @@
+# flutter pub run flutter_native_splash:create --path=splash.yaml
+flutter_native_splash:
+  color: "#ffffff"
+  image: assets/splash/splash_logo_960x960.png
+  #background_image: assets/splash/background_splash.png
+  #branding: assets/logo_splash/splash-logo-white.png
+
+  # Từ Android 12 trở đi, màn hình splash được xử lý khác so với các phiên bản trước.
+  # Android 12 có phương pháp thêm màn hình splash mới, bao gồm màu nền màn hình, icon và màu nền icon.
+  # Lưu ý rằng background image không được hỗ trợ.
+  # Please visit https://developer.android.com/guide/topics/ui/splash-screen
+  # Sau đây là thông số cụ thể dành cho Android 12+.
+  android_12:
+    # Tham số hình ảnh đặt hình ảnh biểu tượng màn hình splash. Nếu tham số này không được chỉ định,
+    # biểu tượng trình khởi chạy của ứng dụng sẽ được sử dụng thay thế.
+    # Xin lưu ý rằng màn hình splash sẽ được cắt thành một vòng tròn ở giữa màn hình.
+    # Image (icon) ứng dụng không có nền: Kích thước này phải là 1152×1152 pixel và vừa với hình tròn có đường kính 768 pixel.
+    # Image (icon) ứng dụng có nền: Kích thước này phải là 960×960 pixel và vừa với hình tròn có đường kính 640 pixel.
+
+    # Màu nền Splash screen.
+    color: "#ffffff"
+
+    # Hình logo
+    image: assets/splash/splash_logo_960x960.png
+    #image: assets/splash/splash-logo-white.png
+
+    # Màu nền App icon.
+    #icon_background_color: "#C3122A"
+
+    # Thuộc tính nhãn hiệu cho phép bạn chỉ định hình ảnh được sử dụng làm nhãn hiệu trong màn hình Splash.
+    #branding: assets/dart.png
+
+    # The image_dark, color_dark, icon_background_color_dark, and branding_dark set values that
+    # áp dụng khi thiết bị ở chế độ tối. Nếu chúng không được chỉ định, ứng dụng sẽ sử dụng các tham số ở trên.
+    #image_dark: assets/android12splash-invert.png
+    #color_dark: "#042a49"
+    #icon_background_color_dark: "#eeeeee"

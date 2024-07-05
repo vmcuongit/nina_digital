@@ -1,0 +1,8 @@
+{
+  "@@locale":"en",
+  "app_name": "App Name",
+  "no_internet": "You have lost Internet connection. Please wait until the internet is stable again.",
+  "error404": "You just landed on a screen that doesn't exist.",
+  "wait": "Please wait",
+  "home": "Home page"
+}
