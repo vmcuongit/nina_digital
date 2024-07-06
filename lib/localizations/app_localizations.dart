@@ -117,6 +117,18 @@ abstract class AppLocalizations {
   /// **'Vui lòng đợi'**
   String get wait;
 
+  /// No description provided for @tieptuc.
+  ///
+  /// In vi, this message translates to:
+  /// **'Tiếp tục'**
+  String get tieptuc;
+
+  /// No description provided for @batdau.
+  ///
+  /// In vi, this message translates to:
+  /// **'Bắt đầu'**
+  String get batdau;
+
   /// No description provided for @home.
   ///
   /// In vi, this message translates to:

@@ -17,5 +17,11 @@ class AppLocalizationsVi extends AppLocalizations {
   String get wait => 'Vui lòng đợi';
 
   @override
+  String get tieptuc => 'Tiếp tục';
+
+  @override
+  String get batdau => 'Bắt đầu';
+
+  @override
   String get home => 'Trang chủ';
 }

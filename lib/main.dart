@@ -8,6 +8,9 @@ void main() {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   // Khoá chế độ xoay màn hình
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+  SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
+    statusBarColor: Colors.transparent, // transparent status bar
+  ));
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   runApp(const ProviderScope(
     child: AppStartupWidget(),

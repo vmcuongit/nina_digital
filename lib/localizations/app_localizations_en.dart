@@ -17,5 +17,11 @@ class AppLocalizationsEn extends AppLocalizations {
   String get wait => 'Please wait';
 
   @override
+  String get tieptuc => 'Continue';
+
+  @override
+  String get batdau => 'Let\'s start';
+
+  @override
   String get home => 'Home page';
 }
