@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
+import '../../core/app_setttings/app_setting_provider.dart';
 import '../../localizations/language_ext.dart';
 import '../../shared/constants/media_assets.dart';
+import '../home/home_screen.dart';
 import 'providers/page_onboarding_provider.dart';
 
 class OnboardingScreen extends ConsumerStatefulWidget {
@@ -81,6 +84,8 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
   _onClickButton() {
     final page = ref.watch(pageOnboardingProvider) + 1;
     if (page == _listPage.length) {
+      ref.read(appSettingProvider.notifier).setOnboardingLoaded();
+      context.go(HomeScreen.pathRoute);
     } else {
       _pageController.nextPage(
         duration: const Duration(milliseconds: 500),

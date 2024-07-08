@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import '../features/auth/screens/index_auth_screen.dart';
 import '../features/home/home_screen.dart';
 import '../features/onboarding/onboarding_screen.dart';
 
@@ -26,7 +27,7 @@ class AppConfig {
   static const String pathOnboarding = OnboardingScreen.pathRoute;
 
   // Màn hình đầu tiên khi App được bật
-  static String initialPath = HomeScreen.pathRoute;
+  static String initialPath = IndexAuthScreen.pathRoute;
 
   // Load dữ liệu hoặc khởi tạo các dự liệu cần thiết để App hoạt động
   initApp(Ref ref) async {

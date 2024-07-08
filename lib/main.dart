@@ -12,7 +12,10 @@ void main() {
     statusBarColor: Colors.transparent, // transparent status bar
   ));
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
-  runApp(const ProviderScope(
-    child: AppStartupWidget(),
+  runApp(ProviderScope(
+    observers: [
+      // AppObserver(),
+    ],
+    child: const AppStartupWidget(),
   ));
 }

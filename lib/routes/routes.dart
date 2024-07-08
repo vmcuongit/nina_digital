@@ -9,6 +9,13 @@ List<RouteBase> _danhsachRoute = [
     },
   ),
   GoRoute(
+    name: IndexAuthScreen.nameRoute,
+    path: IndexAuthScreen.pathRoute,
+    builder: (context, state) {
+      return const IndexAuthScreen();
+    },
+  ),
+  GoRoute(
     name: HomeScreen.nameRoute,
     path: HomeScreen.pathRoute,
     pageBuilder: (context, state) {

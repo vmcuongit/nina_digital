@@ -3,7 +3,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../localizations/language_ext.dart';
 import '../app_config.dart';
-import '../utils/ndgap.dart';
+import '../utils/helper.dart';
 
 class Error404Widget extends StatelessWidget {
   const Error404Widget({super.key});
@@ -22,15 +22,21 @@ class Error404Widget extends StatelessWidget {
                 Icons.warning_amber_outlined,
                 size: 128,
               ),
-              ndGapH8(),
+              const SizedBox(
+                height: 8,
+              ),
               const Text(
                 '404 Not Found',
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
                 textAlign: TextAlign.center,
               ),
-              ndGapH8(),
+              const SizedBox(
+                height: 8,
+              ),
               Text(context.translate.error404),
-              ndGapH48(),
+              const SizedBox(
+                height: 48,
+              ),
               ElevatedButton(
                   onPressed: () {
                     context.go(AppConfig.initialPath);
