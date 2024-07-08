@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:iconoir_flutter/iconoir_flutter.dart' as icons;
 
 import '../../../shared/constants/media_assets.dart';
 
@@ -49,25 +48,6 @@ class IndexAuthScreen extends ConsumerWidget {
                 const SizedBox(
                   height: 12,
                 ),
-                TextFormField(
-                  decoration: const InputDecoration(
-                    prefixIcon: Padding(
-                      padding: EdgeInsets.all(10.0),
-                      child: icons.Lock(),
-                    ),
-                  ),
-                ),
-                const SizedBox(
-                  height: 12,
-                ),
-                TextFormField(
-                  decoration: const InputDecoration(
-                    prefixIcon: Padding(
-                      padding: EdgeInsets.all(10.0),
-                      child: icons.Lock(),
-                    ),
-                  ),
-                )
               ],
             ),
           ),
