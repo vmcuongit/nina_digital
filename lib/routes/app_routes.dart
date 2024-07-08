@@ -3,9 +3,11 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../core/app_setttings/app_setting_provider.dart';
-import '../features/auth/screens/index_auth_screen.dart';
 import '../features/home/home_screen.dart';
+import '../features/intro_auth/intro_auth_screen.dart';
 import '../features/onboarding/onboarding_screen.dart';
+import '../features/sign_in/sign_in_screen.dart';
+import '../features/sign_up/sign_up_screen.dart';
 import '../shared/app_config.dart';
 import '../shared/common_widgets/error_404_widget.dart';
 import 'app_router_notifier.dart';

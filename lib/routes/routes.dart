@@ -9,10 +9,24 @@ List<RouteBase> _danhsachRoute = [
     },
   ),
   GoRoute(
-    name: IndexAuthScreen.nameRoute,
-    path: IndexAuthScreen.pathRoute,
-    builder: (context, state) {
-      return const IndexAuthScreen();
+    name: IntroAuthScreen.nameRoute,
+    path: IntroAuthScreen.pathRoute,
+    pageBuilder: (context, state) {
+      return _effectTransitionFade(context, state, const IntroAuthScreen());
+    },
+  ),
+  GoRoute(
+    name: SignUpScreen.nameRoute,
+    path: SignUpScreen.pathRoute,
+    pageBuilder: (context, state) {
+      return _effectTransitionFade(context, state, const SignUpScreen());
+    },
+  ),
+  GoRoute(
+    name: SignInScreen.nameRoute,
+    path: SignInScreen.pathRoute,
+    pageBuilder: (context, state) {
+      return _effectTransitionFade(context, state, const SignInScreen());
     },
   ),
   GoRoute(
