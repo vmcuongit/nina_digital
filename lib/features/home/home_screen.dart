@@ -114,12 +114,7 @@ class HomeScreen extends ConsumerWidget with FormMixins, UiMixins {
           ),
           SliverToBoxAdapter(
             child: Column(
-              children: [
-                for (var i = 0; i < 50; i++)
-                  ListTile(
-                    title: Text('$i'),
-                  )
-              ],
+              children: [],
             ),
           ),
         ],
