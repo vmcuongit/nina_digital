@@ -26,7 +26,7 @@ class HomeScreen extends ConsumerWidget with FormMixins, UiMixins {
               background: Container(
                 color: Colors.white,
                 padding:
-                    const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
+                    const EdgeInsets.symmetric(vertical: 0, horizontal: 20),
                 child: Row(
                   children: [
                     SizedBox(
@@ -63,22 +63,22 @@ class HomeScreen extends ConsumerWidget with FormMixins, UiMixins {
                     ),
                     Expanded(
                         child: Container(
-                      margin: const EdgeInsets.only(top: 15, right: 12),
+                      margin: const EdgeInsets.only(top: 12, right: 12),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
                           GestureDetector(
                             onTap: () {},
                             child: customBadgeIcon(context,
-                                icon: const icons.Bell(width: 30), label: null),
+                                icon: const icons.Bell(width: 26), label: null),
                           ),
                           const SizedBox(
-                            width: 12,
+                            width: 15,
                           ),
                           GestureDetector(
                             onTap: () {},
                             child: customBadgeIcon(context,
-                                icon: const icons.ShoppingBag(width: 32),
+                                icon: const icons.ShoppingBag(width: 30),
                                 label: '10'),
                           ),
                         ],
