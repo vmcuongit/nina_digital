@@ -9,10 +9,10 @@ class _CaptchaInputWidget extends ConsumerStatefulWidget {
 
 class __CaptchaInputWidgetState extends ConsumerState<_CaptchaInputWidget>
     with FormMixins {
-  String randomString = '';
+  String _randomString = '';
 
   void _buildCaptcha() {
-    randomString = Helper.generateUniqueString(maxLength: 6);
+    _randomString = Helper.generateUniqueString(maxLength: 6);
     setState(() {});
   }
 
@@ -39,7 +39,7 @@ class __CaptchaInputWidgetState extends ConsumerState<_CaptchaInputWidget>
               [
                 FormBuilderValidators.required(errorText: 'Không bỏ trống'),
                 (value) {
-                  if (value != randomString) {
+                  if (value != _randomString) {
                     return 'Mã bảo vệ không đúng';
                   }
                 }
@@ -62,7 +62,7 @@ class __CaptchaInputWidgetState extends ConsumerState<_CaptchaInputWidget>
               borderRadius: BorderRadius.circular(8),
             ),
             child: Text(
-              randomString,
+              _randomString,
               textAlign: TextAlign.center,
               style: GoogleFonts.robotoCondensed(
                 color: Colors.white,
