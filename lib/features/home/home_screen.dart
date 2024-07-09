@@ -16,18 +16,21 @@ class HomeScreen extends ConsumerWidget with FormMixins, UiMixins {
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       body: CustomScrollView(
+        shrinkWrap: true,
         slivers: [
           SliverAppBar(
             pinned: true,
             expandedHeight: 160,
-            centerTitle: false,
             backgroundColor: Theme.of(context).primaryColor,
             flexibleSpace: FlexibleSpaceBar(
               background: Container(
                 color: Colors.white,
-                padding:
-                    const EdgeInsets.symmetric(vertical: 0, horizontal: 20),
+                padding: EdgeInsets.only(
+                    top: MediaQuery.of(context).viewPadding.top + 20,
+                    left: 20,
+                    right: 20),
                 child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     SizedBox(
                       width: 55,
@@ -89,10 +92,10 @@ class HomeScreen extends ConsumerWidget with FormMixins, UiMixins {
               ),
             ),
             bottom: PreferredSize(
-              preferredSize: const Size.fromHeight(20),
+              preferredSize: const Size.fromHeight(24),
               child: Container(
                 padding:
-                    const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+                    const EdgeInsets.symmetric(horizontal: 15, vertical: 12),
                 child: customTextFormField(context, onTap: () {
                   print('chuyen qua man hinh tim kiem');
                 },
