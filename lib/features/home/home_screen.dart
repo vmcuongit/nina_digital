@@ -19,66 +19,74 @@ class HomeScreen extends ConsumerWidget with FormMixins, UiMixins {
         slivers: [
           SliverAppBar(
             pinned: true,
-            expandedHeight: 140,
+            expandedHeight: 160,
             centerTitle: false,
-            backgroundColor: Colors.white,
-            title: Row(
-              children: [
-                SizedBox(
-                  width: 55,
-                  height: 55,
-                  child: CircleAvatar(
-                    maxRadius: 55,
-                    minRadius: 55,
-                    child: Image.asset(
-                      '${MediaAssets.images}/avatar.jpg',
-                    ),
-                  ),
-                ),
-                const SizedBox(
-                  width: 15,
-                ),
-                const Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+            backgroundColor: Theme.of(context).primaryColor,
+            flexibleSpace: FlexibleSpaceBar(
+              background: Container(
+                color: Colors.white,
+                padding:
+                    const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
+                child: Row(
                   children: [
-                    Text(
-                      'Good Morning',
-                      style: TextStyle(fontSize: 13),
-                    ),
                     SizedBox(
-                      height: 5,
+                      width: 55,
+                      height: 55,
+                      child: CircleAvatar(
+                        maxRadius: 55,
+                        minRadius: 55,
+                        child: Image.asset(
+                          '${MediaAssets.images}/avatar.jpg',
+                        ),
+                      ),
                     ),
-                    Text(
-                      'Vu Manh Cuong',
-                      style:
-                          TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                    const SizedBox(
+                      width: 15,
                     ),
+                    const Column(
+                      mainAxisSize: MainAxisSize.min,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Good Morning',
+                          style: TextStyle(fontSize: 13),
+                        ),
+                        SizedBox(
+                          height: 5,
+                        ),
+                        Text(
+                          'Vu Manh Cuong',
+                          style: TextStyle(
+                              fontSize: 18, fontWeight: FontWeight.bold),
+                        ),
+                      ],
+                    ),
+                    Expanded(
+                        child: Container(
+                      margin: const EdgeInsets.only(top: 15, right: 12),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          GestureDetector(
+                            onTap: () {},
+                            child: customBadgeIcon(context,
+                                icon: const icons.Bell(width: 30), label: null),
+                          ),
+                          const SizedBox(
+                            width: 12,
+                          ),
+                          GestureDetector(
+                            onTap: () {},
+                            child: customBadgeIcon(context,
+                                icon: const icons.ShoppingBag(width: 32),
+                                label: '10'),
+                          ),
+                        ],
+                      ),
+                    )),
                   ],
                 ),
-                Expanded(
-                    child: Container(
-                  margin: const EdgeInsets.only(top: 15, right: 12),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      GestureDetector(
-                        onTap: () {},
-                        child: customBadgeIcon(context,
-                            icon: const icons.Bell(width: 30), label: null),
-                      ),
-                      const SizedBox(
-                        width: 12,
-                      ),
-                      GestureDetector(
-                        onTap: () {},
-                        child: customBadgeIcon(context,
-                            icon: const icons.ShoppingBag(width: 32),
-                            label: '10'),
-                      ),
-                    ],
-                  ),
-                )),
-              ],
+              ),
             ),
             bottom: PreferredSize(
               preferredSize: const Size.fromHeight(20),
