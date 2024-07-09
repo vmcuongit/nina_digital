@@ -5,7 +5,7 @@ mixin FormMixins {
     BuildContext context, {
     String? hintText,
     String? labelText,
-    Color borderColor = Colors.transparent,
+    Color? borderColor,
     double borderRadius = 0,
     Color? fillColor,
     EdgeInsetsGeometry? contentPadding,
@@ -14,11 +14,12 @@ mixin FormMixins {
     String? initialValue,
     AutovalidateMode? autovalidateMode,
     String? Function(String?)? validator,
+    Function(String)? onFieldSubmitted,
   }) {
     return TextFormField(
       decoration: InputDecoration(
         enabledBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: borderColor),
+          borderSide: BorderSide(color: borderColor ?? const Color(0xffEBEBEB)),
           borderRadius: BorderRadius.all(Radius.circular(borderRadius)),
         ),
         errorBorder: OutlineInputBorder(
@@ -44,6 +45,7 @@ mixin FormMixins {
       initialValue: initialValue,
       autovalidateMode: autovalidateMode,
       validator: validator,
+      onFieldSubmitted: onFieldSubmitted,
     );
   }
 

@@ -7,18 +7,12 @@ class _CaptchaInputWidget extends ConsumerStatefulWidget {
   ConsumerState createState() => __CaptchaInputWidgetState();
 }
 
-class __CaptchaInputWidgetState extends ConsumerState<_CaptchaInputWidget> {
+class __CaptchaInputWidgetState extends ConsumerState<_CaptchaInputWidget>
+    with FormMixins {
   String randomString = '';
-  bool isVerified = false;
-  TextEditingController controller = TextEditingController();
 
   void _buildCaptcha() {
-    const letters =
-        'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
-    const length = 6;
-    final random = Random();
-    randomString = String.fromCharCodes(List.generate(
-        length, (index) => letters.codeUnitAt(random.nextInt(letters.length))));
+    randomString = Helper.generateUniqueString(maxLength: 6);
     setState(() {});
   }
 
@@ -35,15 +29,15 @@ class __CaptchaInputWidgetState extends ConsumerState<_CaptchaInputWidget> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Expanded(
-          child: TextFormField(
-            decoration: const InputDecoration(
-              hintText: 'Mã bảo vệ',
-              prefixIcon: Icon(Icons.safety_check_outlined),
-            ),
+          child: customTextFormField(
+            context,
+            borderRadius: _borderRadius,
+            prefixIcon: const Icon(Icons.safety_check_outlined),
+            hintText: 'Mã bảo vệ',
             autovalidateMode: AutovalidateMode.onUserInteraction,
             validator: FormBuilderValidators.compose(
               [
-                FormBuilderValidators.required(errorText: 'Bắt buộc nhập.'),
+                FormBuilderValidators.required(errorText: 'Không bỏ trống'),
                 (value) {
                   if (value != randomString) {
                     return 'Mã bảo vệ không đúng';
@@ -51,7 +45,6 @@ class __CaptchaInputWidgetState extends ConsumerState<_CaptchaInputWidget> {
                 }
               ],
             ),
-            onChanged: (value) {},
             onFieldSubmitted: (value) {
               _submitForm(ref);
             },
@@ -63,7 +56,7 @@ class __CaptchaInputWidgetState extends ConsumerState<_CaptchaInputWidget> {
         // Shown Captcha value to user
         Container(
             width: 120,
-            padding: const EdgeInsets.symmetric(vertical: 13, horizontal: 10),
+            padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 10),
             decoration: BoxDecoration(
               color: Theme.of(context).primaryColor,
               borderRadius: BorderRadius.circular(8),
@@ -89,9 +82,7 @@ class __CaptchaInputWidgetState extends ConsumerState<_CaptchaInputWidget> {
               onPressed: () {
                 _buildCaptcha();
               },
-              icon: const Icon(
-                Icons.refresh,
-              )),
+              icon: const Icon(Icons.refresh)),
         ),
       ],
     );

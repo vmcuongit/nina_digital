@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
@@ -8,6 +6,7 @@ import 'package:iconoir_flutter/iconoir_flutter.dart' as icons;
 
 import '../../shared/constants/media_assets.dart';
 import '../../shared/mixins/form_mixin.dart';
+import '../../shared/utils/helper.dart';
 
 part 'widgets/captcha_input_widget.dart';
 part 'widgets/input_email_widget.dart';
