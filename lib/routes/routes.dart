@@ -46,7 +46,6 @@ ShellRouteBase addShellRouterMain() {
           context, state, MainLayout(navigationShell: navigationShell));
     },
     branches: <StatefulShellBranch>[
-      // Màn hình Dịch vụ
       StatefulShellBranch(
         routes: [
           GoRoute(
@@ -55,14 +54,9 @@ ShellRouteBase addShellRouterMain() {
             builder: (context, state) {
               return const HomeScreen();
             },
-            // pageBuilder: (context, state) {
-            //   return _effectTransitionFade(context, state, const HomeScreen());
-            // },
           ),
         ],
       ),
-
-      // Màn hình hỗ trợ
       StatefulShellBranch(
         routes: [
           GoRoute(
@@ -71,14 +65,9 @@ ShellRouteBase addShellRouterMain() {
             builder: (context, state) {
               return const FavoriteScreen();
             },
-            // pageBuilder: (context, state) {
-            //   return _effectTransitionFade(
-            //       context, state, const FavoriteScreen());
-            // },
           ),
         ],
       ),
-      // Màn hình Home
       StatefulShellBranch(
         routes: [
           GoRoute(
@@ -87,10 +76,6 @@ ShellRouteBase addShellRouterMain() {
             builder: (context, state) {
               return const ProductCategoryScreen();
             },
-            // pageBuilder: (context, state) {
-            //   return _effectTransitionFade(
-            //       context, state, const ProductCategoryScreen());
-            // },
           ),
         ],
       ),
@@ -102,9 +87,6 @@ ShellRouteBase addShellRouterMain() {
             builder: (context, state) {
               return const NewsScreen();
             },
-            // pageBuilder: (context, state) {
-            //   return _effectTransitionFade(context, state, const NewsScreen());
-            // },
           ),
         ],
       ),
@@ -116,10 +98,6 @@ ShellRouteBase addShellRouterMain() {
             builder: (context, state) {
               return const AccountScreen();
             },
-            // pageBuilder: (context, state) {
-            //   return _effectTransitionFade(
-            //       context, state, const AccountScreen());
-            // },
           ),
         ],
       ),
