@@ -3,10 +3,11 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../shared/constants/media_assets.dart';
+import '../../shared/mixins/form_mixin.dart';
 import '../sign_in/sign_in_screen.dart';
 import '../sign_up/sign_up_screen.dart';
 
-class IntroAuthScreen extends ConsumerWidget {
+class IntroAuthScreen extends ConsumerWidget with FormMixins {
   const IntroAuthScreen({super.key});
 
   static const String nameRoute = 'index-auth';
@@ -35,16 +36,18 @@ class IntroAuthScreen extends ConsumerWidget {
                 const SizedBox(
                   height: 50,
                 ),
-                _ButtonLoginWith(
-                  image: '${MediaAssets.images}/icon_fb.png',
+                customButton(
+                  context,
+                  image: Image.asset('${MediaAssets.images}/icon_fb.png'),
                   text: 'Tiếp tục với Facebook',
                   onTap: () {},
                 ),
                 const SizedBox(
                   height: 19,
                 ),
-                _ButtonLoginWith(
-                  image: '${MediaAssets.images}/icon_gg.png',
+                customButton(
+                  context,
+                  image: Image.asset('${MediaAssets.images}/icon_gg.png'),
                   text: 'Tiếp tục với Google',
                   onTap: () {},
                 ),
@@ -85,13 +88,11 @@ class IntroAuthScreen extends ConsumerWidget {
                     ],
                   ),
                 ),
-                _ButtonLoginWith(
+                customButton(
+                  context,
                   background: Theme.of(context).primaryColor,
                   text: 'Đăng nhập bằng mật khẩu',
-                  textStyle: Theme.of(context)
-                      .textTheme
-                      .titleSmall!
-                      .copyWith(color: Colors.white, fontSize: 15),
+                  textColor: Colors.white,
                   onTap: () {
                     context.go(SignInScreen.pathRoute);
                   },
@@ -123,53 +124,6 @@ class IntroAuthScreen extends ConsumerWidget {
               ],
             ),
           ),
-        ),
-      ),
-    );
-  }
-}
-
-class _ButtonLoginWith extends ConsumerWidget {
-  const _ButtonLoginWith(
-      {super.key,
-      this.image,
-      required this.text,
-      this.background,
-      this.textStyle,
-      this.onTap});
-
-  final String? image;
-  final String text;
-  final Color? background;
-  final TextStyle? textStyle;
-  final Function()? onTap;
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Container(
-        padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 14),
-        decoration: BoxDecoration(
-          color: background,
-          border: Border.all(color: const Color(0xffEBEBEB)),
-          borderRadius: const BorderRadius.all(Radius.circular(30)),
-        ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            if (image != null) ...[
-              Image.asset(image.toString()),
-              const SizedBox(
-                width: 10,
-              ),
-            ],
-            Text(
-              text,
-              style: textStyle ?? Theme.of(context).textTheme.titleSmall,
-            ),
-          ],
         ),
       ),
     );

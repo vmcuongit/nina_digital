@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-mixin UIMixins {
+mixin FormMixins {
   Widget customTextFormField(
     BuildContext context, {
     String? hintText,
@@ -44,6 +44,52 @@ mixin UIMixins {
       initialValue: initialValue,
       autovalidateMode: autovalidateMode,
       validator: validator,
+    );
+  }
+
+  Widget customButton(
+    BuildContext context, {
+    Function()? onTap,
+    Color? background,
+    Color? borderColor,
+    double? borderRadius,
+    Widget? image,
+    String? text,
+    Color? textColor,
+  }) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 14),
+        decoration: BoxDecoration(
+          color: background,
+          border: Border.all(color: borderColor ?? const Color(0xffEBEBEB)),
+          borderRadius: BorderRadius.all(Radius.circular(borderRadius ?? 30)),
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            if (image != null) ...[
+              image,
+            ],
+            if (image != null && text != null) ...[
+              const SizedBox(
+                width: 10,
+              )
+            ],
+            if (text != null) ...[
+              Text(
+                text.toString(),
+                style: Theme.of(context)
+                    .textTheme
+                    .titleMedium!
+                    .copyWith(color: textColor),
+              ),
+            ]
+          ],
+        ),
+      ),
     );
   }
 }

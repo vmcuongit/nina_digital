@@ -5,7 +5,7 @@ import 'package:iconoir_flutter/iconoir_flutter.dart' as icons;
 import 'package:form_builder_validators/form_builder_validators.dart';
 
 import '../../shared/constants/media_assets.dart';
-import '../../shared/mixins/ui_mixin.dart';
+import '../../shared/mixins/form_mixin.dart';
 import '../sign_in/sign_in_screen.dart';
 
 part 'widgets/input_email_widget.dart';
@@ -18,7 +18,7 @@ final GlobalKey<FormState> _formSignUpKey = GlobalKey<FormState>();
 const Color _fillColor = Color(0xffF4F4F4);
 const double _borderRadius = 30;
 
-class SignUpScreen extends ConsumerWidget {
+class SignUpScreen extends ConsumerWidget with FormMixins {
   const SignUpScreen({super.key});
 
   static const String nameRoute = 'sign-up';
@@ -65,13 +65,11 @@ class SignUpScreen extends ConsumerWidget {
                   const SizedBox(
                     height: 25,
                   ),
-                  _ButtonLoginWith(
+                  customButton(
+                    context,
                     background: Theme.of(context).primaryColor,
                     text: 'Đăng ký',
-                    textStyle: Theme.of(context)
-                        .textTheme
-                        .titleSmall!
-                        .copyWith(color: Colors.white, fontSize: 15),
+                    textColor: Colors.white,
                     onTap: _onDangKy,
                   ),
                   Container(
@@ -114,15 +112,17 @@ class SignUpScreen extends ConsumerWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      _ButtonLoginWith(
-                        image: '${MediaAssets.images}/icon_fb.png',
+                      customButton(
+                        context,
+                        image: Image.asset('${MediaAssets.images}/icon_fb.png'),
                         onTap: () {},
                       ),
                       const SizedBox(
                         width: 10,
                       ),
-                      _ButtonLoginWith(
-                        image: '${MediaAssets.images}/icon_gg.png',
+                      customButton(
+                        context,
+                        image: Image.asset('${MediaAssets.images}/icon_gg.png'),
                         onTap: () {},
                       ),
                     ],
@@ -155,52 +155,6 @@ class SignUpScreen extends ConsumerWidget {
               ),
             ),
           ),
-        ),
-      ),
-    );
-  }
-}
-
-class _ButtonLoginWith extends ConsumerWidget {
-  const _ButtonLoginWith(
-      {super.key,
-      this.image,
-      this.text,
-      this.background,
-      this.textStyle,
-      this.onTap});
-
-  final String? image;
-  final String? text;
-  final Color? background;
-  final TextStyle? textStyle;
-  final Function()? onTap;
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Container(
-        padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 14),
-        decoration: BoxDecoration(
-          color: background,
-          border: Border.all(color: const Color(0xffEBEBEB)),
-          borderRadius: const BorderRadius.all(Radius.circular(30)),
-        ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            if (image != null) ...[
-              Image.asset(image.toString()),
-            ],
-            if (text != null) ...[
-              Text(
-                text.toString(),
-                style: textStyle ?? Theme.of(context).textTheme.titleSmall,
-              ),
-            ]
-          ],
         ),
       ),
     );

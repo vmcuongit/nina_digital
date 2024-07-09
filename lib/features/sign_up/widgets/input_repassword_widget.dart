@@ -8,7 +8,7 @@ class _InputRepasswordWidget extends ConsumerStatefulWidget {
 }
 
 class __InputRepasswordWidgetState extends ConsumerState<_InputRepasswordWidget>
-    with UIMixins {
+    with FormMixins {
   Color? active;
 
   @override

@@ -8,7 +8,7 @@ class _InputEmailWidget extends ConsumerStatefulWidget {
 }
 
 class __InputEmailWidgetState extends ConsumerState<_InputEmailWidget>
-    with UIMixins {
+    with FormMixins {
   Color? active;
 
   @override

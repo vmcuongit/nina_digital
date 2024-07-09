@@ -30,6 +30,13 @@ List<RouteBase> _danhsachRoute = [
     },
   ),
   GoRoute(
+    name: ForgotPasswordScreen.nameRoute,
+    path: ForgotPasswordScreen.pathRoute,
+    builder: (context, state) {
+      return const ForgotPasswordScreen();
+    },
+  ),
+  GoRoute(
     name: HomeScreen.nameRoute,
     path: HomeScreen.pathRoute,
     pageBuilder: (context, state) {

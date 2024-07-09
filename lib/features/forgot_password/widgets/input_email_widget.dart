@@ -1,13 +1,13 @@
-part of '../sign_up_screen.dart';
+part of '../forgot_password_screen.dart';
 
-class _InputPhoneWidget extends ConsumerStatefulWidget {
-  const _InputPhoneWidget({super.key});
+class _InputEmailWidget extends ConsumerStatefulWidget {
+  const _InputEmailWidget({super.key});
 
   @override
-  ConsumerState createState() => __InputPhoneWidgetState();
+  ConsumerState createState() => __InputEmailWidgetState();
 }
 
-class __InputPhoneWidgetState extends ConsumerState<_InputPhoneWidget>
+class __InputEmailWidgetState extends ConsumerState<_InputEmailWidget>
     with FormMixins {
   Color? active;
 
@@ -24,12 +24,11 @@ class __InputPhoneWidgetState extends ConsumerState<_InputPhoneWidget>
       },
       child: customTextFormField(
         context,
-        fillColor: _fillColor,
         borderRadius: _borderRadius,
-        hintText: 'Số điện thoại*',
+        hintText: 'Email*',
         prefixIcon: Container(
           padding: const EdgeInsets.only(left: 12, right: 12, top: 2),
-          child: icons.Phone(
+          child: icons.Mail(
             color: active,
           ),
         ),
@@ -37,6 +36,8 @@ class __InputPhoneWidgetState extends ConsumerState<_InputPhoneWidget>
         validator: FormBuilderValidators.compose(
           [
             FormBuilderValidators.required(errorText: 'Không bỏ trống'),
+            FormBuilderValidators.email(
+                errorText: 'Email không đúng định dạng'),
           ],
         ),
       ),
