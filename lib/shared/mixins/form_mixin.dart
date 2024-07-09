@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 mixin FormMixins {
   Widget customTextFormField(
     BuildContext context, {
+    Function()? onTap,
     String? hintText,
     String? labelText,
     Color? borderColor,
@@ -17,6 +18,7 @@ mixin FormMixins {
     Function(String)? onFieldSubmitted,
   }) {
     return TextFormField(
+      onTap: onTap,
       decoration: InputDecoration(
         enabledBorder: OutlineInputBorder(
           borderSide: BorderSide(color: borderColor ?? const Color(0xffEBEBEB)),
