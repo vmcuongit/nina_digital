@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:iconoir_flutter/iconoir_flutter.dart' as icons;
 
 import '../../shared/constants/media_assets.dart';
@@ -73,7 +74,11 @@ class HomeScreen extends ConsumerWidget with FormMixins, UiMixins {
                           GestureDetector(
                             onTap: () {},
                             child: customBadgeIcon(context,
-                                icon: const icons.Bell(width: 26), label: null),
+                                icon: SvgPicture.asset(
+                                  '${MediaAssets.icons}/noti.svg',
+                                  width: 32,
+                                ),
+                                label: null),
                           ),
                           const SizedBox(
                             width: 15,
@@ -81,7 +86,10 @@ class HomeScreen extends ConsumerWidget with FormMixins, UiMixins {
                           GestureDetector(
                             onTap: () {},
                             child: customBadgeIcon(context,
-                                icon: const icons.ShoppingBag(width: 30),
+                                icon: SvgPicture.asset(
+                                  '${MediaAssets.icons}/bag.svg',
+                                  width: 32,
+                                ),
                                 label: '10'),
                           ),
                         ],

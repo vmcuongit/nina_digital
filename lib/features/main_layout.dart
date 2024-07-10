@@ -1,51 +1,36 @@
 import 'package:flutter/material.dart';
-import 'package:iconoir_flutter/iconoir_flutter.dart' as icons;
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 
 import '../shared/constants/media_assets.dart';
 
 class MainLayout extends StatelessWidget {
-  MainLayout({super.key, required this.navigationShell});
+  const MainLayout({super.key, required this.navigationShell});
 
   final StatefulNavigationShell navigationShell;
 
-  final List<BottomNavigationBarItem> _pageNav = [
-    const BottomNavigationBarItem(
+  BottomNavigationBarItem _itemNav(BuildContext context,
+      {required String label, required String icon}) {
+    return BottomNavigationBarItem(
       icon: Padding(
-        padding: EdgeInsets.only(bottom: 5),
-        child: Icon(Icons.home),
+        padding: const EdgeInsets.only(bottom: 3),
+        child: SvgPicture.asset(
+          icon,
+          height: 23,
+          color: const Color(0xff797979),
+        ),
       ),
-      label: 'Trang chủ',
-    ),
-    const BottomNavigationBarItem(
-      icon: Padding(
-        padding: EdgeInsets.only(bottom: 5),
-        child: icons.FavouriteBook(),
+      activeIcon: Padding(
+        padding: const EdgeInsets.only(bottom: 3),
+        child: SvgPicture.asset(
+          icon,
+          height: 23,
+          color: Theme.of(context).primaryColor,
+        ),
       ),
-      label: 'Yêu thích',
-    ),
-    const BottomNavigationBarItem(
-      icon: Padding(
-        padding: EdgeInsets.only(bottom: 5),
-        child: icons.Cell2x2(),
-      ),
-      label: 'Danh mục',
-    ),
-    const BottomNavigationBarItem(
-      icon: Padding(
-        padding: EdgeInsets.only(bottom: 5),
-        child: icons.Page(),
-      ),
-      label: 'Tin tức',
-    ),
-    const BottomNavigationBarItem(
-      icon: Padding(
-        padding: EdgeInsets.only(bottom: 5),
-        child: icons.User(),
-      ),
-      label: 'Tài khoản',
-    ),
-  ];
+      label: label,
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -57,7 +42,7 @@ class MainLayout extends StatelessWidget {
           highlightColor: Colors.transparent,
         ),
         child: Container(
-          padding: const EdgeInsets.only(top: 5),
+          padding: const EdgeInsets.only(top: 3),
           decoration: const BoxDecoration(
             color: Colors.white,
             border: Border(
@@ -69,19 +54,29 @@ class MainLayout extends StatelessWidget {
           ),
           child: BottomNavigationBar(
             elevation: 0,
-            items: List<BottomNavigationBarItem>.generate(_pageNav.length,
-                (int index) {
-              return _pageNav[index];
-            }),
+            items: [
+              _itemNav(context,
+                  label: 'Trang chủ', icon: '${MediaAssets.icons}/home.svg'),
+              _itemNav(context,
+                  label: 'Yêu thích', icon: '${MediaAssets.icons}/fav.svg'),
+              _itemNav(context,
+                  label: 'Danh mục', icon: '${MediaAssets.icons}/category.svg'),
+              _itemNav(context,
+                  label: 'Tin tức', icon: '${MediaAssets.icons}/news.svg'),
+              _itemNav(context,
+                  label: 'Tài khoản', icon: '${MediaAssets.icons}/profile.svg'),
+            ],
             type: BottomNavigationBarType.fixed,
             unselectedItemColor: const Color(0xff797979),
             fixedColor: Theme.of(context).primaryColor,
             backgroundColor: Colors.white,
             currentIndex: navigationShell.currentIndex,
-            iconSize: 22,
+            iconSize: 25,
             showUnselectedLabels: true,
-            selectedFontSize: 12,
-            unselectedFontSize: 12,
+            unselectedLabelStyle:
+                const TextStyle(fontSize: 13, fontFamily: 'UTM-Caviar'),
+            selectedLabelStyle:
+                const TextStyle(fontSize: 13, fontFamily: 'UTM-Caviar'),
             onTap: _onItemTapped,
           ),
         ),
