@@ -7,6 +7,7 @@ import 'package:form_builder_validators/form_builder_validators.dart';
 import '../../shared/constants/media_assets.dart';
 import '../../shared/mixins/form_mixin.dart';
 import '../forgot_password/forgot_password_screen.dart';
+import '../home/home_screen.dart';
 import '../sign_up/sign_up_screen.dart';
 
 part 'widgets/input_email_widget.dart';
@@ -61,7 +62,9 @@ class SignInScreen extends ConsumerWidget with FormMixins {
                     background: Theme.of(context).primaryColor,
                     text: 'Đăng nhập',
                     textColor: Colors.white,
-                    onTap: _onDangNhap,
+                    onTap: () {
+                      _onDangNhap(context);
+                    },
                   ),
                   const SizedBox(
                     height: 25,
@@ -161,9 +164,8 @@ class SignInScreen extends ConsumerWidget with FormMixins {
   }
 }
 
-Function()? _onDangNhap() {
+_onDangNhap(BuildContext context) {
   if (_formSignInKey.currentState!.validate() == true) {
-    print('ok');
+    context.go(HomeScreen.pathRoute);
   }
-  return null;
 }

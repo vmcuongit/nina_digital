@@ -27,7 +27,7 @@ class AppConfig {
   static const String pathOnboarding = OnboardingScreen.pathRoute;
 
   // Màn hình đầu tiên khi App được bật
-  static String initialPath = HomeScreen.pathRoute;
+  static String initialPath = IntroAuthScreen.pathRoute;
 
   // Load dữ liệu hoặc khởi tạo các dự liệu cần thiết để App hoạt động
   initApp(Ref ref) async {
