@@ -16,7 +16,7 @@ class MainLayout extends StatelessWidget {
         padding: const EdgeInsets.only(bottom: 3),
         child: SvgPicture.asset(
           icon,
-          height: 23,
+          height: 20,
           color: const Color(0xff797979),
         ),
       ),
@@ -24,7 +24,7 @@ class MainLayout extends StatelessWidget {
         padding: const EdgeInsets.only(bottom: 3),
         child: SvgPicture.asset(
           icon,
-          height: 23,
+          height: 20,
           color: Theme.of(context).primaryColor,
         ),
       ),
@@ -42,7 +42,6 @@ class MainLayout extends StatelessWidget {
           highlightColor: Colors.transparent,
         ),
         child: Container(
-          padding: const EdgeInsets.only(top: 3),
           decoration: const BoxDecoration(
             color: Colors.white,
             border: Border(
@@ -71,12 +70,11 @@ class MainLayout extends StatelessWidget {
             fixedColor: Theme.of(context).primaryColor,
             backgroundColor: Colors.white,
             currentIndex: navigationShell.currentIndex,
-            iconSize: 25,
             showUnselectedLabels: true,
             unselectedLabelStyle:
-                const TextStyle(fontSize: 13, fontFamily: 'UTM-Caviar'),
+                const TextStyle(fontSize: 12, fontFamily: 'UTM-Caviar'),
             selectedLabelStyle:
-                const TextStyle(fontSize: 13, fontFamily: 'UTM-Caviar'),
+                const TextStyle(fontSize: 12, fontFamily: 'UTM-Caviar'),
             onTap: _onItemTapped,
           ),
         ),

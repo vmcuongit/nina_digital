@@ -4,8 +4,11 @@ mixin FormMixins {
   Widget customTextFormField(
     BuildContext context, {
     Function()? onTap,
+    bool? enabled,
     String? hintText,
     String? labelText,
+    TextStyle? hintStyle,
+    TextStyle? labelStyle,
     Color? borderColor,
     double borderRadius = 0,
     Color? fillColor,
@@ -19,7 +22,16 @@ mixin FormMixins {
   }) {
     return TextFormField(
       onTap: onTap,
+      enabled: enabled,
       decoration: InputDecoration(
+        disabledBorder: OutlineInputBorder(
+          borderSide: BorderSide(color: borderColor ?? const Color(0xffEBEBEB)),
+          borderRadius: BorderRadius.all(Radius.circular(borderRadius)),
+        ),
+        border: OutlineInputBorder(
+          borderSide: BorderSide(color: borderColor ?? const Color(0xffEBEBEB)),
+          borderRadius: BorderRadius.all(Radius.circular(borderRadius)),
+        ),
         enabledBorder: OutlineInputBorder(
           borderSide: BorderSide(color: borderColor ?? const Color(0xffEBEBEB)),
           borderRadius: BorderRadius.all(Radius.circular(borderRadius)),
@@ -40,7 +52,9 @@ mixin FormMixins {
         filled: (fillColor != null) ? true : false,
         contentPadding: contentPadding,
         labelText: labelText,
+        labelStyle: labelStyle,
         hintText: hintText,
+        hintStyle: hintStyle,
         prefixIcon: prefixIcon,
         suffixIcon: suffixIcon,
       ),

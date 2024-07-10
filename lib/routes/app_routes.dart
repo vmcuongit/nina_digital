@@ -12,6 +12,7 @@ import '../features/main_layout.dart';
 import '../features/news/news_screen.dart';
 import '../features/onboarding/onboarding_screen.dart';
 import '../features/product_category/product_category_screen.dart';
+import '../features/search_products/search_product_screen.dart';
 import '../features/sign_in/sign_in_screen.dart';
 import '../features/sign_up/sign_up_screen.dart';
 import '../shared/app_config.dart';

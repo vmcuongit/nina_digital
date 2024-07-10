@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../features/home/home_screen.dart';
+import '../features/intro_auth/intro_auth_screen.dart';
 import '../features/onboarding/onboarding_screen.dart';
 
 class AppConfig {

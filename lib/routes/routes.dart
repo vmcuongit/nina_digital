@@ -37,6 +37,13 @@ List<RouteBase> _danhsachRoute = [
     },
   ),
   addShellRouterMain(),
+  GoRoute(
+    name: SearchProductScreen.nameRoute,
+    path: SearchProductScreen.pathRoute,
+    pageBuilder: (context, state) {
+      return _effectTransitionFade(context, state, const SearchProductScreen());
+    },
+  ),
 ];
 
 ShellRouteBase addShellRouterMain() {
