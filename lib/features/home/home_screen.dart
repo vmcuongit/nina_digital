@@ -3,7 +3,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:iconoir_flutter/iconoir_flutter.dart' as icons;
-import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+import 'package:flutter_carousel_widget/flutter_carousel_widget.dart';
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
 import '../../shared/constants/media_assets.dart';
 import '../../shared/mixins/form_mixin.dart';
@@ -14,6 +15,9 @@ part 'widgets/header_home_widget.dart';
 part 'widgets/search_home_widget.dart';
 part 'widgets/body_home_widget.dart';
 part 'widgets/slider_widget.dart';
+part 'widgets/category_widget.dart';
+part 'widgets/ad_widget.dart';
+part 'widgets/product_home_widget.dart';
 
 class HomeScreen extends ConsumerWidget {
   const HomeScreen({super.key});
@@ -31,7 +35,7 @@ class HomeScreen extends ConsumerWidget {
             pinned: true,
             elevation: 0,
             expandedHeight: 145,
-            backgroundColor: Theme.of(context).primaryColor,
+            backgroundColor: Colors.white,
             flexibleSpace: FlexibleSpaceBar(
               background: Container(
                 color: Colors.white,

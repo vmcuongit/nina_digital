@@ -10,6 +10,9 @@ class _BodyHomeWidget extends StatelessWidget {
       child: Column(
         children: [
           _SliderWidget(),
+          _CategoryWidget(),
+          _AdWidget(),
+          _ProductHomeWidget(),
         ],
       ),
     );

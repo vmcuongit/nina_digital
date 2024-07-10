@@ -46,23 +46,27 @@ class _HeaderHomeWidget extends StatelessWidget with UiMixins {
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               GestureDetector(
-                onTap: () {},
+                onTap: () {
+                  print('Thong bao');
+                },
                 child: customBadgeIcon(context,
                     icon: SvgPicture.asset(
                       '${MediaAssets.icons}/noti.svg',
-                      width: 32,
+                      width: 28,
                     ),
-                    label: null),
+                    label: '1'),
               ),
               const SizedBox(
                 width: 15,
               ),
               GestureDetector(
-                onTap: () {},
+                onTap: () {
+                  print('gio hang');
+                },
                 child: customBadgeIcon(context,
                     icon: SvgPicture.asset(
                       '${MediaAssets.icons}/bag.svg',
-                      width: 32,
+                      width: 28,
                     ),
                     label: '10'),
               ),

@@ -14,7 +14,7 @@ class _SliderWidgetState extends State<_SliderWidget> {
     return GestureDetector(
       onTap: () {},
       child: ClipRRect(
-        borderRadius: const BorderRadius.all(Radius.circular(15)),
+        borderRadius: const BorderRadius.all(Radius.circular(18)),
         child: Image.asset(
           image,
           fit: BoxFit.cover,
@@ -25,41 +25,30 @@ class _SliderWidgetState extends State<_SliderWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        Container(
-          margin: const EdgeInsets.symmetric(vertical: 15),
-          height: 220,
-          child: PageView(
-            controller: _pageController,
-            scrollDirection: Axis.horizontal,
-            children: [
-              _itemSlide(image: '${MediaAssets.images}/slide1.jpg'),
-              _itemSlide(image: '${MediaAssets.images}/slide2.jpg'),
-              _itemSlide(image: '${MediaAssets.images}/slide3.jpg'),
-            ],
+    return Container(
+      margin: const EdgeInsets.only(top: 10),
+      child: FlutterCarousel(
+        options: CarouselOptions(
+          height: 200,
+          autoPlay: true,
+          reverse: false,
+          autoPlayInterval: const Duration(seconds: 3),
+          autoPlayAnimationDuration: const Duration(milliseconds: 300),
+          autoPlayCurve: Curves.fastOutSlowIn,
+          viewportFraction: 1,
+          slideIndicator: CircularSlideIndicator(
+            indicatorBackgroundColor: Colors.white.withOpacity(0.4),
+            currentIndicatorColor: Colors.white,
           ),
         ),
-        Positioned(
-            bottom: 30,
-            child: SizedBox(
-              width: MediaQuery.of(context).size.width - 30,
-              child: Align(
-                alignment: Alignment.center,
-                child: SmoothPageIndicator(
-                  controller: _pageController,
-                  count: 3,
-                  effect: ExpandingDotsEffect(
-                    dotHeight: 3,
-                    dotWidth: 15,
-                    dotColor: Colors.white.withOpacity(0.4),
-                    activeDotColor: Colors.white,
-                    expansionFactor: 2,
-                  ),
-                ),
-              ),
-            )),
-      ],
+        items: [1, 2, 3].map((i) {
+          return Builder(
+            builder: (BuildContext context) {
+              return _itemSlide(image: '${MediaAssets.images}/slide$i.jpg');
+            },
+          );
+        }).toList(),
+      ),
     );
   }
 }
