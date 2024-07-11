@@ -17,6 +17,7 @@ mixin FormMixins {
     Widget? prefixIcon,
     Widget? suffixIcon,
     String? initialValue,
+    TextEditingController? controller,
     AutovalidateMode? autovalidateMode,
     String? Function(String?)? validator,
     Function(String)? onFieldSubmitted,
@@ -25,6 +26,7 @@ mixin FormMixins {
       onTap: onTap,
       readOnly: readOnly,
       enabled: enabled,
+      controller: controller,
       decoration: InputDecoration(
         disabledBorder: OutlineInputBorder(
           borderSide: BorderSide(color: borderColor ?? const Color(0xffEBEBEB)),
