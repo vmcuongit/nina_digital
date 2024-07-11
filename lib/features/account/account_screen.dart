@@ -5,11 +5,14 @@ import 'package:go_router/go_router.dart';
 import '../../core/app_setttings/app_setting_provider.dart';
 import '../../localizations/language_ext.dart';
 import '../../shared/constants/media_assets.dart';
+import '../../shared/mixins/ui_mixins.dart';
 import '../intro_auth/intro_auth_screen.dart';
 import '../profile/profile_screen.dart';
+import 'address/address_screen.dart';
 import 'language/language_screen.dart';
+import 'support/support_screen.dart';
 
-class AccountScreen extends StatelessWidget {
+class AccountScreen extends StatelessWidget with UiMixins {
   const AccountScreen({super.key});
 
   static const String nameRoute = 'account';
@@ -19,23 +22,7 @@ class AccountScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xfff2f2f2),
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        title: Row(
-          children: [
-            Image.asset(
-              '${MediaAssets.images}/logo.png',
-              height: 35,
-              fit: BoxFit.fitHeight,
-            ),
-            const SizedBox(
-              width: 15,
-            ),
-            const Text('Tài khoản'),
-          ],
-        ),
-        centerTitle: false,
-      ),
+      appBar: appBarType1(context, text: 'Tài khoản'),
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -86,6 +73,22 @@ class AccountScreen extends StatelessWidget {
                                       title: Text(
                                         'Thư viện ảnh',
                                         style: TextStyle(fontSize: 17),
+                                        textAlign: TextAlign.center,
+                                      ),
+                                    ),
+                                    const Divider(
+                                      color: Color(0xfff2f2f2),
+                                    ),
+                                    ListTile(
+                                      onTap: () {
+                                        context.pop();
+                                      },
+                                      title: Text(
+                                        'Huỷ',
+                                        style: TextStyle(
+                                            fontSize: 18,
+                                            color: Colors.red,
+                                            fontWeight: FontWeight.bold),
                                         textAlign: TextAlign.center,
                                       ),
                                     ),
@@ -198,7 +201,9 @@ class AccountScreen extends StatelessWidget {
             ),
             _itemMenu(
               title: 'Địa chỉ',
-              onTap: () {},
+              onTap: () {
+                context.push(AddressScreen.pathRoute);
+              },
             ),
             const SizedBox(
               height: 1,
@@ -220,7 +225,9 @@ class AccountScreen extends StatelessWidget {
             ),
             _itemMenu(
               title: 'Trung tâm hỗ trợ',
-              onTap: () {},
+              onTap: () {
+                context.pushNamed(SupportScreen.nameRoute);
+              },
             ),
             ListTile(
               title: Text(
@@ -289,6 +296,7 @@ class _DarkModeWidget extends ConsumerWidget {
     return _itemMenu(
       title: 'Giao diện tối',
       trailing: Switch.adaptive(
+        activeColor: Theme.of(context).primaryColor,
         value: (theme == 'light') ? false : true,
         onChanged: (value) {
           ref

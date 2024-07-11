@@ -5,13 +5,15 @@ class _HotenWidget extends ConsumerWidget with FormMixins {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return customTextFormField(
-      context,
-      labelText: 'Họ Tên',
-      labelStyle: _labelStyle,
-      initialValue: 'Vũ Mạnh Cường',
-      fillColor: _fillColor,
-      contentPadding: _contentPadding,
-    );
+    return customTextFormField(context,
+        labelText: 'Họ Tên',
+        labelStyle: _labelStyle,
+        initialValue: 'Vũ Mạnh Cường',
+        fillColor: _fillColor,
+        contentPadding: _contentPadding,
+        autovalidateMode: AutovalidateMode.onUserInteraction,
+        validator: FormBuilderValidators.compose([
+          FormBuilderValidators.required(errorText: 'Không bỏ trống'),
+        ]));
   }
 }

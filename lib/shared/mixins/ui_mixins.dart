@@ -1,7 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../constants/media_assets.dart';
+
 mixin UiMixins {
+  PreferredSizeWidget? appBarType1(BuildContext context,
+      {required String text}) {
+    return AppBar(
+      title: Row(
+        children: [
+          Image.asset(
+            '${MediaAssets.images}/logo.png',
+            height: 35,
+            fit: BoxFit.fitHeight,
+          ),
+          const SizedBox(
+            width: 15,
+          ),
+          Text(text),
+        ],
+      ),
+      centerTitle: false,
+    );
+  }
+
   Widget customBadgeIcon(
     BuildContext context, {
     required Widget icon,

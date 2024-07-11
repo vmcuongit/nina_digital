@@ -45,6 +45,13 @@ List<RouteBase> _danhsachRoute = [
     },
   ),
   GoRoute(
+    name: AddressScreen.nameRoute,
+    path: AddressScreen.pathRoute,
+    builder: (context, state) {
+      return const AddressScreen();
+    },
+  ),
+  GoRoute(
     name: ProfileScreen.nameRoute,
     path: ProfileScreen.pathRoute,
     builder: (context, state) {
@@ -118,6 +125,13 @@ ShellRouteBase addShellRouterMain() {
                   path: LanguageScreen.pathRoute,
                   builder: (context, state) {
                     return const LanguageScreen();
+                  },
+                ),
+                GoRoute(
+                  name: SupportScreen.nameRoute,
+                  path: SupportScreen.pathRoute,
+                  builder: (context, state) {
+                    return const SupportScreen();
                   },
                 ),
               ]),

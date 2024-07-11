@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
-class FavoriteScreen extends StatelessWidget {
+import '../../shared/mixins/ui_mixins.dart';
+
+class FavoriteScreen extends StatelessWidget with UiMixins {
   const FavoriteScreen({super.key});
 
   static const String nameRoute = 'favorite';
@@ -9,10 +11,7 @@ class FavoriteScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Danh sách yêu thích'),
-        centerTitle: false,
-      ),
+      appBar: appBarType1(context, text: 'Danh sách yêu thích'),
       body: Center(
         child: Text('favorite'),
       ),

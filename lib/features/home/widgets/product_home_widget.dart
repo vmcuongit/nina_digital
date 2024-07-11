@@ -36,9 +36,29 @@ class _ProductHomeWidget extends StatelessWidget {
         ),
         child: Column(
           children: [
-            Image.asset(
-              '${MediaAssets.images}/sp.jpg',
-              fit: BoxFit.fitHeight,
+            Stack(
+              clipBehavior: Clip.none,
+              children: [
+                Image.asset(
+                  '${MediaAssets.images}/sp.jpg',
+                  fit: BoxFit.fitHeight,
+                ),
+                Positioned(
+                  top: 0,
+                  right: 0,
+                  child: CircleAvatar(
+                    maxRadius: 18,
+                    backgroundColor: Colors.red,
+                    child: Text(
+                      '-20%',
+                      style: TextStyle(
+                        fontSize: 12,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ),
+                )
+              ],
             ),
             const SizedBox(
               height: 10,

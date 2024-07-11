@@ -37,4 +37,10 @@ class __NgaySinhWidgetState extends ConsumerState<_NgaySinhWidget>
       },
     );
   }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _textEditingController.dispose();
+  }
 }
