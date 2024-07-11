@@ -6,6 +6,7 @@ import '../../core/app_setttings/app_setting_provider.dart';
 import '../../localizations/language_ext.dart';
 import '../../shared/constants/media_assets.dart';
 import '../intro_auth/intro_auth_screen.dart';
+import '../profile/profile_screen.dart';
 import 'language/language_screen.dart';
 
 class AccountScreen extends StatelessWidget {
@@ -54,8 +55,48 @@ class AccountScreen extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       GestureDetector(
-                        onTap: () {},
+                        onTap: () {
+                          showModalBottomSheet(
+                            isScrollControlled: false,
+                            useRootNavigator: true,
+                            context: context,
+                            builder: (context) {
+                              return Container(
+                                padding: EdgeInsets.only(
+                                  bottom:
+                                      MediaQuery.of(context).viewPadding.bottom,
+                                ),
+                                width: double.infinity,
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    ListTile(
+                                      onTap: () {},
+                                      title: Text(
+                                        'Camera',
+                                        style: TextStyle(fontSize: 17),
+                                        textAlign: TextAlign.center,
+                                      ),
+                                    ),
+                                    const Divider(
+                                      color: Color(0xfff2f2f2),
+                                    ),
+                                    ListTile(
+                                      onTap: () {},
+                                      title: Text(
+                                        'Thư viện ảnh',
+                                        style: TextStyle(fontSize: 17),
+                                        textAlign: TextAlign.center,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              );
+                            },
+                          );
+                        },
                         child: Stack(
+                          clipBehavior: Clip.none,
                           children: [
                             SizedBox(
                               width: 80,
@@ -65,6 +106,25 @@ class AccountScreen extends StatelessWidget {
                                   '${MediaAssets.images}/avatar.jpg',
                                   width: 80,
                                   fit: BoxFit.cover,
+                                ),
+                              ),
+                            ),
+                            Positioned(
+                              bottom: -3,
+                              right: -3,
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  color: const Color(0xffD9D9D9),
+                                  borderRadius: const BorderRadius.all(
+                                      Radius.circular(30)),
+                                  border:
+                                      Border.all(color: Colors.white, width: 2),
+                                ),
+                                width: 30,
+                                height: 30,
+                                child: const Icon(
+                                  Icons.camera_alt_rounded,
+                                  size: 18,
                                 ),
                               ),
                             ),
@@ -104,13 +164,15 @@ class AccountScreen extends StatelessWidget {
                           child: Align(
                         alignment: Alignment.topRight,
                         child: GestureDetector(
-                          onTap: () {},
+                          onTap: () {
+                            context.push(ProfileScreen.pathRoute);
+                          },
                           child: Container(
                             padding: const EdgeInsets.all(7),
                             decoration: BoxDecoration(
                                 color: Theme.of(context).primaryColor,
                                 borderRadius:
-                                    BorderRadius.all(Radius.circular(5))),
+                                    const BorderRadius.all(Radius.circular(5))),
                             child: const Icon(
                               Icons.edit,
                               color: Colors.white,

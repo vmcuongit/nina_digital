@@ -44,6 +44,13 @@ List<RouteBase> _danhsachRoute = [
       return _effectTransitionFade(context, state, const SearchProductScreen());
     },
   ),
+  GoRoute(
+    name: ProfileScreen.nameRoute,
+    path: ProfileScreen.pathRoute,
+    builder: (context, state) {
+      return const ProfileScreen();
+    },
+  ),
 ];
 
 ShellRouteBase addShellRouterMain() {

@@ -45,6 +45,20 @@ class Helper {
 
     return uniqueString;
   }
+
+  static Future<DateTime?> onSelectDate(BuildContext context,
+      {bool Function(DateTime)? selectableDayPredicate,
+      DateTime? initialDate,
+      DateTime? firstDate}) async {
+    final now = DateTime.now();
+    return await showDatePicker(
+      context: context,
+      initialDate: initialDate ?? now,
+      selectableDayPredicate: selectableDayPredicate,
+      firstDate: firstDate ?? DateTime(1900),
+      lastDate: DateTime(now.year + 15),
+    );
+  }
 }
 
 class Loading {
