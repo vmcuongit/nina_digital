@@ -9,6 +9,10 @@ class FavoriteScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text('Danh sách yêu thích'),
+        centerTitle: false,
+      ),
       body: Center(
         child: Text('favorite'),
       ),

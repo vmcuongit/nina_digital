@@ -5,6 +5,15 @@ class AppLocalizationsEn extends AppLocalizations {
   AppLocalizationsEn([String locale = 'en']) : super(locale);
 
   @override
+  String get ngonngu => 'Language';
+
+  @override
+  String get vi => 'Vietnamese';
+
+  @override
+  String get en => 'English';
+
+  @override
   String get app_name => 'App Name';
 
   @override
@@ -21,6 +30,9 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get batdau => 'Let\'s start';
+
+  @override
+  String get xacnhan => 'Confirm';
 
   @override
   String get home => 'Home page';

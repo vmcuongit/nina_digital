@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 
 import '../core/app_setttings/app_setting_provider.dart';
 import '../features/account/account_screen.dart';
+import '../features/account/language/language_screen.dart';
 import '../features/favorite/favorite_screen.dart';
 import '../features/forgot_password/forgot_password_screen.dart';
 import '../features/home/home_screen.dart';

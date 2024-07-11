@@ -100,12 +100,20 @@ ShellRouteBase addShellRouterMain() {
       StatefulShellBranch(
         routes: [
           GoRoute(
-            name: AccountScreen.nameRoute,
-            path: AccountScreen.pathRoute,
-            builder: (context, state) {
-              return const AccountScreen();
-            },
-          ),
+              name: AccountScreen.nameRoute,
+              path: AccountScreen.pathRoute,
+              builder: (context, state) {
+                return const AccountScreen();
+              },
+              routes: [
+                GoRoute(
+                  name: LanguageScreen.nameRoute,
+                  path: LanguageScreen.pathRoute,
+                  builder: (context, state) {
+                    return const LanguageScreen();
+                  },
+                ),
+              ]),
         ],
       ),
     ],

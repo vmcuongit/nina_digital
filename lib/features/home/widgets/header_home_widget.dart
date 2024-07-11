@@ -16,6 +16,9 @@ class _HeaderHomeWidget extends StatelessWidget with UiMixins {
             minRadius: 55,
             child: Image.asset(
               '${MediaAssets.images}/avatar.jpg',
+              width: 55,
+              height: 55,
+              fit: BoxFit.cover,
             ),
           ),
         ),

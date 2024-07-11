@@ -73,8 +73,10 @@ class MainLayout extends StatelessWidget {
             showUnselectedLabels: true,
             unselectedLabelStyle:
                 const TextStyle(fontSize: 12, fontFamily: 'UTM-Caviar'),
-            selectedLabelStyle:
-                const TextStyle(fontSize: 12, fontFamily: 'UTM-Caviar'),
+            selectedLabelStyle: const TextStyle(
+                fontSize: 12,
+                fontFamily: 'UTM-Caviar',
+                fontWeight: FontWeight.bold),
             onTap: _onItemTapped,
           ),
         ),

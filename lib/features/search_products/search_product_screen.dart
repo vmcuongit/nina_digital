@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:iconoir_flutter/iconoir_flutter.dart' as icons;
+import '../../shared/constants/media_assets.dart';
 import '../../shared/mixins/form_mixin.dart';
 
 class SearchProductScreen extends StatelessWidget with FormMixins {
@@ -26,9 +28,9 @@ class SearchProductScreen extends StatelessWidget with FormMixins {
               color: Colors.grey,
             ),
           ),
-          suffixIcon: const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 12),
-            child: icons.Filter(),
+          suffixIcon: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 12),
+            child: SvgPicture.asset('${MediaAssets.icons}/filter.svg'),
           ),
         ),
         centerTitle: false,

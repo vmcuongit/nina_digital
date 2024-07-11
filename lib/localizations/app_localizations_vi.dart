@@ -5,6 +5,15 @@ class AppLocalizationsVi extends AppLocalizations {
   AppLocalizationsVi([String locale = 'vi']) : super(locale);
 
   @override
+  String get ngonngu => 'Ngôn ngữ';
+
+  @override
+  String get vi => 'Tiếng Việt';
+
+  @override
+  String get en => 'Tiếng Anh';
+
+  @override
   String get app_name => 'Tên ứng dụng';
 
   @override
@@ -21,6 +30,9 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get batdau => 'Bắt đầu';
+
+  @override
+  String get xacnhan => 'Xác nhận';
 
   @override
   String get home => 'Trang chủ';

@@ -93,6 +93,24 @@ abstract class AppLocalizations {
     Locale('vi')
   ];
 
+  /// No description provided for @ngonngu.
+  ///
+  /// In vi, this message translates to:
+  /// **'Ngôn ngữ'**
+  String get ngonngu;
+
+  /// No description provided for @vi.
+  ///
+  /// In vi, this message translates to:
+  /// **'Tiếng Việt'**
+  String get vi;
+
+  /// No description provided for @en.
+  ///
+  /// In vi, this message translates to:
+  /// **'Tiếng Anh'**
+  String get en;
+
   /// No description provided for @app_name.
   ///
   /// In vi, this message translates to:
@@ -128,6 +146,12 @@ abstract class AppLocalizations {
   /// In vi, this message translates to:
   /// **'Bắt đầu'**
   String get batdau;
+
+  /// No description provided for @xacnhan.
+  ///
+  /// In vi, this message translates to:
+  /// **'Xác nhận'**
+  String get xacnhan;
 
   /// No description provided for @home.
   ///

@@ -24,9 +24,9 @@ class _SearchHomeWidget extends StatelessWidget with FormMixins {
             color: Colors.grey,
           ),
         ),
-        suffixIcon: const Padding(
-          padding: EdgeInsets.symmetric(horizontal: 12),
-          child: icons.Filter(),
+        suffixIcon: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 12),
+          child: SvgPicture.asset('${MediaAssets.icons}/filter.svg'),
         ),
       ),
     );
