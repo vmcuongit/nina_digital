@@ -45,6 +45,15 @@ List<RouteBase> _danhsachRoute = [
     },
   ),
   GoRoute(
+    name: NewsDetailScreen.nameRoute,
+    path: NewsDetailScreen.pathRoute,
+    builder: (context, state) {
+      return NewsDetailScreen(
+        id: state.pathParameters['id'],
+      );
+    },
+  ),
+  GoRoute(
     name: ProfileScreen.nameRoute,
     path: ProfileScreen.pathRoute,
     builder: (context, state) {

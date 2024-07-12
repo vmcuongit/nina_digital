@@ -15,6 +15,7 @@ import '../features/forgot_password/forgot_password_screen.dart';
 import '../features/home/home_screen.dart';
 import '../features/intro_auth/intro_auth_screen.dart';
 import '../features/main_layout.dart';
+import '../features/news/news_detail_screen.dart';
 import '../features/news/news_screen.dart';
 import '../features/onboarding/onboarding_screen.dart';
 import '../features/product_category/product_category_screen.dart';
