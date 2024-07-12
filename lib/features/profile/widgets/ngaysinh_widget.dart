@@ -31,9 +31,11 @@ class __NgaySinhWidgetState extends ConsumerState<_NgaySinhWidget>
       contentPadding: _contentPadding,
       onTap: () async {
         selDate = await Helper.onSelectDate(context);
-        setState(() {
-          _textEditingController.text = selDate!.formatDateTime();
-        });
+        if (selDate != null) {
+          setState(() {
+            _textEditingController.text = selDate!.formatDateTime();
+          });
+        }
       },
     );
   }

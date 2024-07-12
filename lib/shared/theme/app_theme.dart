@@ -45,6 +45,7 @@ class AppTheme {
         inputDecoratorUnfocusedBorderIsColored: false,
         inputDecoratorFocusedBorderWidth: 1.0,
         inputDecoratorPrefixIconSchemeColor: SchemeColor.primary,
+        inputCursorSchemeColor: SchemeColor.primary,
         fabUseShape: true,
         fabAlwaysCircular: true,
         fabSchemeColor: SchemeColor.primary,

@@ -45,6 +45,13 @@ List<RouteBase> _danhsachRoute = [
     },
   ),
   GoRoute(
+    name: ProfileScreen.nameRoute,
+    path: ProfileScreen.pathRoute,
+    builder: (context, state) {
+      return const ProfileScreen();
+    },
+  ),
+  GoRoute(
     name: AddressScreen.nameRoute,
     path: AddressScreen.pathRoute,
     builder: (context, state) {
@@ -52,10 +59,19 @@ List<RouteBase> _danhsachRoute = [
     },
   ),
   GoRoute(
-    name: ProfileScreen.nameRoute,
-    path: ProfileScreen.pathRoute,
+    name: AddressDetailScreen.nameRouteEdit,
+    path: AddressDetailScreen.pathRouteEdit,
     builder: (context, state) {
-      return const ProfileScreen();
+      return AddressDetailScreen(
+        id: state.pathParameters['id'],
+      );
+    },
+  ),
+  GoRoute(
+    name: AddressDetailScreen.nameRouteAdd,
+    path: AddressDetailScreen.pathRouteAdd,
+    builder: (context, state) {
+      return const AddressDetailScreen();
     },
   ),
 ];

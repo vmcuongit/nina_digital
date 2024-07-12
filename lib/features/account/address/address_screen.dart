@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../shared/mixins/form_mixin.dart';
+import 'address_detail_screen.dart';
 
 class AddressScreen extends StatelessWidget with FormMixins {
   const AddressScreen({super.key});
@@ -20,13 +22,23 @@ class AddressScreen extends StatelessWidget with FormMixins {
           children: [
             _ItemAddress(
               flag: true,
+              onTap: () {
+                context.pushNamed(AddressDetailScreen.nameRouteEdit,
+                    pathParameters: {'id': '1'});
+              },
             ),
             _ItemAddress(
               onTap: () {
-                print('xxx');
+                context.pushNamed(AddressDetailScreen.nameRouteEdit,
+                    pathParameters: {'id': '2'});
               },
             ),
-            _ItemAddress(),
+            _ItemAddress(
+              onTap: () {
+                context.pushNamed(AddressDetailScreen.nameRouteEdit,
+                    pathParameters: {'id': '3'});
+              },
+            ),
           ],
         ),
       ),
@@ -45,7 +57,9 @@ class AddressScreen extends StatelessWidget with FormMixins {
           text: 'Thêm địa chỉ mới',
           background: Theme.of(context).primaryColor,
           textColor: Colors.white,
-          onTap: () {},
+          onTap: () {
+            context.pushNamed(AddressDetailScreen.nameRouteAdd);
+          },
         ),
       ),
     );
