@@ -83,6 +83,13 @@ List<RouteBase> _danhsachRoute = [
       return const AddressDetailScreen();
     },
   ),
+  GoRoute(
+    name: ProductDetailScreen.nameRoute,
+    path: ProductDetailScreen.pathRoute,
+    builder: (context, state) {
+      return ProductDetailScreen(id: state.pathParameters['id'] ?? '');
+    },
+  ),
 ];
 
 ShellRouteBase addShellRouterMain() {

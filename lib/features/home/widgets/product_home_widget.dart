@@ -18,7 +18,8 @@ class _ProductHomeWidget extends StatelessWidget {
   Widget _itemProduct(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        print('chi tiet sp');
+        context.pushNamed(ProductDetailScreen.nameRoute,
+            pathParameters: {'id': '1'});
       },
       child: Container(
         padding:

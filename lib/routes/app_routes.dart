@@ -19,6 +19,7 @@ import '../features/news/news_detail_screen.dart';
 import '../features/news/news_screen.dart';
 import '../features/onboarding/onboarding_screen.dart';
 import '../features/product_category/product_category_screen.dart';
+import '../features/product_detail/product_detail_screen.dart';
 import '../features/profile/profile_screen.dart';
 import '../features/search_products/search_product_screen.dart';
 import '../features/sign_in/sign_in_screen.dart';

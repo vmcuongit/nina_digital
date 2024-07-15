@@ -1,8 +1,16 @@
+import 'dart:math';
+
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:iconoir_flutter/iconoir_flutter.dart' as icons;
+import '../../localizations/language_ext.dart';
 import '../../shared/constants/media_assets.dart';
 import '../../shared/mixins/form_mixin.dart';
+
+part 'filter_widgets/bo_loc_widget.dart';
+
+final GlobalKey<ScaffoldState> _keyScaffold = GlobalKey<ScaffoldState>();
 
 class SearchProductScreen extends StatelessWidget with FormMixins {
   const SearchProductScreen({super.key});
@@ -13,6 +21,7 @@ class SearchProductScreen extends StatelessWidget with FormMixins {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _keyScaffold,
       appBar: AppBar(
         title: customTextFormField(
           context,
@@ -30,11 +39,19 @@ class SearchProductScreen extends StatelessWidget with FormMixins {
           ),
           suffixIcon: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 12),
-            child: SvgPicture.asset('${MediaAssets.icons}/filter.svg'),
+            child: GestureDetector(
+                onTap: () {
+                  _keyScaffold.currentState!.openEndDrawer();
+                },
+                child: SvgPicture.asset('${MediaAssets.icons}/filter.svg')),
           ),
         ),
         centerTitle: false,
+        actions: [
+          Container(),
+        ],
       ),
+      endDrawer: _BoLocWidget(),
       body: Center(
         child: Text('Nội dung tìm kiếm'),
       ),
