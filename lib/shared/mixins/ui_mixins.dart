@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:iconoir_flutter/iconoir_flutter.dart' as icons;
 
 import '../constants/media_assets.dart';
 
@@ -21,6 +22,25 @@ mixin UiMixins {
         ],
       ),
       centerTitle: false,
+    );
+  }
+
+  Widget showStar({required int number, double? size}) {
+    return Row(
+      children: List.generate(
+        5,
+        (index) {
+          return ((index + 1) <= number)
+              ? icons.StarSolid(
+                  color: const Color(0xffFFC833),
+                  height: size,
+                )
+              : icons.Star(
+                  color: Colors.grey,
+                  height: size,
+                );
+        },
+      ),
     );
   }
 

@@ -6,6 +6,7 @@ import 'package:go_router/go_router.dart';
 import 'package:iconoir_flutter/iconoir_flutter.dart' as icons;
 import 'package:flutter_carousel_widget/flutter_carousel_widget.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'providers/offset_scroll_provider.dart';
 
 import '../../shared/constants/media_assets.dart';
 import '../../shared/mixins/form_mixin.dart';
@@ -13,7 +14,6 @@ import '../../shared/mixins/ui_mixins.dart';
 import '../product_category/product_category_screen.dart';
 import '../product_detail/product_detail_screen.dart';
 import '../search_products/search_product_screen.dart';
-import 'providers/offset_scroll_provider.dart';
 
 part 'widgets/header_home_widget.dart';
 part 'widgets/search_home_widget.dart';
