@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_widget_from_html_core/flutter_widget_from_html_core.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
@@ -47,9 +46,8 @@ class _ProductDetailScreenState extends ConsumerState<ProductDetailScreen>
 
   _onGoTop() {
     _scrollController.animateTo(0,
-        duration: const Duration(milliseconds: 300), //duration of scroll
-        curve: Curves.fastOutSlowIn //scroll type
-        );
+        duration: const Duration(milliseconds: 300),
+        curve: Curves.fastOutSlowIn);
   }
 
   @override

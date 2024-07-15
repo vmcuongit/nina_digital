@@ -8,17 +8,22 @@ class _HeaderHomeWidget extends StatelessWidget with UiMixins {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        SizedBox(
-          width: 55,
-          height: 55,
-          child: CircleAvatar(
-            maxRadius: 55,
-            minRadius: 55,
-            child: Image.asset(
-              '${MediaAssets.images}/avatar.jpg',
-              width: 55,
-              height: 55,
-              fit: BoxFit.cover,
+        GestureDetector(
+          onTap: () {
+            context.goNamed(AccountScreen.nameRoute);
+          },
+          child: SizedBox(
+            width: 55,
+            height: 55,
+            child: CircleAvatar(
+              maxRadius: 55,
+              minRadius: 55,
+              child: Image.asset(
+                '${MediaAssets.images}/avatar.jpg',
+                width: 55,
+                height: 55,
+                fit: BoxFit.cover,
+              ),
             ),
           ),
         ),

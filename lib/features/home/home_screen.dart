@@ -6,6 +6,7 @@ import 'package:go_router/go_router.dart';
 import 'package:iconoir_flutter/iconoir_flutter.dart' as icons;
 import 'package:flutter_carousel_widget/flutter_carousel_widget.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import '../account/account_screen.dart';
 import 'providers/offset_scroll_provider.dart';
 
 import '../../shared/constants/media_assets.dart';
@@ -53,9 +54,8 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
 
   _onGoTop() {
     _scrollController.animateTo(0,
-        duration: const Duration(milliseconds: 300), //duration of scroll
-        curve: Curves.fastOutSlowIn //scroll type
-        );
+        duration: const Duration(milliseconds: 300),
+        curve: Curves.fastOutSlowIn);
   }
 
   @override

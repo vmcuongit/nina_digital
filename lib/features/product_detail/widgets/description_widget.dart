@@ -8,7 +8,7 @@ class _DescriptionWidget extends ConsumerStatefulWidget {
 }
 
 class __DescriptionWidgetState extends ConsumerState<_DescriptionWidget> {
-  final double _maxHeightContent = 300;
+  final double _maxHeightContent = 220;
   bool _showMore = false;
 
   @override
@@ -81,14 +81,14 @@ class __DescriptionWidgetState extends ConsumerState<_DescriptionWidget> {
                   ? [
                       Text('Xem thêm'),
                       const SizedBox(
-                        width: 10,
+                        width: 5,
                       ),
                       const Icon(Icons.keyboard_arrow_down_sharp),
                     ]
                   : [
                       Text('Thu gọn'),
                       const SizedBox(
-                        width: 10,
+                        width: 5,
                       ),
                       const Icon(Icons.keyboard_arrow_up_sharp),
                     ],

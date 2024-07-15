@@ -76,7 +76,7 @@ class FavoriteScreen extends StatelessWidget with UiMixins {
                       ),
                     ),
                   ),
-                )
+                ),
               ],
             ),
             const SizedBox(
@@ -106,7 +106,22 @@ class FavoriteScreen extends StatelessWidget with UiMixins {
                   ),
                 ),
               ],
-            )
+            ),
+            const SizedBox(
+              height: 12,
+            ),
+            SizedBox(
+              width: double.infinity,
+              height: 35,
+              child: FilledButton.icon(
+                onPressed: () {},
+                label: Text('Bỏ thích'),
+                icon: const Icon(
+                  Icons.delete,
+                  size: 18,
+                ),
+              ),
+            ),
           ],
         ),
       ),
