@@ -7,6 +7,8 @@ import '../../localizations/language_ext.dart';
 import '../../shared/constants/media_assets.dart';
 import '../../shared/mixins/ui_mixins.dart';
 import '../intro_auth/intro_auth_screen.dart';
+import '../notification/notification_screen.dart';
+import '../order/order_screen.dart';
 import '../profile/profile_screen.dart';
 import 'address/address_screen.dart';
 import 'language/language_screen.dart';
@@ -194,7 +196,9 @@ class AccountScreen extends StatelessWidget with UiMixins {
             ),
             _itemMenu(
               title: 'Đơn hàng',
-              onTap: () {},
+              onTap: () {
+                context.pushNamed(OrderScreen.nameRoute);
+              },
             ),
             const SizedBox(
               height: 1,
@@ -210,7 +214,9 @@ class AccountScreen extends StatelessWidget with UiMixins {
             ),
             _itemMenu(
               title: 'Thông báo',
-              onTap: () {},
+              onTap: () {
+                context.pushNamed(NotificationScreen.nameRoute);
+              },
             ),
             const SizedBox(
               height: 1,

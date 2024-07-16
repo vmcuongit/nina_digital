@@ -52,6 +52,22 @@ List<RouteBase> _danhsachRoute = [
     },
   ),
   GoRoute(
+      name: OrderScreen.nameRoute,
+      path: OrderScreen.pathRoute,
+      builder: (context, state) {
+        return const OrderScreen();
+      },
+      routes: [
+        GoRoute(
+          name: OrderDetailScreen.nameRoute,
+          path: OrderDetailScreen.pathRoute,
+          builder: (context, state) {
+            return OrderDetailScreen(
+                code: state.pathParameters['code'].toString());
+          },
+        ),
+      ]),
+  GoRoute(
     name: SearchProductScreen.nameRoute,
     path: SearchProductScreen.pathRoute,
     pageBuilder: (context, state) {

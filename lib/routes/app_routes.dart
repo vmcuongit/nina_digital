@@ -19,6 +19,8 @@ import '../features/news/news_detail_screen.dart';
 import '../features/news/news_screen.dart';
 import '../features/notification/notification_screen.dart';
 import '../features/onboarding/onboarding_screen.dart';
+import '../features/order/order_detail_screen.dart';
+import '../features/order/order_screen.dart';
 import '../features/product_category/product_category_screen.dart';
 import '../features/product_detail/product_detail_screen.dart';
 import '../features/profile/profile_screen.dart';
