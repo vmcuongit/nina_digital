@@ -55,7 +55,7 @@ class _HeaderHomeWidget extends StatelessWidget with UiMixins {
             children: [
               GestureDetector(
                 onTap: () {
-                  print('Thong bao');
+                  context.pushNamed(NotificationScreen.nameRoute);
                 },
                 child: customBadgeIcon(context,
                     icon: SvgPicture.asset(
@@ -69,7 +69,7 @@ class _HeaderHomeWidget extends StatelessWidget with UiMixins {
               ),
               GestureDetector(
                 onTap: () {
-                  print('gio hang');
+                  context.pushNamed(ShoppingCartScreen.nameRoute);
                 },
                 child: customBadgeIcon(context,
                     icon: SvgPicture.asset(

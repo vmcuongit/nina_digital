@@ -38,6 +38,20 @@ List<RouteBase> _danhsachRoute = [
   ),
   addShellRouterMain(),
   GoRoute(
+    name: NotificationScreen.nameRoute,
+    path: NotificationScreen.pathRoute,
+    builder: (context, state) {
+      return const NotificationScreen();
+    },
+  ),
+  GoRoute(
+    name: ShoppingCartScreen.nameRoute,
+    path: ShoppingCartScreen.pathRoute,
+    builder: (context, state) {
+      return const ShoppingCartScreen();
+    },
+  ),
+  GoRoute(
     name: SearchProductScreen.nameRoute,
     path: SearchProductScreen.pathRoute,
     pageBuilder: (context, state) {
