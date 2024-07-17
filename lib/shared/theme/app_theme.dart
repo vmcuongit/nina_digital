@@ -4,7 +4,8 @@ import 'package:google_fonts/google_fonts.dart';
 
 const bool themeMaterial3 = true;
 const ThemeMode themeModeDefault = ThemeMode.dark;
-final String? themeFont = GoogleFonts.quicksand().fontFamily;
+// final String? themeFont = GoogleFonts.openSans().fontFamily;
+final String themeFont = 'OpenSans';
 
 class AppTheme {
   static ThemeData get lightTheme {
@@ -87,7 +88,7 @@ class AppTheme {
       visualDensity: FlexColorScheme.comfortablePlatformDensity,
       useMaterial3: true,
       // To use the Playground font, add GoogleFonts package and uncomment
-      fontFamily: 'UTM-Caviar',
+      fontFamily: themeFont,
     ).copyWith(
       splashFactory: NoSplash.splashFactory,
       splashColor: Colors.transparent,
@@ -177,7 +178,7 @@ class AppTheme {
       visualDensity: FlexColorScheme.comfortablePlatformDensity,
       useMaterial3: true,
       // To use the Playground font, add GoogleFonts package and uncomment
-      fontFamily: 'UTM-Caviar',
+      fontFamily: themeFont,
     ).copyWith(
       splashFactory: NoSplash.splashFactory,
       splashColor: Colors.transparent,

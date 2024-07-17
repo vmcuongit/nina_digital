@@ -45,7 +45,7 @@ class _OrderScreenState extends State<OrderScreen>
             TabBar(
               controller: _tabController,
               labelPadding:
-                  const EdgeInsets.symmetric(vertical: 5, horizontal: 20),
+                  const EdgeInsets.symmetric(vertical: 0, horizontal: 20),
               labelStyle: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
               unselectedLabelStyle: TextStyle(fontSize: 15),
               isScrollable: true,

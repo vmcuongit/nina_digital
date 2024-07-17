@@ -42,7 +42,6 @@ class MainLayout extends StatelessWidget {
           highlightColor: Colors.transparent,
         ),
         child: Container(
-          padding: const EdgeInsets.symmetric(vertical: 2),
           decoration: const BoxDecoration(
             color: Colors.white,
             border: Border(
@@ -72,12 +71,9 @@ class MainLayout extends StatelessWidget {
             backgroundColor: Colors.white,
             currentIndex: navigationShell.currentIndex,
             showUnselectedLabels: true,
-            unselectedLabelStyle:
-                const TextStyle(fontSize: 12, fontFamily: 'UTM-Caviar'),
-            selectedLabelStyle: const TextStyle(
-                fontSize: 12,
-                fontFamily: 'UTM-Caviar',
-                fontWeight: FontWeight.bold),
+            unselectedLabelStyle: const TextStyle(fontSize: 12),
+            selectedLabelStyle:
+                const TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
             onTap: _onItemTapped,
           ),
         ),
