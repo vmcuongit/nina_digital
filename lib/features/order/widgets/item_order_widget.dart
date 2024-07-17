@@ -49,7 +49,7 @@ class _ItemOrderWidget extends ConsumerWidget {
                   ),
                   Text(
                     '15-07-2024 15h30',
-                    style: TextStyle(fontSize: 12, color: Colors.black54),
+                    style: TextStyle(fontSize: 11, color: Colors.black54),
                   ),
                 ],
               ),
@@ -58,14 +58,13 @@ class _ItemOrderWidget extends ConsumerWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Container(
-                  width: 110,
-                  height: 110,
+                  width: 80,
                   padding:
-                      const EdgeInsets.symmetric(vertical: 5, horizontal: 5),
+                      const EdgeInsets.symmetric(vertical: 7, horizontal: 7),
                   margin: const EdgeInsets.only(right: 15),
                   child: Image.asset(
                     '${MediaAssets.images}/sp.jpg',
-                    fit: BoxFit.fitHeight,
+                    fit: BoxFit.fitWidth,
                   ),
                 ),
                 Expanded(
@@ -75,12 +74,12 @@ class _ItemOrderWidget extends ConsumerWidget {
                     children: [
                       Text(
                         'iPhone 14 Pro Max 128Gb',
-                        style: TextStyle(fontSize: 16),
+                        style: TextStyle(fontSize: 14),
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
                       ),
                       const SizedBox(
-                        height: 15,
+                        height: 10,
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -88,12 +87,12 @@ class _ItemOrderWidget extends ConsumerWidget {
                           Text(
                             'Màu: Gold',
                             style:
-                                TextStyle(color: Colors.black54, fontSize: 13),
+                                TextStyle(color: Colors.black54, fontSize: 12),
                           ),
                           Text(
                             'Số lượng: 2',
                             style:
-                                TextStyle(color: Colors.black54, fontSize: 13),
+                                TextStyle(color: Colors.black54, fontSize: 12),
                           ),
                         ],
                       ),
@@ -106,11 +105,11 @@ class _ItemOrderWidget extends ConsumerWidget {
                         children: [
                           Text(
                             '135.000.000đ',
-                            style: TextStyle(fontSize: 17, color: Colors.red),
+                            style: TextStyle(fontSize: 15, color: Colors.red),
                           ),
                           SizedBox(
-                            width: 90,
-                            height: 35,
+                            width: 80,
+                            height: 32,
                             child: FilledButton(
                               style: ButtonStyle(
                                 padding: WidgetStatePropertyAll(
@@ -121,7 +120,10 @@ class _ItemOrderWidget extends ConsumerWidget {
                                 context.pushNamed(OrderDetailScreen.nameRoute,
                                     pathParameters: {'code': '1234'});
                               },
-                              child: Text('Chi tiết'),
+                              child: Text(
+                                'Chi tiết',
+                                style: TextStyle(fontSize: 12),
+                              ),
                             ),
                           ),
                         ],

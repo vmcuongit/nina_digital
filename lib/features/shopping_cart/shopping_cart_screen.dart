@@ -31,7 +31,7 @@ class ShoppingCartScreen extends ConsumerWidget {
         padding: EdgeInsets.only(
           left: 25,
           right: 25,
-          bottom: MediaQuery.of(context).viewPadding.bottom,
+          bottom: MediaQuery.of(context).viewPadding.bottom + 10,
           top: 20,
         ),
         decoration: BoxDecoration(

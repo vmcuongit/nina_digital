@@ -67,7 +67,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> with FormMixins {
         padding: EdgeInsets.only(
             left: 20,
             right: 20,
-            bottom: MediaQuery.of(context).viewPadding.bottom),
+            bottom: MediaQuery.of(context).viewPadding.bottom + 10),
         child: customButton(
           context,
           text: 'Cập nhật',

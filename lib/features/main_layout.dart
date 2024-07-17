@@ -42,6 +42,7 @@ class MainLayout extends StatelessWidget {
           highlightColor: Colors.transparent,
         ),
         child: Container(
+          padding: const EdgeInsets.symmetric(vertical: 2),
           decoration: const BoxDecoration(
             color: Colors.white,
             border: Border(

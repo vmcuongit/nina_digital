@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 
 import '../../shared/constants/media_assets.dart';
 import '../../shared/mixins/ui_mixins.dart';
@@ -24,6 +25,7 @@ class ProductCategoryScreen extends StatelessWidget with UiMixins {
               crossAxisCount: 3,
               mainAxisSpacing: 15,
               crossAxisSpacing: 15,
+              mainAxisExtent: 140,
             ),
             shrinkWrap: true,
             itemCount: 12,
@@ -41,29 +43,29 @@ class ProductCategoryScreen extends StatelessWidget with UiMixins {
       onTap: () {
         print('vo danh muc san pham');
       },
-      child: Container(
-        width: 120,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            ClipRRect(
-              borderRadius: const BorderRadius.all(Radius.circular(80)),
-              child: Image.asset(
-                '${MediaAssets.images}/danhmuc.jpg',
-                height: 80,
-                width: 80,
-                fit: BoxFit.cover,
-              ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          ClipRRect(
+            borderRadius: const BorderRadius.all(Radius.circular(80)),
+            child: Image.asset(
+              '${MediaAssets.images}/danhmuc.jpg',
+              height: 80,
+              width: 80,
+              fit: BoxFit.cover,
             ),
-            const SizedBox(
-              height: 10,
-            ),
-            Text(
-              'Loa - Tai nghe',
-              style: TextStyle(fontSize: 15),
-            ),
-          ],
-        ),
+          ),
+          const SizedBox(
+            height: 10,
+          ),
+          Text(
+            'Loa - Tai nghe',
+            style: TextStyle(fontSize: 15),
+            maxLines: 2,
+            overflow: TextOverflow.ellipsis,
+            textAlign: TextAlign.center,
+          ),
+        ],
       ),
     );
   }

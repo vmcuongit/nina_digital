@@ -97,7 +97,7 @@ class _AddressDetailScreenState extends ConsumerState<AddressDetailScreen>
             left: 20,
             right: 20,
             top: 15,
-            bottom: MediaQuery.of(context).viewPadding.bottom),
+            bottom: MediaQuery.of(context).viewPadding.bottom + 10),
         child: customButton(
           context,
           text: (widget.id != null) ? 'Cập nhật' : 'Lưu',

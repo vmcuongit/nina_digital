@@ -46,7 +46,7 @@ class AddressScreen extends StatelessWidget with FormMixins {
         padding: EdgeInsets.only(
             left: 20,
             right: 20,
-            bottom: MediaQuery.of(context).viewPadding.bottom),
+            bottom: MediaQuery.of(context).viewPadding.bottom + 10),
         child: customButton(
           context,
           image: const Icon(
