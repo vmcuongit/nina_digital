@@ -1,4 +1,4 @@
-part of '../order_screen.dart';
+part of '../../order_screen.dart';
 
 class _EmptyOrderWidget extends StatelessWidget {
   const _EmptyOrderWidget({super.key});

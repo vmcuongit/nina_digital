@@ -1,4 +1,4 @@
-part of '../order_screen.dart';
+part of '../../order_screen.dart';
 
 class _ListOrderByTypeWidget extends ConsumerWidget {
   const _ListOrderByTypeWidget({super.key, required this.type});

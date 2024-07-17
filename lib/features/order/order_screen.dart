@@ -6,9 +6,9 @@ import 'package:go_router/go_router.dart';
 import '../../shared/constants/media_assets.dart';
 import 'order_detail_screen.dart';
 
-part 'widgets/list_order_by_type_widget.dart';
-part 'widgets/empty_order_widget.dart';
-part 'widgets/item_order_widget.dart';
+part 'widgets/order/list_order_by_type_widget.dart';
+part 'widgets/order/empty_order_widget.dart';
+part 'widgets/order/item_order_widget.dart';
 
 class OrderScreen extends StatefulWidget {
   const OrderScreen({super.key});

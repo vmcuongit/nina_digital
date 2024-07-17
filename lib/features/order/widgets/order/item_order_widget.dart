@@ -1,4 +1,4 @@
-part of '../order_screen.dart';
+part of '../../order_screen.dart';
 
 class _ItemOrderWidget extends ConsumerWidget {
   const _ItemOrderWidget({super.key});
