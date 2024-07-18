@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 import 'package:crypto/crypto.dart';
+import 'package:map_launcher/map_launcher.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 class Helper {
   // định dạng tiền tệ
@@ -57,6 +59,22 @@ class Helper {
       selectableDayPredicate: selectableDayPredicate,
       firstDate: firstDate ?? DateTime(1900),
       lastDate: DateTime(now.year + 15),
+    );
+  }
+
+  static callPhone({required String number}) {
+    return launchUrlString('tel://$number}');
+  }
+
+  static openMap(
+      {required double latitude,
+      required double longitude,
+      required String title}) async {
+    final availableMaps = await MapLauncher.installedMaps;
+
+    await availableMaps.first.showMarker(
+      coords: Coords(latitude, longitude),
+      title: title,
     );
   }
 }

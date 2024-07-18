@@ -6,8 +6,9 @@ import '../constants/media_assets.dart';
 
 mixin UiMixins {
   PreferredSizeWidget? appBarType1(BuildContext context,
-      {required String text}) {
+      {required String text, Color? backgroundColor, Color? textColor}) {
     return AppBar(
+      backgroundColor: backgroundColor,
       title: Row(
         children: [
           Image.asset(
@@ -18,7 +19,10 @@ mixin UiMixins {
           const SizedBox(
             width: 15,
           ),
-          Text(text),
+          Text(
+            text,
+            style: TextStyle(color: textColor),
+          ),
         ],
       ),
       centerTitle: false,

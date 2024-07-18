@@ -59,7 +59,7 @@ class MainLayout extends StatelessWidget {
               _itemNav(context,
                   label: 'Yêu thích', icon: '${MediaAssets.icons}/fav.svg'),
               _itemNav(context,
-                  label: 'Danh mục', icon: '${MediaAssets.icons}/category.svg'),
+                  label: 'Cửa hàng', icon: '${MediaAssets.icons}/category.svg'),
               _itemNav(context,
                   label: 'Tin tức', icon: '${MediaAssets.icons}/news.svg'),
               _itemNav(context,

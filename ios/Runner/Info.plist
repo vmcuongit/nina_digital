@@ -60,5 +60,10 @@
 		</dict>
 		<key>UIStatusBarHidden</key>
 		<false/>
+		<key>LSApplicationQueriesSchemes</key>
+        <array>
+            <string>comgooglemaps</string>
+            <string>iosamap</string>
+        </array>
 	</dict>
 </plist>

@@ -154,10 +154,10 @@ ShellRouteBase addShellRouterMain() {
       StatefulShellBranch(
         routes: [
           GoRoute(
-            name: ProductCategoryScreen.nameRoute,
-            path: ProductCategoryScreen.pathRoute,
+            name: StoresScreen.nameRoute,
+            path: StoresScreen.pathRoute,
             builder: (context, state) {
-              return const ProductCategoryScreen();
+              return StoresScreen();
             },
           ),
         ],
