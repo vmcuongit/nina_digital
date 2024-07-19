@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../shared/extensions/context_ext.dart';
 import '../../../shared/mixins/form_mixin.dart';
 import 'address_detail_screen.dart';
 
@@ -44,9 +45,7 @@ class AddressScreen extends StatelessWidget with FormMixins {
       ),
       bottomNavigationBar: Container(
         padding: EdgeInsets.only(
-            left: 20,
-            right: 20,
-            bottom: MediaQuery.of(context).viewPadding.bottom + 10),
+            left: 20, right: 20, bottom: context.getViewPaddingBottom()),
         child: customButton(
           context,
           image: const Icon(

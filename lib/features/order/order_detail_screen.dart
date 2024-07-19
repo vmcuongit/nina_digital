@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:iconoir_flutter/iconoir_flutter.dart' as icons;
 
 import '../../shared/constants/media_assets.dart';
+import '../../shared/extensions/context_ext.dart';
 
 part 'widgets/order_detail/products_in_cart_widget.dart';
 
@@ -327,7 +328,7 @@ class OrderDetailScreen extends StatelessWidget {
           left: 16,
           right: 16,
           top: 5,
-          bottom: MediaQuery.of(context).viewPadding.bottom + 5,
+          bottom: context.getViewPaddingBottom(),
         ),
         decoration: BoxDecoration(border: Border.all(color: Color(0xfff2f2f2))),
         child: SizedBox(

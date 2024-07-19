@@ -4,6 +4,7 @@ import 'package:form_builder_validators/form_builder_validators.dart';
 
 import '../../../shared/mixins/form_mixin.dart';
 import '../../../shared/utils/helper.dart';
+import '../../shared/extensions/context_ext.dart';
 import '../../shared/extensions/date_time_ext.dart';
 
 part 'widgets/hoten_widget.dart';
@@ -65,9 +66,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> with FormMixins {
       ),
       bottomNavigationBar: Container(
         padding: EdgeInsets.only(
-            left: 20,
-            right: 20,
-            bottom: MediaQuery.of(context).viewPadding.bottom + 10),
+            left: 20, right: 20, bottom: context.getViewPaddingBottom()),
         child: customButton(
           context,
           text: 'Cập nhật',

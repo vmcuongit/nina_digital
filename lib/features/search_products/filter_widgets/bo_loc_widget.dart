@@ -36,7 +36,7 @@ class _BoLocWidget extends StatelessWidget {
                   padding: EdgeInsets.only(
                       left: 20,
                       right: 20,
-                      bottom: MediaQuery.of(context).viewPadding.bottom + 10,
+                      bottom: context.getViewPaddingBottom(),
                       top: 15),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,

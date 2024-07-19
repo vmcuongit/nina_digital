@@ -9,7 +9,7 @@ class _AddCartWidget extends ConsumerWidget {
       padding: EdgeInsets.only(
         left: 25,
         right: 25,
-        bottom: MediaQuery.of(context).viewPadding.bottom + 10,
+        bottom: context.getViewPaddingBottom(),
         top: 5,
       ),
       decoration: const BoxDecoration(

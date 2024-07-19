@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../shared/extensions/context_ext.dart';
 import '../../../shared/mixins/form_mixin.dart';
 
 part 'widgets/hoten_widget.dart';
@@ -97,7 +98,7 @@ class _AddressDetailScreenState extends ConsumerState<AddressDetailScreen>
             left: 20,
             right: 20,
             top: 15,
-            bottom: MediaQuery.of(context).viewPadding.bottom + 10),
+            bottom: context.getViewPaddingBottom()),
         child: customButton(
           context,
           text: (widget.id != null) ? 'Cập nhật' : 'Lưu',

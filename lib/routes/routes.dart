@@ -127,6 +127,24 @@ List<RouteBase> _danhsachRoute = [
       return ProductDetailScreen(id: state.pathParameters['id'] ?? '');
     },
   ),
+  GoRoute(
+    name: ReviewsProductScreen.nameRoute,
+    path: ReviewsProductScreen.pathRoute,
+    builder: (context, state) {
+      return ReviewsProductScreen(
+        id: state.pathParameters['id'].toString(),
+      );
+    },
+  ),
+  GoRoute(
+    name: AddReviewProduct.nameRoute,
+    path: AddReviewProduct.pathRoute,
+    builder: (context, state) {
+      return AddReviewProduct(
+        id: state.pathParameters['id'].toString(),
+      );
+    },
+  ),
 ];
 
 ShellRouteBase addShellRouterMain() {

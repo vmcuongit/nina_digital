@@ -1,83 +1,10 @@
-part of '../product_detail_screen.dart';
+part of '../reviews_product_screen.dart';
 
-class _RevivewWidget extends ConsumerWidget with UiMixins {
-  const _RevivewWidget({super.key});
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          crossAxisAlignment: CrossAxisAlignment.end,
-          children: [
-            Text(
-              'Đánh giá',
-              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-            ),
-            GestureDetector(
-              onTap: () {
-                context.pushNamed(ReviewsProductScreen.nameRoute,
-                    pathParameters: {'id': '1'});
-              },
-              child: Text(
-                'Xem thêm',
-                style: TextStyle(
-                    fontSize: 12,
-                    fontWeight: FontWeight.bold,
-                    color: Theme.of(context).primaryColor),
-              ),
-            )
-          ],
-        ),
-        const SizedBox(
-          height: 5,
-        ),
-        Row(
-          crossAxisAlignment: CrossAxisAlignment.end,
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            showStar(number: 4, size: 20),
-            const SizedBox(
-              width: 10,
-            ),
-            Text(
-              '4.5',
-              style: TextStyle(fontWeight: FontWeight.bold),
-            ),
-            const SizedBox(
-              width: 10,
-            ),
-            Text(
-              '(5 nhận xét)',
-              style: TextStyle(color: Colors.black54),
-            ),
-          ],
-        ),
-        const SizedBox(
-          height: 20,
-        ),
-        ListView.separated(
-          shrinkWrap: true,
-          physics: const NeverScrollableScrollPhysics(),
-          itemBuilder: (context, index) {
-            return _ItemReview();
-          },
-          separatorBuilder: (context, index) =>
-              const Divider(color: Color(0xfff2f2f2), height: 30),
-          itemCount: 2,
-        ),
-      ],
-    );
-  }
-}
-
-class _ItemReview extends ConsumerWidget with UiMixins {
-  const _ItemReview({super.key});
+class _ItemReviewWidget extends StatelessWidget with UiMixins {
+  const _ItemReviewWidget({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [

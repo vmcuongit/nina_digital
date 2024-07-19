@@ -33,7 +33,7 @@ class _ProductsOtherWidget extends ConsumerWidget {
   Widget _itemProduct(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        context.pushNamed(ProductDetailScreen.nameRoute,
+        context.pushReplacementNamed(ProductDetailScreen.nameRoute,
             pathParameters: {'id': '1'});
       },
       child: SizedBox(

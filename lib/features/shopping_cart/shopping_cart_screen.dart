@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:iconoir_flutter/iconoir_flutter.dart' as icons;
 
 import '../../shared/constants/media_assets.dart';
+import '../../shared/extensions/context_ext.dart';
 import '../payment/payment_screen.dart';
 
 part 'widgets/item_cart_widget.dart';
@@ -33,7 +34,7 @@ class ShoppingCartScreen extends ConsumerWidget {
         padding: EdgeInsets.only(
           left: 25,
           right: 25,
-          bottom: MediaQuery.of(context).viewPadding.bottom + 10,
+          bottom: context.getViewPaddingBottom(),
           top: 20,
         ),
         decoration: BoxDecoration(
