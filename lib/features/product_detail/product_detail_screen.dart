@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_widget_from_html_core/flutter_widget_from_html_core.dart';
+import 'package:go_router/go_router.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:iconoir_flutter/iconoir_flutter.dart' as icons;
 
@@ -10,6 +11,8 @@ import 'providers/offset_scroll_provider.dart';
 
 part 'widgets/images_product_widget.dart';
 part 'widgets/description_widget.dart';
+part 'widgets/revivew_widget.dart';
+part 'widgets/products_other_widget.dart';
 part 'widgets/quantity_widget.dart';
 part 'widgets/add_cart_widget.dart';
 
@@ -143,6 +146,16 @@ class _ProductDetailScreenState extends ConsumerState<ProductDetailScreen>
                     height: 30,
                   ),
                   _DescriptionWidget(),
+                  const Divider(
+                    color: Color(0xfff2f2f2),
+                    height: 30,
+                  ),
+                  _RevivewWidget(),
+                  const Divider(
+                    color: Color(0xfff2f2f2),
+                    height: 30,
+                  ),
+                  _ProductsOtherWidget(),
                 ],
               ),
             ),
