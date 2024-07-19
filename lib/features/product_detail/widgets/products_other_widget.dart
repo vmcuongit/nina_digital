@@ -9,7 +9,7 @@ class _ProductsOtherWidget extends ConsumerWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          'Sản phẩm liên quan  ffff',
+          'Sản phẩm liên quan',
           style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
         ),
         const SizedBox(
