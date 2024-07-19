@@ -54,7 +54,67 @@ class _ItemCartWidget extends ConsumerWidget {
                       margin: const EdgeInsets.only(left: 15),
                       width: 25,
                       child: GestureDetector(
-                        onTap: () {},
+                        onTap: () {
+                          showModalBottomSheet(
+                            context: context,
+                            useRootNavigator: false,
+                            showDragHandle: true,
+                            builder: (context) {
+                              return Container(
+                                width: MediaQuery.of(context).size.width,
+                                padding: EdgeInsets.only(
+                                    top: 10,
+                                    left: 16,
+                                    right: 16,
+                                    bottom: MediaQuery.of(context)
+                                        .viewPadding
+                                        .bottom),
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                      'Bạn muốn xoá sản phẩm này ?',
+                                      style: TextStyle(fontSize: 18),
+                                    ),
+                                    const SizedBox(
+                                      height: 20,
+                                    ),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Expanded(
+                                          child: FilledButton(
+                                              style: const ButtonStyle(
+                                                  backgroundColor:
+                                                      WidgetStatePropertyAll(
+                                                          Color(0xffE7E7E7))),
+                                              onPressed: () {
+                                                Navigator.of(context).pop();
+                                              },
+                                              child: Text(
+                                                'Huỷ',
+                                                style: TextStyle(
+                                                    color: Colors.black),
+                                              )),
+                                        ),
+                                        const SizedBox(
+                                          width: 20,
+                                        ),
+                                        Expanded(
+                                          child: FilledButton(
+                                              onPressed: () {},
+                                              child: Text('Đồng ý')),
+                                        ),
+                                      ],
+                                    )
+                                  ],
+                                ),
+                              );
+                            },
+                          );
+                        },
                         child: const icons.Trash(
                           width: 23,
                           color: Colors.redAccent,

@@ -90,16 +90,19 @@ class _StoresScreenState extends State<StoresScreen> {
                         SizedBox(
                           height: 10,
                         ),
-                        Text(
-                          'Tính đến hiện tại, chuỗi hệ thống Digital có 20 chi nhánh tại những vị trí đắc địa nhất Tp. Hồ Chí Minh và các tỉnh lân cận. Hãy tìm kiếm đến chi nhanh gần bạn để trải nghiệm chúng tôi',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 14,
-                            height: 2.2,
+                        Flexible(
+                          flex: 1,
+                          child: Text(
+                            'Tính đến hiện tại, chuỗi hệ thống Digital có 20 chi nhánh tại những vị trí đắc địa nhất Tp. Hồ Chí Minh và các tỉnh lân cận. Hãy tìm kiếm đến chi nhanh gần bạn để trải nghiệm chúng tôi',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 14,
+                              height: 2.2,
+                            ),
+                            maxLines: 4,
+                            overflow: TextOverflow.ellipsis,
+                            textAlign: TextAlign.center,
                           ),
-                          maxLines: 4,
-                          overflow: TextOverflow.ellipsis,
-                          textAlign: TextAlign.center,
                         ),
                       ],
                     ),

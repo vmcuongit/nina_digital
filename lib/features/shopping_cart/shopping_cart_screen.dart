@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:iconoir_flutter/iconoir_flutter.dart' as icons;
 
 import '../../shared/constants/media_assets.dart';
+import '../payment/payment_screen.dart';
 
 part 'widgets/item_cart_widget.dart';
 
@@ -77,7 +79,9 @@ class ShoppingCartScreen extends ConsumerWidget {
                     shape: WidgetStatePropertyAll(RoundedRectangleBorder(
                       borderRadius: BorderRadius.all(Radius.circular(30)),
                     ))),
-                onPressed: () {},
+                onPressed: () {
+                  context.pushNamed(PaymentScreen.nameRoute);
+                },
                 child: Text(
                   'Thanh toán',
                   style: TextStyle(fontSize: 16),

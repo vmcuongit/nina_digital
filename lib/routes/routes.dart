@@ -52,6 +52,13 @@ List<RouteBase> _danhsachRoute = [
     },
   ),
   GoRoute(
+    name: PaymentScreen.nameRoute,
+    path: PaymentScreen.pathRoute,
+    builder: (context, state) {
+      return const PaymentScreen();
+    },
+  ),
+  GoRoute(
       name: OrderScreen.nameRoute,
       path: OrderScreen.pathRoute,
       builder: (context, state) {
