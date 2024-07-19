@@ -7,6 +7,8 @@ import 'package:crypto/crypto.dart';
 import 'package:map_launcher/map_launcher.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
+import '../common_widgets/gallery_photo/gallery_photo_view_widget.dart';
+
 class Helper {
   // định dạng tiền tệ
   static String numberFormat(double num, {String? symbol = ''}) {
@@ -64,6 +66,27 @@ class Helper {
 
   static callPhone({required String number}) {
     return launchUrlString('tel://$number}');
+  }
+
+  static void openGalleryPhoto(BuildContext context,
+      {required int index,
+      required List<GalleryItem> galleryItems,
+      Axis scrollDirection = Axis.horizontal,
+      BoxDecoration? backgroundDecoration}) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => GalleryPhotoViewWidget(
+          galleryItems: galleryItems,
+          backgroundDecoration: backgroundDecoration ??
+              const BoxDecoration(
+                color: Colors.black,
+              ),
+          initialIndex: index,
+          scrollDirection: scrollDirection,
+        ),
+      ),
+    );
   }
 
   static openMap(

@@ -61,7 +61,7 @@ class _RevivewWidget extends ConsumerWidget with UiMixins {
           shrinkWrap: true,
           physics: const NeverScrollableScrollPhysics(),
           itemBuilder: (context, index) {
-            return _itemReview();
+            return _ItemReview();
           },
           separatorBuilder: (context, index) =>
               const Divider(color: Color(0xfff2f2f2), height: 30),
@@ -72,8 +72,8 @@ class _RevivewWidget extends ConsumerWidget with UiMixins {
   }
 }
 
-class _itemReview extends ConsumerWidget with UiMixins {
-  const _itemReview({super.key});
+class _ItemReview extends ConsumerWidget with UiMixins {
+  const _ItemReview({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -114,7 +114,7 @@ class _itemReview extends ConsumerWidget with UiMixins {
           ],
         ),
         Container(
-          margin: const EdgeInsets.only(top: 10, bottom: 10),
+          margin: const EdgeInsets.only(top: 10),
           child: Text(
             'air max are always very comfortable fit, clean and just perfect in every way. just the box was too small and scrunched the sneakers up a little bit, not sure if the box was always this small but the 90s are and will always be one of my favorites.',
             style: TextStyle(
@@ -123,11 +123,66 @@ class _itemReview extends ConsumerWidget with UiMixins {
             ),
           ),
         ),
-        Text(
-          '20/08/2023 18:52',
-          style: TextStyle(fontSize: 12, color: Colors.black45),
+        _GalleryReview(),
+        Padding(
+          padding: const EdgeInsets.only(top: 10),
+          child: Text(
+            '20/08/2023 18:52',
+            style: TextStyle(fontSize: 12, color: Colors.black45),
+          ),
         ),
       ],
+    );
+  }
+}
+
+class _GalleryReview extends ConsumerWidget {
+  _GalleryReview({super.key});
+
+  final List<GalleryItem> _galleryItems = [
+    GalleryItem(
+      id: '1',
+      resource: '${MediaAssets.images}/sp.jpg',
+    ),
+    GalleryItem(
+      id: '2',
+      resource: '${MediaAssets.images}/index_auth.png',
+    ),
+    GalleryItem(
+      id: '3',
+      resource: '${MediaAssets.images}/not_found.png',
+    ),
+    GalleryItem(
+      id: '4',
+      resource: '${MediaAssets.images}/auth_taomk.png',
+    ),
+  ];
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    return Container(
+      padding: const EdgeInsets.only(top: 10),
+      child: Wrap(
+        spacing: 10,
+        runSpacing: 10,
+        children: List.generate(
+          _galleryItems.length,
+          (index) {
+            final item = _galleryItems[index];
+            return GestureDetector(
+              onTap: () {
+                Helper.openGalleryPhoto(context,
+                    index: index, galleryItems: _galleryItems);
+              },
+              child: Image.asset(
+                item.resource,
+                fit: BoxFit.fitHeight,
+                height: 60,
+              ),
+            );
+          },
+        ),
+      ),
     );
   }
 }

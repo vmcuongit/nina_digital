@@ -5,8 +5,10 @@ import 'package:go_router/go_router.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:iconoir_flutter/iconoir_flutter.dart' as icons;
 
+import '../../shared/common_widgets/gallery_photo/gallery_photo_view_widget.dart';
 import '../../shared/constants/media_assets.dart';
 import '../../shared/mixins/ui_mixins.dart';
+import '../../shared/utils/helper.dart';
 import 'providers/offset_scroll_provider.dart';
 
 part 'widgets/images_product_widget.dart';
