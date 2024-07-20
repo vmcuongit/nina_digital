@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:iconoir_flutter/iconoir_flutter.dart' as icons;
 
 import '../../shared/common_widgets/gallery_photo/gallery_photo_view_widget.dart';
@@ -8,6 +9,7 @@ import '../../shared/extensions/context_ext.dart';
 import '../../shared/mixins/form_mixin.dart';
 import '../../shared/mixins/ui_mixins.dart';
 import '../../shared/utils/helper.dart';
+import 'add_review_product.dart';
 
 part 'widgets/item_review_widget.dart';
 
@@ -72,7 +74,10 @@ class ReviewsProductScreen extends StatelessWidget with FormMixins {
           text: 'Viết đánh giá',
           background: Theme.of(context).primaryColor,
           textColor: Colors.white,
-          onTap: () {},
+          onTap: () {
+            context.pushNamed(AddReviewProduct.nameRoute,
+                pathParameters: {'id': '1'});
+          },
         ),
       ),
     );

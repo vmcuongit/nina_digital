@@ -18,6 +18,7 @@ mixin FormMixins {
     Widget? prefixIcon,
     Widget? suffixIcon,
     String? initialValue,
+    int? maxLines,
     TextEditingController? controller,
     AutovalidateMode? autovalidateMode,
     String? Function(String?)? validator,
@@ -28,6 +29,7 @@ mixin FormMixins {
       readOnly: readOnly,
       enabled: enabled,
       controller: controller,
+      maxLines: maxLines,
       decoration: InputDecoration(
         disabledBorder: OutlineInputBorder(
           borderSide: BorderSide(color: borderColor ?? const Color(0xffEBEBEB)),
@@ -144,6 +146,8 @@ mixin FormMixins {
     Widget? image,
     String? text,
     Color? textColor,
+    double? width,
+    double? height,
   }) {
     return GestureDetector(
       onTap: onTap,
@@ -154,6 +158,8 @@ mixin FormMixins {
           border: Border.all(color: borderColor ?? const Color(0xffEBEBEB)),
           borderRadius: BorderRadius.all(Radius.circular(borderRadius ?? 30)),
         ),
+        width: width,
+        height: height,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
