@@ -24,78 +24,81 @@ class __ImagesAttachWidgetState extends ConsumerState<_ImagesAttachWidget>
             _itemImage(file: _imagesAttach[i], index: i),
           ]
         ],
-        customButton(
-          context,
-          borderColor: const Color(0xffEBF0FF),
-          borderRadius: 8,
-          width: 80,
-          height: 80,
-          image: const Icon(
-            Icons.add,
-            color: Colors.grey,
-          ),
-          onTap: () async {
-            showModalBottomSheet(
-              isScrollControlled: false,
-              useRootNavigator: true,
-              context: context,
-              builder: (contextModal) {
-                return Container(
-                  padding: EdgeInsets.only(
-                    bottom: MediaQuery.of(contextModal).viewPadding.bottom,
-                  ),
-                  width: double.infinity,
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      ListTile(
-                        onTap: () {
-                          Navigator.of(contextModal).pop();
-                          _onPickFromCamera();
-                        },
-                        title: Text(
-                          'Camera',
-                          style: TextStyle(fontSize: 17),
-                          textAlign: TextAlign.center,
+        (_imagesAttach.length < 4)
+            ? customButton(
+                context,
+                borderColor: const Color(0xffEBF0FF),
+                borderRadius: 8,
+                width: 80,
+                height: 80,
+                image: const Icon(
+                  Icons.add,
+                  color: Colors.grey,
+                ),
+                onTap: () async {
+                  showModalBottomSheet(
+                    isScrollControlled: false,
+                    useRootNavigator: true,
+                    context: context,
+                    builder: (contextModal) {
+                      return Container(
+                        padding: EdgeInsets.only(
+                          bottom:
+                              MediaQuery.of(contextModal).viewPadding.bottom,
                         ),
-                      ),
-                      const Divider(
-                        color: Color(0xfff2f2f2),
-                      ),
-                      ListTile(
-                        onTap: () {
-                          Navigator.of(contextModal).pop();
-                          _onPickFromPhoto();
-                        },
-                        title: Text(
-                          'Thư viện ảnh',
-                          style: TextStyle(fontSize: 17),
-                          textAlign: TextAlign.center,
+                        width: double.infinity,
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            ListTile(
+                              onTap: () {
+                                Navigator.of(contextModal).pop();
+                                _onPickFromCamera();
+                              },
+                              title: Text(
+                                'Camera',
+                                style: TextStyle(fontSize: 17),
+                                textAlign: TextAlign.center,
+                              ),
+                            ),
+                            const Divider(
+                              color: Color(0xfff2f2f2),
+                            ),
+                            ListTile(
+                              onTap: () {
+                                Navigator.of(contextModal).pop();
+                                _onPickFromPhoto();
+                              },
+                              title: Text(
+                                'Thư viện ảnh',
+                                style: TextStyle(fontSize: 17),
+                                textAlign: TextAlign.center,
+                              ),
+                            ),
+                            const Divider(
+                              color: Color(0xfff2f2f2),
+                            ),
+                            ListTile(
+                              onTap: () {
+                                Navigator.of(context).pop();
+                              },
+                              title: Text(
+                                'Huỷ',
+                                style: TextStyle(
+                                    fontSize: 18,
+                                    color: Colors.red,
+                                    fontWeight: FontWeight.bold),
+                                textAlign: TextAlign.center,
+                              ),
+                            ),
+                          ],
                         ),
-                      ),
-                      const Divider(
-                        color: Color(0xfff2f2f2),
-                      ),
-                      ListTile(
-                        onTap: () {
-                          Navigator.of(context).pop();
-                        },
-                        title: Text(
-                          'Huỷ',
-                          style: TextStyle(
-                              fontSize: 18,
-                              color: Colors.red,
-                              fontWeight: FontWeight.bold),
-                          textAlign: TextAlign.center,
-                        ),
-                      ),
-                    ],
-                  ),
-                );
-              },
-            );
-          },
-        ),
+                      );
+                    },
+                  );
+                },
+              )
+            : const SizedBox.shrink(),
       ],
     );
   }
