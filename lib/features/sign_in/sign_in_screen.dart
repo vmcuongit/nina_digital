@@ -53,7 +53,7 @@ class SignInScreen extends ConsumerWidget with FormMixins {
                   const SizedBox(
                     height: 15,
                   ),
-                  const _InputPasswordWidget(),
+                  _InputPasswordWidget(),
                   const SizedBox(
                     height: 25,
                   ),

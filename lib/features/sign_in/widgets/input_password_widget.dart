@@ -9,16 +9,17 @@ class _InputPasswordWidget extends ConsumerStatefulWidget {
 
 class __InputPasswordWidgetState extends ConsumerState<_InputPasswordWidget>
     with FormMixins {
-  Color? active;
+  Color? _active;
+  bool _hideText = true;
 
   @override
   Widget build(BuildContext context) {
     return Focus(
       onFocusChange: (value) {
         if (value) {
-          active = Theme.of(context).primaryColor;
+          _active = Theme.of(context).primaryColor;
         } else {
-          active = null;
+          _active = null;
         }
         setState(() {});
       },
@@ -30,9 +31,21 @@ class __InputPasswordWidgetState extends ConsumerState<_InputPasswordWidget>
         prefixIcon: Container(
           padding: const EdgeInsets.only(left: 12, right: 12, top: 2),
           child: icons.Lock(
-            color: active,
+            color: _active,
           ),
         ),
+        suffixIcon: GestureDetector(
+          onTap: () {
+            setState(() {
+              _hideText = !_hideText;
+            });
+          },
+          child: Container(
+            padding: const EdgeInsets.only(left: 12, right: 12, top: 2),
+            child: (_hideText == false) ? icons.Eye() : icons.EyeClosed(),
+          ),
+        ),
+        obscureText: _hideText,
         autovalidateMode: AutovalidateMode.onUserInteraction,
         validator: FormBuilderValidators.compose(
           [

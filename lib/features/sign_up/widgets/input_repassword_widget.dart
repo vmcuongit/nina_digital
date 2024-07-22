@@ -10,6 +10,7 @@ class _InputRepasswordWidget extends ConsumerStatefulWidget {
 class __InputRepasswordWidgetState extends ConsumerState<_InputRepasswordWidget>
     with FormMixins {
   Color? active;
+  bool _hideText = true;
 
   @override
   Widget build(BuildContext context) {
@@ -33,6 +34,18 @@ class __InputRepasswordWidgetState extends ConsumerState<_InputRepasswordWidget>
             color: active,
           ),
         ),
+        suffixIcon: GestureDetector(
+          onTap: () {
+            setState(() {
+              _hideText = !_hideText;
+            });
+          },
+          child: Container(
+            padding: const EdgeInsets.only(left: 12, right: 12, top: 2),
+            child: (_hideText == false) ? icons.Eye() : icons.EyeClosed(),
+          ),
+        ),
+        obscureText: _hideText,
         autovalidateMode: AutovalidateMode.onUserInteraction,
         validator: FormBuilderValidators.compose(
           [
