@@ -1,15 +1,17 @@
-import 'dart:math';
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:iconoir_flutter/iconoir_flutter.dart' as icons;
-import '../../localizations/language_ext.dart';
 import '../../shared/constants/media_assets.dart';
 import '../../shared/extensions/context_ext.dart';
 import '../../shared/mixins/form_mixin.dart';
+import '../../shared/utils/helper.dart';
 
 part 'filter_widgets/bo_loc_widget.dart';
+part 'filter_widgets/filter_danhmuc_widget.dart';
+part 'filter_widgets/filter_thuonghieu_widget.dart';
+part 'filter_widgets/filter_khoanggia_widget.dart';
+part 'filter_widgets/filter_orderby_widget.dart';
 
 final GlobalKey<ScaffoldState> _keyScaffold = GlobalKey<ScaffoldState>();
 

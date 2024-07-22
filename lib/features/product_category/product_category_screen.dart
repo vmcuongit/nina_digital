@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 
 import '../../shared/constants/media_assets.dart';
 import '../../shared/mixins/ui_mixins.dart';

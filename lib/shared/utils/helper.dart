@@ -11,8 +11,12 @@ import '../common_widgets/gallery_photo/gallery_photo_view_widget.dart';
 
 class Helper {
   // định dạng tiền tệ
-  static String numberFormat(double num, {String? symbol = ''}) {
-    var numFormat = NumberFormat.currency(locale: 'vi_VN', symbol: symbol);
+  static String numberFormat(double num,
+      {String? symbol = '', String? customPattern}) {
+    var numFormat = NumberFormat.currency(
+        locale: 'vi_VN',
+        symbol: symbol,
+        customPattern: customPattern ?? '#,##0.###');
     return numFormat.format(num ?? 0);
   }
 

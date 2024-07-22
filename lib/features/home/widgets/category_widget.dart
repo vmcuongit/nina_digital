@@ -54,7 +54,7 @@ class _CategoryWidget extends StatelessWidget {
               ),
               GestureDetector(
                   onTap: () {
-                    context.goNamed(ProductCategoryScreen.nameRoute);
+                    context.pushNamed(ProductCategoryScreen.nameRoute);
                   },
                   child: Text(
                     'Tất cả',

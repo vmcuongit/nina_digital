@@ -1,5 +1,31 @@
 part of '../search_product_screen.dart';
 
+Widget _itemFilter(
+  BuildContext context, {
+  required Function() onTap,
+  required String label,
+  double? fontSize,
+  bool active = false,
+}) {
+  return GestureDetector(
+    onTap: onTap,
+    child: Container(
+      padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 7),
+      decoration: BoxDecoration(
+        border: Border.all(
+            color: (active) ? Theme.of(context).primaryColor : Colors.black45),
+        borderRadius: BorderRadius.circular(30),
+        color: (active) ? Theme.of(context).primaryColor : null,
+      ),
+      child: Text(
+        label,
+        style: TextStyle(
+            color: (active) ? Colors.white : null, fontSize: fontSize),
+      ),
+    ),
+  );
+}
+
 class _BoLocWidget extends StatelessWidget {
   const _BoLocWidget({super.key});
 
@@ -17,19 +43,28 @@ class _BoLocWidget extends StatelessWidget {
                       onTap: () => Scaffold.of(context).closeEndDrawer(),
                       child: const Icon(
                         Icons.close,
-                        color: Colors.white,
                       )),
-                  backgroundColor: Theme.of(context).primaryColor,
                   title: Text(
-                    'Bo Loc San Pham',
-                    style: TextStyle(color: Colors.white),
+                    'Bộ lọc',
                   ),
                   centerTitle: false,
                 ),
-                body: ListView(
-                  children: [
-                    for (var i = 0; i < 3; i++) SubMenuItem(path: '${i + 1}'),
-                  ],
+                body: SingleChildScrollView(
+                  child: Padding(
+                    padding: const EdgeInsets.all(16),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        _FilterDanhmucWidget(),
+                        const SizedBox(height: 30),
+                        _FilterThuonghieuWidget(),
+                        const SizedBox(height: 30),
+                        _FilterKhoanggiaWidget(),
+                        const SizedBox(height: 30),
+                        _FilterOrderbyWidget(),
+                      ],
+                    ),
+                  ),
                 ),
                 bottomNavigationBar: Container(
                   width: double.infinity,
@@ -63,51 +98,6 @@ class _BoLocWidget extends StatelessWidget {
           return null;
         },
       ),
-    );
-  }
-}
-
-class SubMenu extends StatelessWidget {
-  final String path;
-
-  const SubMenu({super.key, required this.path});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      extendBody: true,
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).primaryColor,
-        title: Text('Menu $path'),
-        centerTitle: false,
-      ),
-      body: ListView(
-        children: [
-          for (var i = 0; i <= Random().nextInt(5); i++)
-            SubMenuItem(path: '$path.${i + 1}'),
-        ],
-      ),
-    );
-  }
-}
-
-class SubMenuItem extends StatelessWidget {
-  final String path;
-
-  const SubMenuItem({super.key, required this.path});
-
-  @override
-  Widget build(BuildContext context) {
-    return ListTile(
-      title: Text('Go to menu $path'),
-      trailing: const Icon(Icons.keyboard_arrow_right),
-      onTap: () {
-        Navigator.of(context).push(
-          MaterialPageRoute(
-            builder: (context) => SubMenu(path: path),
-          ),
-        );
-      },
     );
   }
 }

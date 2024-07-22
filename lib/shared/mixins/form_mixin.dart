@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 mixin FormMixins {
   Widget customTextFormField(
@@ -21,8 +22,10 @@ mixin FormMixins {
     int? maxLines,
     TextEditingController? controller,
     AutovalidateMode? autovalidateMode,
+    List<TextInputFormatter>? inputFormatters,
     String? Function(String?)? validator,
     Function(String)? onFieldSubmitted,
+    Function(String)? onChanged,
   }) {
     return TextFormField(
       onTap: onTap,
@@ -30,6 +33,7 @@ mixin FormMixins {
       enabled: enabled,
       controller: controller,
       maxLines: maxLines,
+      inputFormatters: inputFormatters,
       decoration: InputDecoration(
         disabledBorder: OutlineInputBorder(
           borderSide: BorderSide(color: borderColor ?? const Color(0xffEBEBEB)),
@@ -70,6 +74,7 @@ mixin FormMixins {
       autovalidateMode: autovalidateMode,
       validator: validator,
       onFieldSubmitted: onFieldSubmitted,
+      onChanged: onChanged,
     );
   }
 
