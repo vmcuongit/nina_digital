@@ -13,13 +13,12 @@ class _DiachiWidget extends ConsumerWidget {
           style: Theme.of(context).textTheme.titleSmall,
         ),
         const SizedBox(height: 15),
-        _wrapContentWidget(
-          child: GestureDetector(
-            onTap: () {
-              print('doi dia chi');
-            },
+        GestureDetector(
+          onTap: () {
+            context.pushNamed(DoiDiaChiScreen.nameRoute);
+          },
+          child: _wrapContentWidget(
             child: Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 _customIconWidget(

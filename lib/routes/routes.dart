@@ -59,6 +59,20 @@ List<RouteBase> _danhsachRoute = [
     },
   ),
   GoRoute(
+    name: DoiDiaChiScreen.nameRoute,
+    path: DoiDiaChiScreen.pathRoute,
+    builder: (context, state) {
+      return const DoiDiaChiScreen();
+    },
+  ),
+  GoRoute(
+    name: PhuongThucVanChuyenScreen.nameRoute,
+    path: PhuongThucVanChuyenScreen.pathRoute,
+    builder: (context, state) {
+      return const PhuongThucVanChuyenScreen();
+    },
+  ),
+  GoRoute(
       name: OrderScreen.nameRoute,
       path: OrderScreen.pathRoute,
       builder: (context, state) {
@@ -124,7 +138,9 @@ List<RouteBase> _danhsachRoute = [
     name: AddressDetailScreen.nameRouteAdd,
     path: AddressDetailScreen.pathRouteAdd,
     builder: (context, state) {
-      return const AddressDetailScreen();
+      return AddressDetailScreen(
+        from: state.uri.queryParameters['from'],
+      );
     },
   ),
   GoRoute(

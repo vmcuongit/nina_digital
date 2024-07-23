@@ -42,7 +42,9 @@ class __InputRepasswordWidgetState extends ConsumerState<_InputRepasswordWidget>
           },
           child: Container(
             padding: const EdgeInsets.only(left: 12, right: 12, top: 2),
-            child: (_hideText == false) ? icons.Eye() : icons.EyeClosed(),
+            child: (_hideText == false)
+                ? const icons.Eye()
+                : const icons.EyeClosed(),
           ),
         ),
         obscureText: _hideText,

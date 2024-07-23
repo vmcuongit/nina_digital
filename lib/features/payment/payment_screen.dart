@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:iconoir_flutter/iconoir_flutter.dart' as icons;
 
 import '../../shared/constants/media_assets.dart';
-import '../../shared/extensions/context_ext.dart';
 import '../../shared/mixins/form_mixin.dart';
+import '../../shared/mixins/ui_mixins.dart';
+import 'doi_dia_chi_screen.dart';
+import 'phuong_thuc_van_chuyen_screen.dart';
 
 part 'widgets/custom_icon_widget.dart';
 part 'widgets/wrap_content_widget.dart';
@@ -15,7 +18,7 @@ part 'widgets/vanchuyen_widget.dart';
 part 'widgets/makhuyenmai_widget.dart';
 part 'widgets/total_widget.dart';
 
-class PaymentScreen extends ConsumerWidget {
+class PaymentScreen extends ConsumerWidget with UiMixins {
   const PaymentScreen({super.key});
 
   static const String nameRoute = 'payment';
@@ -54,37 +57,10 @@ class PaymentScreen extends ConsumerWidget {
           ),
         ),
       ),
-      bottomNavigationBar: Container(
-        padding: EdgeInsets.only(
-          left: 25,
-          right: 25,
-          bottom: context.getViewPaddingBottom(),
-          top: 20,
-        ),
-        decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: const BorderRadius.only(
-                topLeft: Radius.circular(40), topRight: Radius.circular(40)),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black.withOpacity(0.1),
-                blurRadius: 40,
-                spreadRadius: 4,
-              ),
-            ]),
-        child: FilledButton(
-          style: const ButtonStyle(
-              padding:
-                  WidgetStatePropertyAll(EdgeInsets.symmetric(vertical: 15)),
-              shape: WidgetStatePropertyAll(RoundedRectangleBorder(
-                borderRadius: BorderRadius.all(Radius.circular(30)),
-              ))),
-          onPressed: () {},
-          child: Text(
-            'Tiếp tục',
-            style: TextStyle(fontSize: 16),
-          ),
-        ),
+      bottomNavigationBar: customButtonBottomNavigationBarTypeRadius(
+        context,
+        text: 'Tiếp tục',
+        onPressed: () {},
       ),
     );
   }

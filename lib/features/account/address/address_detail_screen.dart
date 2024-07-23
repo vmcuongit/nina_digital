@@ -18,7 +18,7 @@ part 'widgets/macdinh_widget.dart';
 final GlobalKey<FormState> _keyFormAddress = GlobalKey<FormState>();
 
 class AddressDetailScreen extends ConsumerStatefulWidget {
-  const AddressDetailScreen({super.key, this.id});
+  const AddressDetailScreen({super.key, this.id, this.from});
 
   static const String nameRouteAdd = 'add-address';
   static const String nameRouteEdit = 'address-detail';
@@ -27,6 +27,7 @@ class AddressDetailScreen extends ConsumerStatefulWidget {
   static const String pathRouteAdd = '/add-address';
 
   final String? id;
+  final String? from;
 
   @override
   ConsumerState createState() => _AddressDetailScreenState();
@@ -104,7 +105,11 @@ class _AddressDetailScreenState extends ConsumerState<AddressDetailScreen>
           text: (widget.id != null) ? 'Cập nhật' : 'Lưu',
           background: Theme.of(context).primaryColor,
           textColor: Colors.white,
-          onTap: () {},
+          onTap: () {
+            if (widget.from == 'payment') {
+              print('from payment');
+            }
+          },
         ),
       ),
     );

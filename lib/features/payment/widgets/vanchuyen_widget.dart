@@ -13,11 +13,11 @@ class _VanchuyenWidget extends ConsumerWidget {
           style: Theme.of(context).textTheme.titleSmall,
         ),
         const SizedBox(height: 15),
-        _wrapContentWidget(
-          child: GestureDetector(
-            onTap: () {
-              print('doi phương thức vận chuyển');
-            },
+        GestureDetector(
+          onTap: () {
+            context.pushNamed(PhuongThucVanChuyenScreen.nameRoute);
+          },
+          child: _wrapContentWidget(
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,

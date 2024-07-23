@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:iconoir_flutter/iconoir_flutter.dart' as icons;
 
 import '../constants/media_assets.dart';
+import '../extensions/context_ext.dart';
 
 mixin UiMixins {
   PreferredSizeWidget? appBarType1(BuildContext context,
@@ -26,6 +27,41 @@ mixin UiMixins {
         ],
       ),
       centerTitle: false,
+    );
+  }
+
+  Widget customButtonBottomNavigationBarTypeRadius(BuildContext context,
+      {Function()? onPressed, required String text}) {
+    return Container(
+      padding: EdgeInsets.only(
+        left: 25,
+        right: 25,
+        bottom: context.getViewPaddingBottom(),
+        top: 20,
+      ),
+      decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: const BorderRadius.only(
+              topLeft: Radius.circular(40), topRight: Radius.circular(40)),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.1),
+              blurRadius: 40,
+              spreadRadius: 4,
+            ),
+          ]),
+      child: FilledButton(
+        style: const ButtonStyle(
+            padding: WidgetStatePropertyAll(EdgeInsets.symmetric(vertical: 15)),
+            shape: WidgetStatePropertyAll(RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(Radius.circular(30)),
+            ))),
+        onPressed: onPressed,
+        child: Text(
+          text,
+          style: const TextStyle(fontSize: 16),
+        ),
+      ),
     );
   }
 
