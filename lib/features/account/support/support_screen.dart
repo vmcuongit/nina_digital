@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:iconoir_flutter/iconoir_flutter.dart' as icons;
 
+import '../../../shared/app_config.dart';
+
 class SupportScreen extends StatelessWidget {
   const SupportScreen({super.key});
 

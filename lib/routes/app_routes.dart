@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -33,10 +31,10 @@ import '../features/search_products/search_product_screen.dart';
 import '../features/shopping_cart/shopping_cart_screen.dart';
 import '../features/sign_in/sign_in_screen.dart';
 import '../features/sign_up/sign_up_screen.dart';
+import '../features/splash/splash_screen.dart';
 import '../features/stores/stores_screen.dart';
 import '../shared/app_config.dart';
 import '../shared/common_widgets/error_404_widget.dart';
-import '../shared/extensions/string_ext.dart';
 import 'app_router_notifier.dart';
 
 part 'routes.dart';

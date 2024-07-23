@@ -2,6 +2,13 @@ part of 'app_routes.dart';
 
 List<RouteBase> _danhsachRoute = [
   GoRoute(
+    name: SplashScreen.nameRoute,
+    path: SplashScreen.pathRoute,
+    pageBuilder: (context, state) {
+      return _effectTransitionFade(context, state, const SplashScreen());
+    },
+  ),
+  GoRoute(
     name: OnboardingScreen.nameRoute,
     path: OnboardingScreen.pathRoute,
     pageBuilder: (context, state) {

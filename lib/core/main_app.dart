@@ -44,7 +44,7 @@ class MainApp extends ConsumerWidget {
           resizeToAvoidBottomInset: false,
           body: Stack(
             children: [
-              child ?? Container(),
+              child ?? const SizedBox.shrink(),
               if (isConnected == false) const NoInternetWidget(),
             ],
           ),
