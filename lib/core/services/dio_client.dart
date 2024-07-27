@@ -57,7 +57,6 @@ class DioClient {
     if (AppConfig.debugAPI == true) {
       AppConfig.logger.d({
         'url': url,
-        'payload': payload,
         'Authorization': 'Bearer $token',
       });
     }
