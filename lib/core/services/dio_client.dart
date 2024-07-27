@@ -55,10 +55,9 @@ class DioClient {
     final JwtEncoder jwtEncoder = JwtEncoder(secretKey: AppConfig.secretKey);
     var token = jwtEncoder.encode(payload);
     if (AppConfig.debugAPI == true) {
-      // print(payload);
       AppConfig.logger.d({
         'url': url,
-        'timeAction': timeNow,
+        'payload': payload,
         'Authorization': 'Bearer $token',
       });
     }
