@@ -1,6 +1,7 @@
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:logger/logger.dart';
 import '../core/app_setttings/app_setting_provider.dart';
 import '../features/home/home_screen.dart';
 import '../features/onboarding/onboarding_screen.dart';
@@ -11,8 +12,20 @@ class AppConfig {
   static String appPackageName = 'com.vmc.core';
   static String appVersion = '1.0.1';
 
-  // Secret Key kết nối API
+  // Secret Key để kết nối API
   static const String secretKey = 'nina-digital-key';
+  static const bool debugAPI = true; // set False to production
+
+  static final Logger logger = Logger(
+    printer: PrettyPrinter(
+      methodCount: 0, // Number of method calls to be displayed
+      lineLength: 120, // Width of the output
+      colors: true, // Colorful log messages
+      printEmojis: true, // Print an emoji for each log message
+      // Should each log print contain a timestamp
+      dateTimeFormat: DateTimeFormat.onlyTimeAndSinceStart,
+    ),
+  );
 
   // Thông tin thiết bị
   static late final Map<String, dynamic>? deviceInfo;

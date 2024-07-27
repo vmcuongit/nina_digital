@@ -45,7 +45,7 @@ class DioClient {
   //   }
   // }
 
-  Options _customOptions(dynamic data) {
+  Options _customOptions({required String url, required dynamic data}) {
     var timeNow = DateTime.now().toUtc().millisecondsSinceEpoch ~/ 1000;
     Map<String, dynamic> payload = {};
     if (data != null && data != '') {
@@ -54,11 +54,15 @@ class DioClient {
     payload['timeAction'] = timeNow;
     final JwtEncoder jwtEncoder = JwtEncoder(secretKey: AppConfig.secretKey);
     var token = jwtEncoder.encode(payload);
-    // print(payload);
-    // print({
-    //   'timeAction': timeNow,
-    //   'Authorization': 'Bearer $token',
-    // });
+    if (AppConfig.debugAPI == true) {
+      // print(payload);
+      AppConfig.logger.d({
+        'url': url,
+        'timeAction': timeNow,
+        'Authorization': 'Bearer $token',
+      });
+    }
+
     return Options(headers: {
       'timeAction': timeNow,
       'Authorization': 'Bearer $token',
@@ -76,7 +80,7 @@ class DioClient {
       final Response response = await _dio.get(
         url,
         queryParameters: queryParameters,
-        options: _customOptions(null),
+        options: _customOptions(url: url, data: null),
         cancelToken: cancelToken,
         onReceiveProgress: onReceiveProgress,
       );
@@ -101,7 +105,7 @@ class DioClient {
         uri,
         data: data,
         queryParameters: queryParameters,
-        options: _customOptions(data),
+        options: _customOptions(url: uri, data: data),
         cancelToken: cancelToken,
         onSendProgress: onSendProgress,
         onReceiveProgress: onReceiveProgress,
@@ -127,7 +131,7 @@ class DioClient {
         uri,
         data: data,
         queryParameters: queryParameters,
-        options: _customOptions(data),
+        options: _customOptions(url: uri, data: data),
         cancelToken: cancelToken,
         onSendProgress: onSendProgress,
         onReceiveProgress: onReceiveProgress,
@@ -153,7 +157,7 @@ class DioClient {
         uri,
         data: data,
         queryParameters: queryParameters,
-        options: _customOptions(data),
+        options: _customOptions(url: uri, data: data),
         cancelToken: cancelToken,
       );
       return response.data;

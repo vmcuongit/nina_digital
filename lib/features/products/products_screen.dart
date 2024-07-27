@@ -17,8 +17,20 @@ class ProductsScreen extends ConsumerWidget {
       ),
       body: asyncValue.when(
         data: (data) {
-          print(data['data']['total']);
-          return Center(child: Text(data['data']['total']));
+          final result = data['data']['data'];
+          return ListView.separated(
+              itemBuilder: (context, index) {
+                final item = result[index];
+                return ListTile(
+                  title: Text(item['namevi']),
+                );
+              },
+              separatorBuilder: (context, index) {
+                return const SizedBox(
+                  height: 10,
+                );
+              },
+              itemCount: result.length);
         },
         error: (error, stackTrace) => Center(child: Text(error.toString())),
         loading: () => const Center(

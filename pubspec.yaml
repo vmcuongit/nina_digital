@@ -35,6 +35,7 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.6
   intl: any
+  logger: ^2.4.0
   device_info_plus: any
   url_launcher: ^6.1.14
   google_fonts: ^6.2.1
