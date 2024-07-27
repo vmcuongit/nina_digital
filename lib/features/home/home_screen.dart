@@ -8,6 +8,7 @@ import 'package:flutter_carousel_widget/flutter_carousel_widget.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import '../account/account_screen.dart';
 import '../notification/notification_screen.dart';
+import '../products/products_screen.dart';
 import '../shopping_cart/shopping_cart_screen.dart';
 import 'providers/offset_scroll_provider.dart';
 

@@ -11,6 +11,9 @@ class AppConfig {
   static String appPackageName = 'com.vmc.core';
   static String appVersion = '1.0.1';
 
+  // Secret Key kết nối API
+  static const String secretKey = 'nina-digital-key';
+
   // Thông tin thiết bị
   static late final Map<String, dynamic>? deviceInfo;
 

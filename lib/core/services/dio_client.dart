@@ -1,6 +1,8 @@
 import 'package:dio/dio.dart';
 
+import '../../shared/app_config.dart';
 import '../../shared/constants/api_url.dart';
+import 'jwt_encoder.dart';
 
 part 'dio_exceptions.dart';
 
@@ -32,18 +34,36 @@ class DioClient {
   //   _optionsDownload = null;
   //   if (token != null && token != '') {
   //     _options = Options(headers: {
-  //       "Content-Type": "application/json",
   //       "Authorization": "Bearer $token",
   //     });
   //     _optionsDownload = Options(
   //       headers: {
-  //         "Content-Type": "application/json",
   //         "Authorization": "Bearer $token",
   //       },
   //       responseType: ResponseType.bytes,
   //     );
   //   }
   // }
+
+  Options _customOptions(dynamic data) {
+    var timeNow = DateTime.now().toUtc().millisecondsSinceEpoch ~/ 1000;
+    Map<String, dynamic> payload = {};
+    if (data != null && data != '') {
+      payload = data;
+    }
+    payload['timeAction'] = timeNow;
+    final JwtEncoder jwtEncoder = JwtEncoder(secretKey: AppConfig.secretKey);
+    var token = jwtEncoder.encode(payload);
+    // print(payload);
+    // print({
+    //   'timeAction': timeNow,
+    //   'Authorization': 'Bearer $token',
+    // });
+    return Options(headers: {
+      'timeAction': timeNow,
+      'Authorization': 'Bearer $token',
+    });
+  }
 
   // Get:-----------------------------------------------------------------------
   Future<dynamic> get(
@@ -56,28 +76,7 @@ class DioClient {
       final Response response = await _dio.get(
         url,
         queryParameters: queryParameters,
-        options: _options,
-        cancelToken: cancelToken,
-        onReceiveProgress: onReceiveProgress,
-      );
-      return response;
-    } on DioException catch (e) {
-      final errorMessage = DioExceptions.fromDioError(e).toString();
-      throw errorMessage;
-    }
-  }
-
-  Future<dynamic> getDownLoad(
-    String url, {
-    Map<String, dynamic>? queryParameters,
-    CancelToken? cancelToken,
-    ProgressCallback? onReceiveProgress,
-  }) async {
-    try {
-      final Response response = await _dio.get(
-        url,
-        queryParameters: queryParameters,
-        options: _optionsDownload,
+        options: _customOptions(null),
         cancelToken: cancelToken,
         onReceiveProgress: onReceiveProgress,
       );
@@ -102,34 +101,9 @@ class DioClient {
         uri,
         data: data,
         queryParameters: queryParameters,
-        options: _options,
+        options: _customOptions(data),
         cancelToken: cancelToken,
         onSendProgress: onSendProgress,
-        onReceiveProgress: onReceiveProgress,
-      );
-      return response;
-    } on DioException catch (e) {
-      final errorMessage = DioExceptions.fromDioError(e).toString();
-      throw errorMessage;
-    }
-  }
-
-  // Post:----------------------------------------------------------------------
-  Future<Response> download(
-    String uri,
-    String urlPath, {
-    data,
-    Map<String, dynamic>? queryParameters,
-    CancelToken? cancelToken,
-    ProgressCallback? onSendProgress,
-    ProgressCallback? onReceiveProgress,
-  }) async {
-    try {
-      final Response response = await _dio.get<List<int>>(
-        uri,
-        queryParameters: queryParameters,
-        options: _optionsDownload,
-        cancelToken: cancelToken,
         onReceiveProgress: onReceiveProgress,
       );
       return response;
@@ -153,7 +127,7 @@ class DioClient {
         uri,
         data: data,
         queryParameters: queryParameters,
-        options: _options,
+        options: _customOptions(data),
         cancelToken: cancelToken,
         onSendProgress: onSendProgress,
         onReceiveProgress: onReceiveProgress,
@@ -179,7 +153,7 @@ class DioClient {
         uri,
         data: data,
         queryParameters: queryParameters,
-        options: _options,
+        options: _customOptions(data),
         cancelToken: cancelToken,
       );
       return response.data;

@@ -110,6 +110,13 @@ List<RouteBase> _danhsachRoute = [
     },
   ),
   GoRoute(
+    name: ProductsScreen.nameRoute,
+    path: ProductsScreen.pathRoute,
+    builder: (context, state) {
+      return const ProductsScreen();
+    },
+  ),
+  GoRoute(
     name: NewsDetailScreen.nameRoute,
     path: NewsDetailScreen.pathRoute,
     builder: (context, state) {

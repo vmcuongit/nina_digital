@@ -113,7 +113,9 @@ class _ProductHomeWidget extends StatelessWidget {
                     ),
               ),
               GestureDetector(
-                  onTap: () {},
+                  onTap: () {
+                    context.pushNamed(ProductsScreen.nameRoute);
+                  },
                   child: Text(
                     'Tất cả',
                     style: TextStyle(
