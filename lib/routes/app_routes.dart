@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../core/app_setttings/app_setting_provider.dart';
+import '../core/authentication_user/providers/auth_user_provider.dart';
 import '../features/account/account_screen.dart';
 import '../features/account/address/address_screen.dart';
 import '../features/account/address/address_detail_screen.dart';
@@ -36,9 +37,9 @@ import '../features/splash/splash_screen.dart';
 import '../features/stores/stores_screen.dart';
 import '../shared/app_config.dart';
 import '../shared/common_widgets/error_404_widget.dart';
-import 'app_router_notifier.dart';
 
 part 'routes.dart';
+part 'app_router_notifier.dart';
 
 final _routerKey = GlobalKey<NavigatorState>(debugLabel: 'routerKey');
 
@@ -50,7 +51,7 @@ final routerProvider = Provider<GoRouter>((ref) {
 
   return GoRouter(
     navigatorKey: _routerKey,
-    debugLogDiagnostics: AppConfig.debugLogDiagnostics,
+    debugLogDiagnostics: !AppConfig.production,
     initialLocation:
         (loadOnboarding == false && AppConfig.pathOnboarding.isNotEmpty)
             ? AppConfig.pathOnboarding

@@ -12,9 +12,11 @@ class AppConfig {
   static String appPackageName = 'com.vmc.core';
   static String appVersion = '1.0.1';
 
+  // đặt false để bật chế độ debug
+  static bool production = false;
+
   // Secret Key để kết nối API
   static const String secretKey = 'nina-digital-key';
-  static const bool debugAPI = true; // set False to production
 
   static final Logger logger = Logger(
     printer: PrettyPrinter(
@@ -33,9 +35,6 @@ class AppConfig {
   // Ngôn ngữ và Theme mặc định của App
   static const String languageDefault = 'vi';
   static ThemeMode themeModeDefault = ThemeMode.light;
-
-  // Debug: Hiển thị tất cả các Routes của App  =>  tắt thì set về false
-  static bool debugLogDiagnostics = true;
 
   // Nếu App này hoạt động offline thì set => true
   static bool offlineApp = false;

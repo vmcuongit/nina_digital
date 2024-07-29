@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import '../../shared/app_config.dart';
-import 'setting_storage/app_setting_storage.dart';
+import 'app_setting_storage.dart';
 
 part 'app_setting_provider.g.dart';
 
@@ -36,7 +36,6 @@ class AppSetting extends _$AppSetting {
   }
 
   Future<void> init() async {
-    await _appSettingStorage.init();
     final setting = await _appSettingStorage.getSetting();
     if (setting != null) {
       // Lấy cấu hình đã lưu trước đó

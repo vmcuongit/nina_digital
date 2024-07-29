@@ -1,8 +1,4 @@
-import 'dart:async';
-
-import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
+part of 'app_routes.dart';
 
 final routerNotifierProvider =
     AsyncNotifierProvider<AppRouterNotifier, void>(() {
@@ -24,24 +20,21 @@ class AppRouterNotifier extends AsyncNotifier<void> implements Listenable {
   Future<String?>? redirect(BuildContext context, GoRouterState state) {
     if (this.state.isLoading || this.state.hasError) return null;
 
-    // if (AppConfig.mustLogin == true) {
-    //   authentication();
-    //   if (authStatus == AuthStatus.unauthenticated &&
-    //       !state.matchedLocation.contains(pathForgotPassword)) {
-    //     return chuyenDenDangNhap();
-    //   }
-    // }
+    if (AppConfig.mustLogin == true) {
+      final authStatus =
+          ref.watch(authUserProvider.select((value) => value.status));
+      if (authStatus == AuthStatus.unauthenticated &&
+          !state.matchedLocation.contains(ForgotPasswordScreen.pathRoute)) {
+        return chuyenDenDangNhap();
+      }
+    }
 
     return null;
   }
 
-  // Future authentication() async {
-  //   authStatus = ref.watch(authProvider.select((value) => value.authStatus));
-  // }
-
-  // Future<String?> chuyenDenDangNhap() async {
-  //   return pathSignIn;
-  // }
+  Future<String?> chuyenDenDangNhap() async {
+    return SignInScreen.pathRoute;
+  }
 
   @override
   void addListener(VoidCallback listener) {

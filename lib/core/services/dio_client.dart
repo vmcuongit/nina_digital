@@ -1,10 +1,15 @@
 import 'package:dio/dio.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../shared/app_config.dart';
 import '../../shared/constants/api_url.dart';
 import 'jwt_encoder.dart';
 
 part 'dio_exceptions.dart';
+
+final dioProvider = Provider<DioClient>((ref) {
+  return DioClient(Dio());
+});
 
 class DioClient {
   // dio instance
@@ -29,10 +34,11 @@ class DioClient {
   // }
 
   // void initOptions() {
-  //   String? token = App.providerContainer.read(authRepositoryProvider).token;
+  //   // String? token = App.providerContainer.read(authRepositoryProvider).token;
+  //   String token = '';
   //   _options = null;
   //   _optionsDownload = null;
-  //   if (token != null && token != '') {
+  //   if (token.isNotEmpty && token != '') {
   //     _options = Options(headers: {
   //       "Authorization": "Bearer $token",
   //     });
@@ -45,26 +51,50 @@ class DioClient {
   //   }
   // }
 
-  Options _customOptions({required String url, required dynamic data}) {
-    var timeNow = DateTime.now().toUtc().millisecondsSinceEpoch ~/ 1000;
+  String _getAPIToken({required timeAction, required dynamic data}) {
     Map<String, dynamic> payload = {};
     if (data != null && data != '') {
       payload = data;
     }
-    payload['timeAction'] = timeNow;
+    payload['timeAction'] = timeAction;
     final JwtEncoder jwtEncoder = JwtEncoder(secretKey: AppConfig.secretKey);
-    var token = jwtEncoder.encode(payload);
-    if (AppConfig.debugAPI == true) {
-      AppConfig.logger.d({
-        'url': url,
-        'Authorization': 'Bearer $token',
-      });
+    return jwtEncoder.encode(payload);
+  }
+
+  String _getUserToken() {
+    return '';
+  }
+
+  Options _customOptions({required String url, required dynamic data}) {
+    int timeNow = DateTime.now().toUtc().millisecondsSinceEpoch ~/ 1000;
+
+    // Authentication API
+    String apiToken = _getAPIToken(timeAction: timeNow, data: data);
+
+    // Headers
+    Map<String, dynamic> headers = {
+      'timeAction': timeNow,
+      'API-Validation': apiToken,
+      // 'Authorization': 'Bearer $token',
+    };
+
+    // Authentication User Login
+    if (AppConfig.mustLogin) {
+      String userToken = _getUserToken();
+      if (userToken.isNotEmpty) {
+        headers['Authorization'] = 'Bearer $userToken';
+      }
     }
 
-    return Options(headers: {
-      'timeAction': timeNow,
-      'Authorization': 'Bearer $token',
-    });
+    // DEBUG
+    if (AppConfig.production == false) {
+      Map<String, dynamic> debugHeaders = headers;
+      debugHeaders['url'] = url;
+      debugHeaders.remove('timeAction');
+      AppConfig.logger.d(debugHeaders);
+    }
+
+    return Options(headers: headers);
   }
 
   // Get:-----------------------------------------------------------------------
