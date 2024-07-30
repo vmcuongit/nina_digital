@@ -20,20 +20,7 @@ class AppRouterNotifier extends AsyncNotifier<void> implements Listenable {
   Future<String?>? redirect(BuildContext context, GoRouterState state) {
     if (this.state.isLoading || this.state.hasError) return null;
 
-    if (AppConfig.mustLogin == true) {
-      final authStatus =
-          ref.watch(authUserProvider.select((value) => value.status));
-      if (authStatus == AuthStatus.unauthenticated &&
-          !state.matchedLocation.contains(ForgotPasswordScreen.pathRoute)) {
-        return chuyenDenDangNhap();
-      }
-    }
-
     return null;
-  }
-
-  Future<String?> chuyenDenDangNhap() async {
-    return SignInScreen.pathRoute;
   }
 
   @override

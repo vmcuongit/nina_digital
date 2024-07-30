@@ -20,7 +20,10 @@ class AuthUserStorage {
   }
 
   Future<void> saveToken({required UserToken userToken}) async {
-    UserToken item = _localStorage.userTokens.getSync(1) ?? UserToken();
+    UserToken item = _localStorage.userTokens.getSync(1) ?? UserToken()
+      ..id = 1
+      ..accessToken = ''
+      ..refreshToken = '';
     final newData = item
       ..accessToken = userToken.accessToken.toString()
       ..refreshToken = userToken.refreshToken.toString();

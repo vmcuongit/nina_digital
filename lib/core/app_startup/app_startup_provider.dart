@@ -12,7 +12,7 @@ final appStartupProvider = FutureProvider((ref) async {
   // init App
   await AppConfig().initApp(ref);
 
-  if (AppConfig.mustLogin == true) {
+  if (AppConfig.hasLogin == true) {
     ref.read(authUserProvider.notifier).checkSignIn();
   }
 

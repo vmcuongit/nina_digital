@@ -12,10 +12,7 @@ final dioProvider = Provider<DioClient>((ref) {
 });
 
 class DioClient {
-  // dio instance
-  final Dio _dio;
-  Options? _options;
-  Options? _optionsDownload;
+  final Dio _dio; // dio instance
 
   // injecting dio instance
   DioClient(this._dio) {
@@ -26,31 +23,6 @@ class DioClient {
       ..options.responseType = ResponseType.json;
   }
 
-  // Future<Response> generateToken() async {
-  //   final Response response = await _dio.post(ApiUrl.generateToken,
-  //       data: FormData.fromMap(
-  //           {'email': AppConstants.email, 'secret': AppConstants.secret}));
-  //   return response;
-  // }
-
-  // void initOptions() {
-  //   // String? token = App.providerContainer.read(authRepositoryProvider).token;
-  //   String token = '';
-  //   _options = null;
-  //   _optionsDownload = null;
-  //   if (token.isNotEmpty && token != '') {
-  //     _options = Options(headers: {
-  //       "Authorization": "Bearer $token",
-  //     });
-  //     _optionsDownload = Options(
-  //       headers: {
-  //         "Authorization": "Bearer $token",
-  //       },
-  //       responseType: ResponseType.bytes,
-  //     );
-  //   }
-  // }
-
   String _getAPIToken({required timeAction, required dynamic data}) {
     Map<String, dynamic> payload = {};
     if (data != null && data != '') {
@@ -59,10 +31,6 @@ class DioClient {
     payload['timeAction'] = timeAction;
     final JwtEncoder jwtEncoder = JwtEncoder(secretKey: AppConfig.secretKey);
     return jwtEncoder.encode(payload);
-  }
-
-  String _getUserToken() {
-    return '';
   }
 
   Options _customOptions({required String url, required dynamic data}) {
@@ -75,16 +43,7 @@ class DioClient {
     Map<String, dynamic> headers = {
       'timeAction': timeNow,
       'API-Validation': apiToken,
-      // 'Authorization': 'Bearer $token',
     };
-
-    // Authentication User Login
-    if (AppConfig.mustLogin) {
-      String userToken = _getUserToken();
-      if (userToken.isNotEmpty) {
-        headers['Authorization'] = 'Bearer $userToken';
-      }
-    }
 
     // DEBUG
     if (AppConfig.production == false) {

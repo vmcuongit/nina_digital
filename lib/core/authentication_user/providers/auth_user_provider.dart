@@ -1,6 +1,5 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import '../../services/dio_client.dart';
 import '../repositories/auth_user_repository.dart';
 
 part 'auth_user_provider.g.dart';
@@ -31,7 +30,6 @@ class AuthUser extends _$AuthUser {
   }
 
   Future<bool> isTokenValid(String token) async {
-    final dioClient = ref.watch(dioProvider);
     // final response = await dioClient.post(ApiUrl.checkToken);
     // if (response.statusCode == 200) {
     //   return true;
