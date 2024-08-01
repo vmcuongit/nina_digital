@@ -15,49 +15,55 @@ class AuthUser extends _$AuthUser {
     return AuthUserState();
   }
 
+  Future<void> init() async {
+    await _authUserRepository.initData();
+    await checkSignIn();
+  }
+
   Future<void> checkSignIn() async {
-    final String accessToken = await _authUserRepository.getAccessToken();
-    final String refreshToken = await _authUserRepository.getRefreshToken();
-    if (accessToken != '' && await isTokenValid(accessToken)) {
-      // Token còn hợp lệ, chuyển đến trang chính
-    } else if (refreshToken != '' && await refreshAccessToken(refreshToken)) {
-      // Làm mới token thành công, chuyển đến trang chính
-    } else {
-      // Không có token hợp lệ, chuyển đến trang đăng nhập
-      state = AuthUserState(
-          status: AuthStatus.unauthenticated, userLogin: {}, message: '');
+    if (await isTokenValid() == false) {
+      // accessToken không hợp lệ
+      if (await refreshAccessToken() == false) {
+        // Làm mới token qua refreshToken
+        // nếu Không có token hợp lệ, chuyển đến trang đăng nhập
+        signOut();
+      }
     }
   }
 
-  Future<bool> isTokenValid(String token) async {
-    // final response = await dioClient.post(ApiUrl.checkToken);
-    // if (response.statusCode == 200) {
-    //   return true;
-    // }
-    // return false;
-    return true;
+  Future<String> getAccessToken() async {
+    return await _authUserRepository.accessToken ?? '';
   }
 
-  Future<bool> refreshAccessToken(String refreshToken) async {
-    // final response = await http.post(
-    //   Uri.parse('https://yourapi.com/refresh-token'),
-    //   body: jsonEncode({'refresh_token': refreshToken}),
-    //   headers: {'Content-Type': 'application/json'},
-    // );
-    //
-    // if (response.statusCode == 200) {
-    //   final data = jsonDecode(response.body);
-    //   final newAccessToken = data['access_token'];
-    //   final newRefreshToken = data['refresh_token'];
-    //
-    //   final prefs = await SharedPreferences.getInstance();
-    //   await prefs.setString('access_token', newAccessToken);
-    //   await prefs.setString('refresh_token', newRefreshToken);
-    //   return true;
-    // }
-    // return false;
-    return true;
+  Future<bool> isTokenValid() async {
+    final String? accessToken = _authUserRepository.refreshToken;
+    return await _authUserRepository.isTokenValid(accessToken);
   }
 
-  clearToken() {}
+  Future<dynamic> refreshAccessToken({bool typeString = false}) async {
+    final String? refreshToken = _authUserRepository.refreshToken;
+    return await _authUserRepository.refreshAccessToken(refreshToken);
+  }
+
+  Future<Map<String, dynamic>> signIn(
+      {required Map<String, dynamic> data}) async {
+    final response = await _authUserRepository.signIn(data: data);
+    if (response['status'] == 'success') {
+      state = AuthUserState(
+        status: AuthStatus.authenticated,
+        userLogin: response['data'],
+      );
+    } else {
+      state = AuthUserState(
+        status: AuthStatus.unauthenticated,
+        userLogin: {},
+      );
+    }
+    return response;
+  }
+
+  void signOut() {
+    _authUserRepository.clearToken();
+    state = AuthUserState(status: AuthStatus.unauthenticated, userLogin: {});
+  }
 }

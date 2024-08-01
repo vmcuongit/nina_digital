@@ -13,7 +13,7 @@ final appStartupProvider = FutureProvider((ref) async {
   await AppConfig().initApp(ref);
 
   if (AppConfig.hasLogin == true) {
-    ref.read(authUserProvider.notifier).checkSignIn();
+    ref.read(authUserProvider.notifier).init();
   }
 
   // Tắt màn hình splash

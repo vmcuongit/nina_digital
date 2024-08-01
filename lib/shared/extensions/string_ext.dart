@@ -1,6 +1,13 @@
 import 'dart:ui';
 
 extension StringUtil on String {
+  String decodeHtml() {
+    return replaceAll('&lt;', '<')
+        .replaceAll('&gt;', '>')
+        .replaceAll('&quot;', '"')
+        .replaceAll('&amp;', '&');
+  }
+
   Color get toColor {
     String data = replaceAll('#', '');
     if (data.length == 6) {

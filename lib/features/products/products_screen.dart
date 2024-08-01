@@ -17,7 +17,7 @@ class ProductsScreen extends ConsumerWidget {
       ),
       body: asyncValue.when(
         data: (data) {
-          final result = data['data']['data'];
+          final result = data['data'];
           return ListView.separated(
               itemBuilder: (context, index) {
                 final item = result[index];

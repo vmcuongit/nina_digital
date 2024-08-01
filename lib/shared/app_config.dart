@@ -40,7 +40,8 @@ class AppConfig {
   static bool offlineApp = false;
 
   // App có đăng nhập ?
-  static bool hasLogin = false;
+  static bool hasLogin = true;
+  static bool requiredLogin = false; // bắt buộc đăng nhập
 
   // App có màn hình onboarding không ?  =>  không thì để trống
   static const String pathOnboarding = OnboardingScreen.pathRoute;

@@ -1,39 +1,77 @@
+import 'dart:convert';
+
 import 'package:dio/dio.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../shared/app_config.dart';
 import '../../shared/constants/api_url.dart';
+import '../authentication_user/providers/auth_user_provider.dart';
 import 'jwt_encoder.dart';
 
 part 'dio_exceptions.dart';
 
 final dioProvider = Provider<DioClient>((ref) {
-  return DioClient(Dio());
+  return DioClient(Dio(), ref);
 });
 
 class DioClient {
   final Dio _dio; // dio instance
+  final Ref _ref;
 
   // injecting dio instance
-  DioClient(this._dio) {
+  DioClient(this._dio, this._ref) {
+    // Lưu trữ header cũ
+    RequestOptions? previousOptions;
     _dio
       ..options.baseUrl = ApiUrl.baseUrl
       ..options.connectTimeout = const Duration(seconds: 30)
       ..options.receiveTimeout = const Duration(seconds: 30)
-      ..options.responseType = ResponseType.json;
+      ..options.responseType = ResponseType.json
+      ..interceptors.add(
+        InterceptorsWrapper(
+          onRequest: (options, handler) async {
+            String accessToken =
+                await _ref.read(authUserProvider.notifier).getAccessToken();
+
+            options.headers = _customHeaders(
+                url: options.path,
+                data: options.data,
+                accessToken: accessToken);
+            previousOptions = options;
+            return handler.next(options);
+          },
+          onError: (error, handler) async {
+            if (error.response?.statusCode == 401) {
+              // Refresh token
+              String accessToken = await _ref
+                  .read(authUserProvider.notifier)
+                  .refreshAccessToken(typeString: true);
+              // Retry request với token mới
+              RequestOptions newOptions = previousOptions!;
+              newOptions.headers['Authorization'] = 'Bearer $accessToken';
+              final response = await _dio.request(error.requestOptions.path,
+                  options: newOptions as Options);
+              print(response);
+              return handler.resolve(response);
+            }
+            return handler.next(error);
+          },
+        ),
+      );
   }
 
   String _getAPIToken({required timeAction, required dynamic data}) {
     Map<String, dynamic> payload = {};
     if (data != null && data != '') {
-      payload = data;
+      payload = Map.from(data);
     }
-    payload['timeAction'] = timeAction;
+    payload['timeAction'] = timeAction.toString();
     final JwtEncoder jwtEncoder = JwtEncoder(secretKey: AppConfig.secretKey);
     return jwtEncoder.encode(payload);
   }
 
-  Options _customOptions({required String url, required dynamic data}) {
+  Map<String, dynamic>? _customHeaders(
+      {required String url, required dynamic data, String accessToken = ''}) {
     int timeNow = DateTime.now().toUtc().millisecondsSinceEpoch ~/ 1000;
 
     // Authentication API
@@ -42,8 +80,12 @@ class DioClient {
     // Headers
     Map<String, dynamic> headers = {
       'timeAction': timeNow,
-      'API-Validation': apiToken,
+      'API-Token': apiToken,
     };
+
+    if (accessToken != '' && accessToken.isNotEmpty && accessToken != 'null') {
+      headers['Authorization'] = 'Bearer $accessToken';
+    }
 
     // DEBUG
     if (AppConfig.production == false) {
@@ -53,7 +95,7 @@ class DioClient {
       AppConfig.logger.d(debugHeaders);
     }
 
-    return Options(headers: headers);
+    return headers;
   }
 
   // Get:-----------------------------------------------------------------------
@@ -67,7 +109,6 @@ class DioClient {
       final Response response = await _dio.get(
         url,
         queryParameters: queryParameters,
-        options: _customOptions(url: url, data: null),
         cancelToken: cancelToken,
         onReceiveProgress: onReceiveProgress,
       );
@@ -92,7 +133,6 @@ class DioClient {
         uri,
         data: data,
         queryParameters: queryParameters,
-        options: _customOptions(url: uri, data: data),
         cancelToken: cancelToken,
         onSendProgress: onSendProgress,
         onReceiveProgress: onReceiveProgress,
@@ -118,7 +158,6 @@ class DioClient {
         uri,
         data: data,
         queryParameters: queryParameters,
-        options: _customOptions(url: uri, data: data),
         cancelToken: cancelToken,
         onSendProgress: onSendProgress,
         onReceiveProgress: onReceiveProgress,
@@ -144,7 +183,6 @@ class DioClient {
         uri,
         data: data,
         queryParameters: queryParameters,
-        options: _customOptions(url: uri, data: data),
         cancelToken: cancelToken,
       );
       return response.data;
