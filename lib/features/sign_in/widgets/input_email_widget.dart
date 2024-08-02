@@ -41,6 +41,9 @@ class __InputEmailWidgetState extends ConsumerState<_InputEmailWidget>
                 errorText: 'Email không đúng định dạng'),
           ],
         ),
+        onChanged: (value) {
+          ref.read(signInProvider.notifier).onChangeEmail(value);
+        },
       ),
     );
   }

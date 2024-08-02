@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../shared/constants/api_url.dart';
@@ -16,22 +18,27 @@ class AuthUserRepository {
 
   String? _accessToken;
   String? _refreshToken;
+  String? _userLogin;
 
   AuthUserRepository(this._dioClient);
 
   String? get accessToken => _accessToken;
   String? get refreshToken => _refreshToken;
+  String? get userLogin => _userLogin;
 
   Future<void> initData() async {
     _accessToken = await _authUserStorage.getAccessToken();
     _refreshToken = await _authUserStorage.getRefreshToken();
+    _userLogin = await _authUserStorage.getUserLogin();
   }
 
-  Future<void> _saveToken({String? accessToken, String? refreshToken}) async {
+  Future<void> _saveToken(
+      {String? accessToken, String? refreshToken, String? userLogin}) async {
     final UserToken userToken = UserToken();
     userToken
-      ..refreshToken = accessToken ?? ''
-      ..refreshToken = refreshToken ?? '';
+      ..accessToken = accessToken ?? this.accessToken
+      ..refreshToken = refreshToken ?? this.refreshToken
+      ..userLogin = userLogin ?? this.userLogin;
     await _authUserStorage.saveToken(userToken: userToken);
     await initData();
   }
@@ -46,6 +53,7 @@ class AuthUserRepository {
 
     String accessToken = '';
     String refreshToken = '';
+    String userLogin = '';
 
     final response = await _dioClient.post(ApiUrl.signIn, data: data);
     if (response.statusCode == 200) {
@@ -53,10 +61,11 @@ class AuthUserRepository {
         final data = response.data['data'];
         accessToken = data['accessToken'];
         refreshToken = data['refreshToken'];
+        userLogin = jsonEncode(data['data']);
       }
       result = {
         'status': response.data['status'],
-        'data': response.data['data'],
+        'data': response.data['data']['data'],
         'message': response.data['message'],
       };
     } else {
@@ -67,7 +76,10 @@ class AuthUserRepository {
       };
     }
 
-    await _saveToken(accessToken: accessToken, refreshToken: refreshToken);
+    await _saveToken(
+        accessToken: accessToken,
+        refreshToken: refreshToken,
+        userLogin: userLogin);
     return result;
   }
 

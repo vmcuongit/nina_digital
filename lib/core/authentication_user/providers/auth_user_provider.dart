@@ -1,3 +1,6 @@
+import 'dart:async';
+import 'dart:convert';
+
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../repositories/auth_user_repository.dart';
@@ -21,14 +24,24 @@ class AuthUser extends _$AuthUser {
   }
 
   Future<void> checkSignIn() async {
-    if (await isTokenValid() == false) {
-      // accessToken không hợp lệ
-      if (await refreshAccessToken() == false) {
-        // Làm mới token qua refreshToken
-        // nếu Không có token hợp lệ, chuyển đến trang đăng nhập
-        signOut();
-      }
+    if (await isTokenValid()) {
+      await _signInContinue();
+    } else if (await refreshAccessToken()) {
+      await _signInContinue();
+    } else {
+      // Đăng xuất
+      signOut();
     }
+  }
+
+  Future<void> _signInContinue() async {
+    state = state.copyWith(
+      status: AuthStatus.authenticated,
+      userLogin: (_authUserRepository.userLogin != '' &&
+              _authUserRepository.userLogin != null)
+          ? jsonDecode(_authUserRepository.userLogin.toString())
+          : {},
+    );
   }
 
   String getAccessToken() {

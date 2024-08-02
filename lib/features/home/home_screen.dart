@@ -6,6 +6,8 @@ import 'package:go_router/go_router.dart';
 import 'package:iconoir_flutter/iconoir_flutter.dart' as icons;
 import 'package:flutter_carousel_widget/flutter_carousel_widget.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import '../../core/authentication_user/providers/auth_user_provider.dart';
+import '../../shared/constants/api_url.dart';
 import '../account/account_screen.dart';
 import '../notification/notification_screen.dart';
 import '../products/products_screen.dart';
@@ -80,7 +82,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                     top: MediaQuery.of(context).viewPadding.top + 20,
                     left: 20,
                     right: 20),
-                child: _HeaderHomeWidget(),
+                child: const _HeaderHomeWidget(),
               ),
             ),
             bottom: PreferredSize(
@@ -88,11 +90,11 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
               child: Container(
                 padding: const EdgeInsets.only(
                     left: 15, right: 15, bottom: 10, top: 0),
-                child: _SearchHomeWidget(),
+                child: const _SearchHomeWidget(),
               ),
             ),
           ),
-          SliverToBoxAdapter(
+          const SliverToBoxAdapter(
             child: _BodyHomeWidget(),
           ),
         ],

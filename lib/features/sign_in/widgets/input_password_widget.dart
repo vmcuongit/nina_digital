@@ -42,7 +42,9 @@ class __InputPasswordWidgetState extends ConsumerState<_InputPasswordWidget>
           },
           child: Container(
             padding: const EdgeInsets.only(left: 12, right: 12, top: 2),
-            child: (_hideText == false) ? icons.Eye() : icons.EyeClosed(),
+            child: (_hideText == false)
+                ? const icons.Eye()
+                : const icons.EyeClosed(),
           ),
         ),
         obscureText: _hideText,
@@ -54,6 +56,9 @@ class __InputPasswordWidgetState extends ConsumerState<_InputPasswordWidget>
                 errorText: 'Mật khẩu tối thiểu 6 ký tự'),
           ],
         ),
+        onChanged: (value) {
+          ref.read(signInProvider.notifier).onChangePassword(value);
+        },
       ),
     );
   }

@@ -1,10 +1,12 @@
 part of '../home_screen.dart';
 
-class _HeaderHomeWidget extends StatelessWidget with UiMixins {
+class _HeaderHomeWidget extends ConsumerWidget with UiMixins {
   const _HeaderHomeWidget({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final Map userInfo =
+        ref.watch(authUserProvider.select((value) => value.userLogin)) ?? {};
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -12,38 +14,49 @@ class _HeaderHomeWidget extends StatelessWidget with UiMixins {
           onTap: () {
             context.goNamed(AccountScreen.nameRoute);
           },
-          child: SizedBox(
+          child: Container(
             width: 55,
             height: 55,
-            child: CircleAvatar(
-              maxRadius: 55,
-              minRadius: 55,
-              child: Image.asset(
-                '${MediaAssets.images}/avatar.jpg',
-                width: 55,
-                height: 55,
-                fit: BoxFit.cover,
-              ),
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(80),
+                border: Border.all(color: const Color(0xfff3f3f3))),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(55),
+              child: (userInfo['avatar'] != null)
+                  ? Image.network(
+                      '${ApiUrl.uploadUser}/${userInfo['avatar']}',
+                      width: 55,
+                      height: 55,
+                      fit: BoxFit.cover,
+                    )
+                  : Image.asset(
+                      MediaAssets.noImage,
+                      width: 55,
+                      height: 55,
+                      fit: BoxFit.cover,
+                    ),
             ),
           ),
         ),
         const SizedBox(
           width: 15,
         ),
-        const Column(
+        Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              'Good Morning',
+            const Text(
+              'Xin chào',
               style: TextStyle(fontSize: 13),
             ),
-            SizedBox(
+            const SizedBox(
               height: 5,
             ),
             Text(
-              'Vu Manh Cuong',
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              (userInfo['fullname'] != null)
+                  ? userInfo['fullname']
+                  : 'Tài khoản',
+              style: const TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
             ),
           ],
         ),

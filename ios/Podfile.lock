@@ -16,6 +16,8 @@ PODS:
   - path_provider_foundation (0.0.1):
     - Flutter
     - FlutterMacOS
+  - rive_common (0.0.1):
+    - Flutter
   - url_launcher_ios (0.0.1):
     - Flutter
 
@@ -28,6 +30,7 @@ DEPENDENCIES:
   - isar_flutter_libs (from `.symlinks/plugins/isar_flutter_libs/ios`)
   - map_launcher (from `.symlinks/plugins/map_launcher/ios`)
   - path_provider_foundation (from `.symlinks/plugins/path_provider_foundation/darwin`)
+  - rive_common (from `.symlinks/plugins/rive_common/ios`)
   - url_launcher_ios (from `.symlinks/plugins/url_launcher_ios/ios`)
 
 EXTERNAL SOURCES:
@@ -47,6 +50,8 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/map_launcher/ios"
   path_provider_foundation:
     :path: ".symlinks/plugins/path_provider_foundation/darwin"
+  rive_common:
+    :path: ".symlinks/plugins/rive_common/ios"
   url_launcher_ios:
     :path: ".symlinks/plugins/url_launcher_ios/ios"
 
@@ -59,6 +64,7 @@ SPEC CHECKSUMS:
   isar_flutter_libs: b69f437aeab9c521821c3f376198c4371fa21073
   map_launcher: 5fde49ac9a52672bf99da746599f507b4490d7b5
   path_provider_foundation: 2b6b4c569c0fb62ec74538f866245ac84301af46
+  rive_common: cbbac3192af00d7341f19dae2f26298e9e37d99e
   url_launcher_ios: 5334b05cef931de560670eeae103fd3e431ac3fe
 
 PODFILE CHECKSUM: 819463e6a0290f5a72f145ba7cde16e8b6ef0796

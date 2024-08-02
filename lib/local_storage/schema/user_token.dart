@@ -7,4 +7,5 @@ class UserToken {
   Id id = Isar.autoIncrement; // you can also use id = null to auto increment
   String? accessToken;
   String? refreshToken;
+  String? userLogin;
 }

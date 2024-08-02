@@ -3,6 +3,13 @@ class ApiUrl {
   // static const String domain = 'http://demo11.ninavietnam.com.vn/nina-digital';
   static const String baseUrl = '$domain/api-app/v1';
 
+  // Media
+  static const String uploadUser = '$domain/upload/user';
+  static const String uploadPhoto = '$domain/upload/photo';
+  static const String uploadProduct = '$domain/upload/product';
+  static const String uploadNews = '$domain/upload/news';
+  static const String uploadImage = '$domain/upload/images';
+
   // Authention
   static const String checkToken = '$baseUrl/token/check';
   static const String refreshToken = '$baseUrl/token/refresh';
