@@ -31,18 +31,25 @@ class AuthUser extends _$AuthUser {
     }
   }
 
-  Future<String> getAccessToken() async {
-    return await _authUserRepository.accessToken ?? '';
+  String getAccessToken() {
+    return _authUserRepository.accessToken ?? '';
   }
 
   Future<bool> isTokenValid() async {
-    final String? accessToken = _authUserRepository.refreshToken;
-    return await _authUserRepository.isTokenValid(accessToken);
+    final String? accessToken = _authUserRepository.accessToken;
+    if (accessToken != null && accessToken != '') {
+      return await _authUserRepository.isTokenValid(accessToken);
+    }
+    return false;
   }
 
   Future<dynamic> refreshAccessToken({bool typeString = false}) async {
     final String? refreshToken = _authUserRepository.refreshToken;
-    return await _authUserRepository.refreshAccessToken(refreshToken);
+    if (refreshToken != null && refreshToken != '') {
+      return await _authUserRepository.refreshAccessToken(refreshToken,
+          typeString: typeString);
+    }
+    return false;
   }
 
   Future<Map<String, dynamic>> signIn(

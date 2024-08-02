@@ -10,6 +10,11 @@ import 'package:url_launcher/url_launcher_string.dart';
 import '../common_widgets/gallery_photo/gallery_photo_view_widget.dart';
 
 class Helper {
+  static bool isNull(dynamic data) {
+    if (data == null || data == 'null' || data == '') return true;
+    return false;
+  }
+
   // định dạng tiền tệ
   static String numberFormat(double num,
       {String? symbol = '', String? customPattern}) {

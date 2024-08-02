@@ -6,6 +6,7 @@ import '../../shared/constants/api_url.dart';
 import '../authentication_user/providers/auth_user_provider.dart';
 import 'jwt_encoder.dart';
 
+part 'auth_interceptors.dart';
 part 'dio_exceptions.dart';
 
 final dioProvider = Provider<DioClient>((ref) {
@@ -18,82 +19,12 @@ class DioClient {
 
   // injecting dio instance
   DioClient(this._dio, this._ref) {
-    // Lưu trữ header cũ
-    RequestOptions? previousOptions;
     _dio
       ..options.baseUrl = ApiUrl.baseUrl
       ..options.connectTimeout = const Duration(seconds: 30)
       ..options.receiveTimeout = const Duration(seconds: 30)
       ..options.responseType = ResponseType.json
-      ..interceptors.add(
-        InterceptorsWrapper(
-          onRequest: (options, handler) async {
-            String accessToken =
-                await _ref.read(authUserProvider.notifier).getAccessToken();
-
-            options.headers = _customHeaders(
-                url: options.path,
-                data: options.data,
-                accessToken: accessToken);
-            previousOptions = options;
-            return handler.next(options);
-          },
-          onError: (error, handler) async {
-            if (error.response?.statusCode == 401) {
-              // Refresh token
-              String accessToken = await _ref
-                  .read(authUserProvider.notifier)
-                  .refreshAccessToken(typeString: true);
-              // Retry request với token mới
-              RequestOptions newOptions = previousOptions!;
-              newOptions.headers['Authorization'] = 'Bearer $accessToken';
-              final response = await _dio.request(error.requestOptions.path,
-                  options: newOptions as Options);
-              print(response);
-              return handler.resolve(response);
-            }
-            return handler.next(error);
-          },
-        ),
-      );
-  }
-
-  String _getAPIToken({required timeAction, required dynamic data}) {
-    Map<String, dynamic> payload = {};
-    if (data != null && data != '') {
-      payload = Map.from(data);
-    }
-    payload['timeAction'] = timeAction.toString();
-    final JwtEncoder jwtEncoder = JwtEncoder(secretKey: AppConfig.secretKey);
-    return jwtEncoder.encode(payload);
-  }
-
-  Map<String, dynamic>? _customHeaders(
-      {required String url, required dynamic data, String accessToken = ''}) {
-    int timeNow = DateTime.now().toUtc().millisecondsSinceEpoch ~/ 1000;
-
-    // Authentication API
-    String apiToken = _getAPIToken(timeAction: timeNow, data: data);
-
-    // Headers
-    Map<String, dynamic> headers = {
-      'timeAction': timeNow,
-      'API-Token': apiToken,
-    };
-
-    if (accessToken != '' && accessToken.isNotEmpty && accessToken != 'null') {
-      headers['Authorization'] = 'Bearer $accessToken';
-    }
-
-    // DEBUG
-    if (AppConfig.production == false) {
-      Map<String, dynamic> debugHeaders = headers;
-      debugHeaders['url'] = url;
-      debugHeaders.remove('timeAction');
-      AppConfig.logger.d(debugHeaders);
-    }
-
-    return headers;
+      ..interceptors.add(AuthUserInterceptor(_dio, _ref));
   }
 
   // Get:-----------------------------------------------------------------------
@@ -114,7 +45,9 @@ class DioClient {
     } on DioException catch (e) {
       final errorMessage = DioExceptions.fromDioError(e).toString();
       return _responseError(
-          statusCode: e.response?.statusCode, statusMessage: errorMessage);
+          statusCode: e.response?.statusCode,
+          statusMessage: errorMessage,
+          data: e.response?.data);
     }
   }
 
@@ -140,7 +73,9 @@ class DioClient {
     } on DioException catch (e) {
       final errorMessage = DioExceptions.fromDioError(e).toString();
       return _responseError(
-          statusCode: e.response?.statusCode, statusMessage: errorMessage);
+          statusCode: e.response?.statusCode,
+          statusMessage: errorMessage,
+          data: e.response?.data);
     }
   }
 
@@ -166,7 +101,9 @@ class DioClient {
     } on DioException catch (e) {
       final errorMessage = DioExceptions.fromDioError(e).toString();
       return _responseError(
-          statusCode: e.response?.statusCode, statusMessage: errorMessage);
+          statusCode: e.response?.statusCode,
+          statusMessage: errorMessage,
+          data: e.response?.data);
     }
   }
 
@@ -190,14 +127,18 @@ class DioClient {
     } on DioException catch (e) {
       final errorMessage = DioExceptions.fromDioError(e).toString();
       return _responseError(
-          statusCode: e.response?.statusCode, statusMessage: errorMessage);
+          statusCode: e.response?.statusCode,
+          statusMessage: errorMessage,
+          data: e.response?.data);
     }
   }
 
-  Response _responseError({int? statusCode, String? statusMessage}) {
+  Response _responseError(
+      {int? statusCode, String? statusMessage, dynamic data}) {
     return Response(
         statusCode: statusCode,
         statusMessage: statusMessage,
+        data: data,
         requestOptions: RequestOptions());
   }
 }

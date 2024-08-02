@@ -1,6 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../shared/constants/api_url.dart';
+import '../../../shared/utils/helper.dart';
 import '../../services/dio_client.dart';
 import '../auth_user_storage/auth_user_storage.dart';
 import '../../../local_storage/schema/user_token.dart';
@@ -71,7 +72,7 @@ class AuthUserRepository {
   }
 
   Future<bool> isTokenValid(String? token) async {
-    if (token == null || token == '') return false;
+    if (Helper.isNull(token)) return false;
     final response =
         await _dioClient.post(ApiUrl.checkToken, data: {'token': token});
     if (response.statusCode == 200) {
@@ -82,7 +83,7 @@ class AuthUserRepository {
 
   Future<dynamic> refreshAccessToken(String? refreshToken,
       {bool typeString = false}) async {
-    if (refreshToken == null || refreshToken == '') return false;
+    if (Helper.isNull(refreshToken)) return false;
     final response = await _dioClient
         .post(ApiUrl.refreshToken, data: {'token', refreshToken});
     if (response.statusCode == 200) {

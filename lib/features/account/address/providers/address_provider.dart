@@ -31,8 +31,7 @@ class Address extends _$Address {
     if (res.statusCode == 200) {
       print(res.data);
     } else {
-      print(res.statusCode);
-      print(res.statusMessage);
+      print(res.data);
     }
   }
 }
