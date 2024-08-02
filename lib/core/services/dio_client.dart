@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:dio/dio.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -115,7 +113,8 @@ class DioClient {
       return response;
     } on DioException catch (e) {
       final errorMessage = DioExceptions.fromDioError(e).toString();
-      throw errorMessage;
+      return _responseError(
+          statusCode: e.response?.statusCode, statusMessage: errorMessage);
     }
   }
 
@@ -140,7 +139,8 @@ class DioClient {
       return response;
     } on DioException catch (e) {
       final errorMessage = DioExceptions.fromDioError(e).toString();
-      throw errorMessage;
+      return _responseError(
+          statusCode: e.response?.statusCode, statusMessage: errorMessage);
     }
   }
 
@@ -165,7 +165,8 @@ class DioClient {
       return response;
     } on DioException catch (e) {
       final errorMessage = DioExceptions.fromDioError(e).toString();
-      throw errorMessage;
+      return _responseError(
+          statusCode: e.response?.statusCode, statusMessage: errorMessage);
     }
   }
 
@@ -188,7 +189,15 @@ class DioClient {
       return response.data;
     } on DioException catch (e) {
       final errorMessage = DioExceptions.fromDioError(e).toString();
-      throw errorMessage;
+      return _responseError(
+          statusCode: e.response?.statusCode, statusMessage: errorMessage);
     }
+  }
+
+  Response _responseError({int? statusCode, String? statusMessage}) {
+    return Response(
+        statusCode: statusCode,
+        statusMessage: statusMessage,
+        requestOptions: RequestOptions());
   }
 }

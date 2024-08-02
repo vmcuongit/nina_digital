@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../shared/extensions/context_ext.dart';
 import '../../../shared/mixins/form_mixin.dart';
+import 'providers/address_provider.dart';
 
 part 'widgets/hoten_widget.dart';
 part 'widgets/dienthoai_widget.dart';
@@ -109,6 +110,7 @@ class _AddressDetailScreenState extends ConsumerState<AddressDetailScreen>
             if (widget.from == 'payment') {
               print('from payment');
             }
+            ref.read(addressProvider.notifier).createAddress();
           },
         ),
       ),

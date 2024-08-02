@@ -11,4 +11,6 @@ class ApiUrl {
   static const String forgotPassword = '$baseUrl/account/forgot-password';
 
   static const String allProduct = '$baseUrl/product';
+
+  static const String address = '$baseUrl/address';
 }
