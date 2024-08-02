@@ -5,10 +5,10 @@ class _SignOutButton extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final userInfo = ref.watch(authUserProvider.select(
+    final UserModel? userInfo = ref.watch(authUserProvider.select(
       (value) => value.userLogin,
     ));
-    return (userInfo != null && userInfo.isNotEmpty)
+    return (userInfo != null)
         ? ListTile(
             title: Row(
               crossAxisAlignment: CrossAxisAlignment.center,

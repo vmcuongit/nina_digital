@@ -6,6 +6,7 @@ import 'package:go_router/go_router.dart';
 import 'package:iconoir_flutter/iconoir_flutter.dart' as icons;
 import 'package:flutter_carousel_widget/flutter_carousel_widget.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import '../../core/authentication_user/model/user_model.dart';
 import '../../core/authentication_user/providers/auth_user_provider.dart';
 import '../../shared/constants/api_url.dart';
 import '../account/account_screen.dart';

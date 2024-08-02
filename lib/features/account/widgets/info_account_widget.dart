@@ -5,8 +5,8 @@ class _InfoAccountWidget extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final userInfo = ref.watch(authUserProvider.select(
-      (value) => value.userLogin ?? {},
+    final UserModel? userInfo = ref.watch(authUserProvider.select(
+      (value) => value.userLogin,
     ));
     return Container(
       padding: const EdgeInsets.only(top: 20, bottom: 30, left: 20, right: 20),
@@ -82,9 +82,9 @@ class _InfoAccountWidget extends ConsumerWidget {
                       width: 80,
                       height: 80,
                       child: CircleAvatar(
-                        child: (!Helper.isNull(userInfo['avatar']))
+                        child: (!Helper.isNull(userInfo?.avatar))
                             ? Image.network(
-                                '${ApiUrl.uploadUser}/${userInfo['avatar']}',
+                                '${ApiUrl.uploadUser}/${userInfo?.avatar}',
                                 width: 80,
                                 fit: BoxFit.cover,
                               )
@@ -126,21 +126,21 @@ class _InfoAccountWidget extends ConsumerWidget {
                     height: 3,
                   ),
                   Text(
-                    userInfo['fullname'] ?? '',
+                    userInfo?.fullname ?? '',
                     style: const TextStyle(fontSize: 17),
                   ),
                   const SizedBox(
                     height: 4,
                   ),
                   Text(
-                    userInfo['email'] ?? '',
+                    userInfo?.email ?? '',
                     style: const TextStyle(fontSize: 14),
                   ),
                   SizedBox(
                     height: 3,
                   ),
                   Text(
-                    userInfo['phone'] ?? '',
+                    userInfo?.phone ?? '',
                     style: const TextStyle(fontSize: 14),
                   ),
                 ],

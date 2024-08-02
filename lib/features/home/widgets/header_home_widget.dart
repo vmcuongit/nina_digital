@@ -5,8 +5,8 @@ class _HeaderHomeWidget extends ConsumerWidget with UiMixins {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final Map userInfo =
-        ref.watch(authUserProvider.select((value) => value.userLogin)) ?? {};
+    final UserModel? userInfo =
+        ref.watch(authUserProvider.select((value) => value.userLogin));
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -22,9 +22,9 @@ class _HeaderHomeWidget extends ConsumerWidget with UiMixins {
                 border: Border.all(color: const Color(0xfff3f3f3))),
             child: ClipRRect(
               borderRadius: BorderRadius.circular(55),
-              child: (userInfo['avatar'] != null)
+              child: (userInfo?.avatar != null)
                   ? Image.network(
-                      '${ApiUrl.uploadUser}/${userInfo['avatar']}',
+                      '${ApiUrl.uploadUser}/${userInfo?.avatar}',
                       width: 55,
                       height: 55,
                       fit: BoxFit.cover,
@@ -53,9 +53,7 @@ class _HeaderHomeWidget extends ConsumerWidget with UiMixins {
               height: 5,
             ),
             Text(
-              (userInfo['fullname'] != null)
-                  ? userInfo['fullname']
-                  : 'Tài khoản',
+              userInfo?.fullname ?? 'Tài khoản',
               style: const TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
             ),
           ],

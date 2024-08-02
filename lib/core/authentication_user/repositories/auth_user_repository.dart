@@ -7,6 +7,7 @@ import '../../../shared/utils/helper.dart';
 import '../../services/dio_client.dart';
 import '../auth_user_storage/auth_user_storage.dart';
 import '../../../local_storage/schema/user_token.dart';
+import '../model/user_model.dart';
 
 final authUserRepositoryProvider = Provider<AuthUserRepository>((ref) {
   return AuthUserRepository(ref.watch(dioProvider));
@@ -59,15 +60,23 @@ class AuthUserRepository {
     if (response.statusCode == 200) {
       if (response.data['status'] == 'success') {
         final data = response.data['data'];
+        final userModel = UserModel.fromJson(data['data']);
         accessToken = data['accessToken'];
         refreshToken = data['refreshToken'];
-        userLogin = jsonEncode(data['data']);
+        userLogin = jsonEncode(userModel.toJson());
+
+        result = {
+          'status': response.data['status'],
+          'data': userModel.toJson(),
+          'message': response.data['message'],
+        };
+      } else {
+        result = {
+          'status': response.data['status'],
+          'data': {},
+          'message': response.data['message'],
+        };
       }
-      result = {
-        'status': response.data['status'],
-        'data': response.data['data']['data'],
-        'message': response.data['message'],
-      };
     } else {
       result = {
         'status': 'error',

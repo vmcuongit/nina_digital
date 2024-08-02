@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../core/app_setttings/app_setting_provider.dart';
+import '../../core/authentication_user/model/user_model.dart';
 import '../../core/authentication_user/providers/auth_user_provider.dart';
 import '../../localizations/language_ext.dart';
 import '../../shared/app_config.dart';
@@ -31,8 +32,8 @@ class AccountScreen extends ConsumerWidget with UiMixins {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final Map userInfo =
-        ref.watch(authUserProvider.select((value) => value.userLogin)) ?? {};
+    final UserModel? userInfo =
+        ref.watch(authUserProvider.select((value) => value.userLogin));
     return Scaffold(
       backgroundColor: const Color(0xfff2f2f2),
       appBar: appBarType1(context, text: 'Tài khoản'),
@@ -42,7 +43,7 @@ class AccountScreen extends ConsumerWidget with UiMixins {
             const SizedBox(
               height: 10,
             ),
-            if (userInfo.isNotEmpty) ...[
+            if (userInfo != null) ...[
               const _InfoAccountWidget(),
               const SizedBox(
                 height: 10,

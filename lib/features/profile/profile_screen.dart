@@ -4,6 +4,7 @@ import 'package:form_builder_validators/form_builder_validators.dart';
 
 import '../../../shared/mixins/form_mixin.dart';
 import '../../../shared/utils/helper.dart';
+import '../../core/authentication_user/model/user_model.dart';
 import '../../core/authentication_user/providers/auth_user_provider.dart';
 import '../../shared/extensions/context_ext.dart';
 import '../../shared/extensions/date_time_ext.dart';
@@ -38,8 +39,6 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> with FormMixins {
 
   @override
   Widget build(BuildContext context) {
-    final Map? userInfo =
-        ref.watch(authUserProvider.select((value) => value.userLogin));
     return Scaffold(
       appBar: AppBar(
         title: Text('Thông tin tài khoản'),

@@ -3,6 +3,7 @@ import 'dart:convert';
 
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
+import '../model/user_model.dart';
 import '../repositories/auth_user_repository.dart';
 
 part 'auth_user_provider.g.dart';
@@ -39,8 +40,9 @@ class AuthUser extends _$AuthUser {
       status: AuthStatus.authenticated,
       userLogin: (_authUserRepository.userLogin != '' &&
               _authUserRepository.userLogin != null)
-          ? jsonDecode(_authUserRepository.userLogin.toString())
-          : {},
+          ? UserModel.fromJson(
+              jsonDecode(_authUserRepository.userLogin.toString()))
+          : const UserModel(),
     );
   }
 
@@ -71,12 +73,12 @@ class AuthUser extends _$AuthUser {
     if (response['status'] == 'success') {
       state = AuthUserState(
         status: AuthStatus.authenticated,
-        userLogin: response['data'],
+        userLogin: UserModel.fromJson(response['data']),
       );
     } else {
       state = AuthUserState(
         status: AuthStatus.unauthenticated,
-        userLogin: {},
+        userLogin: null,
       );
     }
     return response;
@@ -84,6 +86,6 @@ class AuthUser extends _$AuthUser {
 
   void signOut() {
     _authUserRepository.clearToken();
-    state = AuthUserState(status: AuthStatus.unauthenticated, userLogin: {});
+    state = AuthUserState(status: AuthStatus.unauthenticated, userLogin: null);
   }
 }

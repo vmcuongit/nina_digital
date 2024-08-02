@@ -8,12 +8,14 @@ enum AuthStatus {
 
 class AuthUserState {
   final AuthStatus status;
-  final Map<String, dynamic>? userLogin;
+  final UserModel? userLogin;
 
   AuthUserState({this.status = AuthStatus.unauthenticated, this.userLogin});
 
-  copyWith({AuthStatus? status, Map<String, dynamic>? userLogin}) {
+  copyWith({AuthStatus? status, UserModel? userLogin}) {
     return AuthUserState(
-        status: status ?? this.status, userLogin: userLogin ?? this.userLogin);
+      status: status ?? this.status,
+      userLogin: userLogin ?? this.userLogin,
+    );
   }
 }
