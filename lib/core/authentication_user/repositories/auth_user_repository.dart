@@ -33,6 +33,12 @@ class AuthUserRepository {
     _userLogin = await _authUserStorage.getUserLogin();
   }
 
+  void _clearData() {
+    _accessToken = '';
+    _refreshToken = '';
+    _userLogin = '';
+  }
+
   Future<void> _saveToken(
       {String? accessToken, String? refreshToken, String? userLogin}) async {
     final UserToken userToken = UserToken();
@@ -45,6 +51,7 @@ class AuthUserRepository {
   }
 
   Future<void> clearToken() async {
+    _clearData();
     await _authUserStorage.saveToken(userToken: UserToken());
   }
 
