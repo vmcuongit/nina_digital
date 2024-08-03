@@ -39,7 +39,9 @@ class AuthUserInterceptor extends InterceptorsWrapper {
 
       final response =
           await _dio.request(err.requestOptions.path, options: newOptions);
-      print('auth_interceptors: $response');
+      if (response.statusCode != 200) {
+        _ref.read(authUserProvider.notifier).signOut();
+      }
       return handler.resolve(response);
     }
     super.onError(err, handler);

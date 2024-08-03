@@ -4,6 +4,7 @@ class DioExceptions implements Exception {
   late String message;
 
   DioExceptions.fromDioError(DioException dioError) {
+    print('response: ${dioError.response}');
     if (dioError.response != null) {
       switch (dioError.type) {
         case DioExceptionType.cancel:
@@ -28,8 +29,11 @@ class DioExceptions implements Exception {
       }
     } else {
       // Something happened in setting up or sending the request that triggered an Error
-      print(dioError.requestOptions);
-      print(dioError.message);
+      print('statusCode: ${dioError.response?.statusCode}');
+      print('statusMessage: ${dioError.response?.statusMessage}');
+      print('data: ${dioError.response?.data}');
+      message =
+          'Something happened in setting up or sending the request that triggered an Error';
     }
   }
 
