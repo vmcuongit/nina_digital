@@ -3,6 +3,7 @@ import 'dart:convert';
 
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
+import '../../../shared/utils/helper.dart';
 import '../model/user_model.dart';
 import '../repositories/auth_user_repository.dart';
 
@@ -44,6 +45,13 @@ class AuthUser extends _$AuthUser {
               jsonDecode(_authUserRepository.userLogin.toString()))
           : const UserModel(),
     );
+  }
+
+  UserModel? getUserLogin() {
+    if (!Helper.isNull(_authUserRepository.userLogin)) {
+      return state.userLogin;
+    }
+    return null;
   }
 
   String getAccessToken() {

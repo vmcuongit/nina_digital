@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:logger/logger.dart';
 import '../core/app_setttings/app_setting_provider.dart';
+import '../core/authentication_user/providers/auth_user_provider.dart';
 import '../features/home/home_screen.dart';
 import '../features/onboarding/onboarding_screen.dart';
 
@@ -60,8 +61,8 @@ class AppConfig {
     // lấy thông tin thiết bị
     deviceInfo = await _loadDeviceInfo();
 
-    // Load cấu hình App
-    await ref.read(appSettingProvider.notifier).init();
+    // Viết thêm các init ở đây...
+    final user = ref.watch(authUserProvider.select((value) => value.userLogin));
 
     // hiển thị Splash ít nhất 1 giây (khi quá trình khởi tạo diễn ra nhanh)
     await Future.delayed(const Duration(seconds: 1));
