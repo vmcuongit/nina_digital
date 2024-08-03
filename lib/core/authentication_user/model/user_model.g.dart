@@ -8,15 +8,15 @@ part of 'user_model.dart';
 
 _$UserModelImpl _$$UserModelImplFromJson(Map<String, dynamic> json) =>
     _$UserModelImpl(
-      id: json['id'] as String?,
+      id: json['id'].toString(),
       username: json['username'] as String?,
       avatar: json['avatar'] as String?,
       fullname: json['fullname'] as String?,
       phone: json['phone'] as String?,
       email: json['email'] as String?,
       address: json['address'] as String?,
-      gender: json['gender'] as String?,
-      birthday: json['birthday'] as String?,
+      gender: json['gender'].toString(),
+      birthday: json['birthday'].toString(),
       crush: json['crush'] as String?,
     );
 
