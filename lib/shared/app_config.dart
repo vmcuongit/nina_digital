@@ -61,8 +61,7 @@ class AppConfig {
     // lấy thông tin thiết bị
     deviceInfo = await _loadDeviceInfo();
 
-    // Viết thêm các init ở đây...
-    final user = ref.watch(authUserProvider.select((value) => value.userLogin));
+    // Viết thêm các khởi tạo provider mong muốn ở đây...
 
     // hiển thị Splash ít nhất 1 giây (khi quá trình khởi tạo diễn ra nhanh)
     await Future.delayed(const Duration(seconds: 1));
