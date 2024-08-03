@@ -12,7 +12,6 @@ class AuthUserInterceptor extends InterceptorsWrapper {
   @override
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
     String accessToken = _ref.read(authUserProvider.notifier).getAccessToken();
-    print('accessToken $accessToken');
     final cusHeaders = _customHeaders(
         url: options.path, data: options.data, accessToken: accessToken);
 
