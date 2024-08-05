@@ -29,7 +29,7 @@ class AuthUserInterceptor extends InterceptorsWrapper {
     if (err.response?.statusCode == 401) {
       String accessToken = '';
       int code = err.response?.data['code'];
-      print('code: $code');
+
       if (code != 4012) {
         _requestPath = err.requestOptions.path;
         // Refresh token
