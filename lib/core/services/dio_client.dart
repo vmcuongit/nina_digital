@@ -135,9 +135,6 @@ class DioClient {
 
   Response _responseError(
       {int? statusCode, String? statusMessage, dynamic data}) {
-    // if (statusCode == 401) {
-    //   _ref.read(authUserProvider.notifier).signOut();
-    // }
     return Response(
         statusCode: statusCode,
         statusMessage: statusMessage,
