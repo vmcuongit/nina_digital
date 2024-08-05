@@ -3,6 +3,7 @@ part of 'dio_client.dart';
 class AuthUserInterceptor extends InterceptorsWrapper {
   final Dio _dio;
   final Ref _ref;
+  bool isRefreshed = false;
 
   // Lưu trữ header cũ
   RequestOptions? previousOptions;
@@ -25,9 +26,11 @@ class AuthUserInterceptor extends InterceptorsWrapper {
   @override
   Future<void> onError(
       DioException err, ErrorInterceptorHandler handler) async {
-    if (err.response?.statusCode == 401) {
+    if (err.response?.statusCode == 401 && isRefreshed == false) {
+      isRefreshed = true;
+
       // Refresh token
-      String accessToken = await _ref
+      final String accessToken = await _ref
           .read(authUserProvider.notifier)
           .refreshAccessToken(typeString: true);
 
@@ -35,14 +38,21 @@ class AuthUserInterceptor extends InterceptorsWrapper {
       Options newOptions = Options(
         headers: previousOptions?.headers,
       );
-      newOptions.headers?['Authorization'] = 'Bearer ${accessToken.toString()}';
 
-      final response =
-          await _dio.request(err.requestOptions.path, options: newOptions);
-      if (response.statusCode != 200) {
-        _ref.read(authUserProvider.notifier).signOut();
+      if (accessToken.isNotEmpty && accessToken != '') {
+        newOptions.headers?['Authorization'] =
+            'Bearer ${accessToken.toString()}';
+
+        final response =
+            await _dio.request(err.requestOptions.path, options: newOptions);
+        print(
+            '401 -> request again: ${response.statusCode} - ${response.statusMessage}');
+        if (response.statusCode != 200) {
+          _ref.read(authUserProvider.notifier).signOut();
+          isRefreshed = false;
+        }
+        return handler.resolve(response);
       }
-      return handler.resolve(response);
     }
     super.onError(err, handler);
   }

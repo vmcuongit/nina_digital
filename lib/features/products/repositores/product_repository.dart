@@ -10,6 +10,8 @@ class ProductRepository {
     final response = await dioClient.get(ApiUrl.allProduct);
     if (response.statusCode == 200) {
       return response.data;
+    } else {
+      return {};
     }
   }
 }

@@ -28,8 +28,6 @@ class AuthUser extends _$AuthUser {
   Future<void> checkSignIn() async {
     if (await isTokenValid()) {
       await _signInContinue();
-    } else if (await refreshAccessToken()) {
-      await _signInContinue();
     } else {
       // Đăng xuất
       signOut();
@@ -68,9 +66,14 @@ class AuthUser extends _$AuthUser {
 
   Future<dynamic> refreshAccessToken({bool typeString = false}) async {
     final String? refreshToken = _authUserRepository.refreshToken;
+
     if (refreshToken != null && refreshToken != '') {
-      return await _authUserRepository.refreshAccessToken(refreshToken,
+      final result = await _authUserRepository.refreshAccessToken(refreshToken,
           typeString: typeString);
+      if (result == false || result == '' || result == null) {
+        signOut();
+      }
+      return result;
     }
     return false;
   }
