@@ -22,7 +22,7 @@ class _HeaderHomeWidget extends ConsumerWidget with UiMixins {
                 border: Border.all(color: const Color(0xfff3f3f3))),
             child: ClipRRect(
               borderRadius: BorderRadius.circular(55),
-              child: (userInfo?.avatar != null)
+              child: (!Helper.isNull(userInfo?.avatar))
                   ? Image.network(
                       '${ApiUrl.uploadUser}/${userInfo?.avatar}',
                       width: 55,
