@@ -12,10 +12,6 @@ class ProductsScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final a = ref.watch(authUserProvider.select(
-      (value) => value.userLogin,
-    ));
-    print(a);
     AsyncValue asyncValue = ref.watch(allProductProvider);
     return Scaffold(
       appBar: AppBar(

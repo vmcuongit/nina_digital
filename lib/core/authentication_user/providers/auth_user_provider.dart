@@ -70,9 +70,6 @@ class AuthUser extends _$AuthUser {
     if (refreshToken != null && refreshToken != '') {
       final result = await _authUserRepository.refreshAccessToken(refreshToken,
           typeString: typeString);
-      if (result == false || result == '' || result == null) {
-        signOut();
-      }
       return result;
     }
     return false;

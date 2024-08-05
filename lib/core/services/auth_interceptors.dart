@@ -3,7 +3,7 @@ part of 'dio_client.dart';
 class AuthUserInterceptor extends InterceptorsWrapper {
   final Dio _dio;
   final Ref _ref;
-  bool isRefreshed = false;
+  String _requestPath = '';
 
   // Lưu trữ header cũ
   RequestOptions? previousOptions;
@@ -26,14 +26,20 @@ class AuthUserInterceptor extends InterceptorsWrapper {
   @override
   Future<void> onError(
       DioException err, ErrorInterceptorHandler handler) async {
-    if (err.response?.statusCode == 401 && isRefreshed == false) {
-      isRefreshed = true;
-
-      // Refresh token
-      final String accessToken = await _ref
-          .read(authUserProvider.notifier)
-          .refreshAccessToken(typeString: true);
-
+    if (err.response?.statusCode == 401) {
+      String accessToken = '';
+      int code = err.response?.data['code'];
+      print('code: $code');
+      if (code != 4012) {
+        _requestPath = err.requestOptions.path;
+        // Refresh token
+        accessToken = await _ref
+            .read(authUserProvider.notifier)
+            .refreshAccessToken(typeString: true);
+      } else {
+        _ref.read(authUserProvider.notifier).signOut();
+        return handler.reject(err);
+      }
       // Retry request với token mới
       Options newOptions = Options(
         headers: previousOptions?.headers,
@@ -42,19 +48,14 @@ class AuthUserInterceptor extends InterceptorsWrapper {
       if (accessToken.isNotEmpty && accessToken != '') {
         newOptions.headers?['Authorization'] =
             'Bearer ${accessToken.toString()}';
-
-        final response =
-            await _dio.request(err.requestOptions.path, options: newOptions);
-        print(
-            '401 -> request again: ${response.statusCode} - ${response.statusMessage}');
-        if (response.statusCode != 200) {
-          _ref.read(authUserProvider.notifier).signOut();
-          isRefreshed = false;
-        }
-        return handler.resolve(response);
       }
+
+      final response = await _dio.request(_requestPath, options: newOptions);
+
+      return handler.resolve(response);
+    } else {
+      return handler.next(err);
     }
-    super.onError(err, handler);
   }
 
   String _getAPIToken({required timeAction, required dynamic data}) {
