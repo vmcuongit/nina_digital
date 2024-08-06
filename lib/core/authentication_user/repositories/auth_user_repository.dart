@@ -118,7 +118,6 @@ class AuthUserRepository {
 
     if (response.statusCode == 200) {
       final data = response.data['data'];
-      print('refresh data: $data');
       final newAccessToken = data['accessToken'];
       final newRefreshToken = data['refreshToken'];
       await _saveToken(
