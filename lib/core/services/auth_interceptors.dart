@@ -38,7 +38,7 @@ class AuthUserInterceptor extends InterceptorsWrapper {
             .refreshAccessToken(typeString: true);
       } else {
         _ref.read(authUserProvider.notifier).signOut();
-        return handler.reject(err);
+        return handler.resolve(err.response!);
       }
       // Retry request với token mới
       Options newOptions = Options(
@@ -50,9 +50,12 @@ class AuthUserInterceptor extends InterceptorsWrapper {
             'Bearer ${accessToken.toString()}';
       }
 
-      final response = await _dio.request(_requestPath, options: newOptions);
-
-      return handler.resolve(response);
+      try {
+        final response = await _dio.request(_requestPath, options: newOptions);
+        return handler.resolve(response); // Trả về response thành công
+      } catch (e) {
+        return handler.reject(err); // Trả về lỗi nếu request thất bại
+      }
     } else {
       return handler.next(err);
     }

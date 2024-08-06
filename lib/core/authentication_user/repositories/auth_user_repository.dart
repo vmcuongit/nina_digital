@@ -88,7 +88,7 @@ class AuthUserRepository {
       result = {
         'status': 'error',
         'data': {},
-        'message': response.data['message'] ?? 'Không thể truy cập',
+        'message': response.data?['message'] ?? 'Không thể truy cập',
       };
     }
 
@@ -118,7 +118,6 @@ class AuthUserRepository {
 
     if (response.statusCode == 200) {
       final data = response.data['data'];
-      print('2: ${response.data}');
       print('refresh data: $data');
       final newAccessToken = data['accessToken'];
       final newRefreshToken = data['refreshToken'];
