@@ -28,6 +28,8 @@ class AuthUser extends _$AuthUser {
   Future<void> checkSignIn() async {
     if (await isTokenValid()) {
       await _signInContinue();
+    } else if (await refreshAccessToken()) {
+      await _signInContinue();
     } else {
       // Đăng xuất
       signOut();
