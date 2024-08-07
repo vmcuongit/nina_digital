@@ -1,15 +1,20 @@
 class ApiUrl {
-  static const String domain = 'http://nina-digital.com';
-  // static const String domain = 'http://demo11.ninavietnam.com.vn/nina-digital';
+  static const String website = 'https://vikof.kr';
+
+  // static const String domain = 'http://nina-digital.com';
+  static const String domain = 'http://demo11.ninavietnam.com.vn/nina-digital';
 
   static const String baseUrl = '$domain/api-app/v1';
 
   // Media
-  static const String uploadUser = '$domain/upload/user';
-  static const String uploadPhoto = '$domain/upload/photo';
-  static const String uploadProduct = '$domain/upload/product';
-  static const String uploadNews = '$domain/upload/news';
-  static const String uploadImage = '$domain/upload/images';
+  static const String uploadUser = '$website/upload/user';
+  static const String uploadPhoto = '$website/upload/photo';
+  static const String uploadProduct = '$website/upload/product';
+  static const String uploadNews = '$website/upload/news';
+  static const String uploadImage = '$website/upload/images';
+
+  static const String thumbProduct =
+      '$website/watermark/product/520x520x2/upload/product';
 
   // Authention
   static const String checkToken = '$baseUrl/token/check';
