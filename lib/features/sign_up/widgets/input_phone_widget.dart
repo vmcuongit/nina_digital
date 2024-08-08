@@ -33,6 +33,9 @@ class __InputPhoneWidgetState extends ConsumerState<_InputPhoneWidget>
             color: active,
           ),
         ),
+        onChanged: (value) {
+          ref.read(formSignUpProvider.notifier).onPhoneChange(value);
+        },
         autovalidateMode: AutovalidateMode.onUserInteraction,
         validator: FormBuilderValidators.compose(
           [

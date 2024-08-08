@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "199886858720",
+    "project_id": "nina-digital",
+    "storage_bucket": "nina-digital.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:199886858720:android:ba9aa83b4cee33ef34a385",
+        "android_client_info": {
+          "package_name": "vn.nina.demoDigital"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAxSEm7Kt7ODyk0DZtu5NQu25GdOdUgWII"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -9,11 +9,16 @@ import '../shared/theme/app_theme.dart';
 import 'app_providers/internet_provider.dart';
 import 'app_setttings/app_setting_provider.dart';
 
-class MainApp extends ConsumerWidget {
+class MainApp extends ConsumerStatefulWidget {
   const MainApp({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState createState() => _MainAppState();
+}
+
+class _MainAppState extends ConsumerState<MainApp> {
+  @override
+  Widget build(BuildContext context) {
     // Load các settings (language, theme, ...)
     final appSetting = ref.watch(appSettingProvider);
     final language = appSetting.language.toString();

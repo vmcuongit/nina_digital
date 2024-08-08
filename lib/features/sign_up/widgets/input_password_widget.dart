@@ -46,6 +46,9 @@ class __InputPasswordWidgetState extends ConsumerState<_InputPasswordWidget>
           ),
         ),
         obscureText: _hideText,
+        onChanged: (value) {
+          ref.read(formSignUpProvider.notifier).onPasswordChange(value);
+        },
         autovalidateMode: AutovalidateMode.onUserInteraction,
         validator: FormBuilderValidators.compose(
           [

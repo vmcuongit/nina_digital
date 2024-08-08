@@ -1,28 +1,17 @@
 part of '../products_screen.dart';
 
 class _ItemProductWidget extends StatelessWidget {
-  const _ItemProductWidget(
-      {super.key, required this.product, this.productsPromotion});
+  const _ItemProductWidget({super.key, required this.product});
 
   final Map<String, dynamic> product;
-  final Map? productsPromotion;
 
   @override
   Widget build(BuildContext context) {
-    double giaKM = 0;
-    if ((productsPromotion ?? {})
-        .containsKey(int.parse(product['id'].toString()))) {
-      final id = int.parse(product['id'].toString());
-      giaKM = double.parse(productsPromotion![id]);
-    }
+    final String salePrice =
+        '${Helper.numberFormat(double.parse(product['sale_price'].toString()))}đ';
 
-    final String salePrice = (giaKM > 0)
-        ? '${Helper.numberFormat(giaKM)}đ'
-        : '${Helper.numberFormat(double.parse(product['sale_price'].toString()))}đ';
-
-    final String regularPrice = (giaKM > 0)
-        ? '${Helper.numberFormat(giaKM)}đ'
-        : '${Helper.numberFormat(double.parse(product['regular_price'].toString()))}đ';
+    final String regularPrice =
+        '${Helper.numberFormat(double.parse(product['regular_price'].toString()))}đ';
 
     return GestureDetector(
       onTap: () {
@@ -104,7 +93,7 @@ class _ItemProductWidget extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.only(top: 3),
                     child: Text(
-                      '${Helper.numberFormat(double.parse(product['regular_price'].toString()))}đ',
+                      regularPrice,
                       style: const TextStyle(
                           fontSize: 12, decoration: TextDecoration.lineThrough),
                     ),

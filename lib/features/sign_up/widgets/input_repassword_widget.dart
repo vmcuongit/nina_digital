@@ -14,6 +14,8 @@ class __InputRepasswordWidgetState extends ConsumerState<_InputRepasswordWidget>
 
   @override
   Widget build(BuildContext context) {
+    final pass =
+        ref.watch(formSignUpProvider.select((value) => value.password)) ?? '';
     return Focus(
       onFocusChange: (value) {
         if (value) {
@@ -48,12 +50,19 @@ class __InputRepasswordWidgetState extends ConsumerState<_InputRepasswordWidget>
           ),
         ),
         obscureText: _hideText,
+        onChanged: (value) {
+          ref.read(formSignUpProvider.notifier).onRePasswordChange(value);
+        },
         autovalidateMode: AutovalidateMode.onUserInteraction,
         validator: FormBuilderValidators.compose(
           [
             FormBuilderValidators.required(errorText: 'Không bỏ trống'),
             FormBuilderValidators.minLength(6,
                 errorText: 'Mật khẩu tối thiểu 6 ký tự'),
+            (value) {
+              if (value != pass) return 'Nhập lại mật khẩu không đúng';
+              return null;
+            }
           ],
         ),
       ),

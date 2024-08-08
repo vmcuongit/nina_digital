@@ -1,24 +1,25 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'auth_user_provider.dart';
+part of 'form_signup_provider.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$authUserHash() => r'407f448371470f566db959d0d8f4ea887e9f2d5d';
+String _$formSignUpHash() => r'168c3c2017ebe8109dd42f8947f37753bfdea3ad';
 
-/// See also [AuthUser].
-@ProviderFor(AuthUser)
-final authUserProvider = NotifierProvider<AuthUser, AuthUserState>.internal(
-  AuthUser.new,
-  name: r'authUserProvider',
+/// See also [FormSignUp].
+@ProviderFor(FormSignUp)
+final formSignUpProvider =
+    AutoDisposeNotifierProvider<FormSignUp, FormSignUpState>.internal(
+  FormSignUp.new,
+  name: r'formSignUpProvider',
   debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : _$authUserHash,
+      const bool.fromEnvironment('dart.vm.product') ? null : _$formSignUpHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef _$AuthUser = Notifier<AuthUserState>;
+typedef _$FormSignUp = AutoDisposeNotifier<FormSignUpState>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

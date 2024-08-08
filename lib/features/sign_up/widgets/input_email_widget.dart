@@ -33,6 +33,9 @@ class __InputEmailWidgetState extends ConsumerState<_InputEmailWidget>
             color: active,
           ),
         ),
+        onChanged: (value) {
+          ref.read(formSignUpProvider.notifier).onEmailChange(value);
+        },
         autovalidateMode: AutovalidateMode.onUserInteraction,
         validator: FormBuilderValidators.compose(
           [
