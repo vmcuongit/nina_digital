@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import '../../core/app_setttings/app_setting_provider.dart';
 import '../../core/authentication_user/model/user_model.dart';
 import '../../core/authentication_user/providers/auth_user_provider.dart';
+import '../../firebase_api.dart';
 import '../../localizations/language_ext.dart';
 import '../../shared/app_config.dart';
 import '../../shared/constants/api_url.dart';
@@ -104,6 +105,19 @@ class AccountScreen extends ConsumerWidget with UiMixins {
                 'Phiên bản ${AppConfig.appVersion}',
                 style: const TextStyle(fontSize: 13),
                 textAlign: TextAlign.center,
+              ),
+            ),
+            ListTile(
+              title: Theme(
+                data: ThemeData(
+                    textSelectionTheme: const TextSelectionThemeData()
+                        .copyWith(selectionColor: Colors.blue)),
+                child: SelectableText(
+                  'Device Token ${FirebaseApi.fcmToken}',
+                  style: const TextStyle(fontSize: 13),
+                  textAlign: TextAlign.center,
+                  cursorColor: Theme.of(context).primaryColor,
+                ),
               ),
             ),
             const SizedBox(

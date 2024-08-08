@@ -95,6 +95,7 @@ class __DanhSachSanPhamState extends ConsumerState<_DanhSachSanPham> {
                           children: [
                             SizedBox(
                                 height: 18,
+                                width: 18,
                                 child: CircularProgressIndicator.adaptive()),
                             SizedBox(
                               width: 10,

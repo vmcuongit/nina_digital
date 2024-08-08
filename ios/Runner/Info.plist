@@ -82,5 +82,7 @@
             <string>tmap</string>
             <string>szn-mapy</string>
         </array>
+        <key>FirebaseAppDelegateProxyEnabled</key>
+        <string>NO</string>
 	</dict>
 </plist>

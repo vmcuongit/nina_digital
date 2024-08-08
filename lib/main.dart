@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:io';
 
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -21,11 +22,14 @@ Future<void> main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
-  final FirebaseApi firebaseApi = FirebaseApi();
-  await firebaseApi.initNotifications();
-  await FirebaseApi.setupFlutterNotifications();
-  FirebaseApi.setupForegroundMessages();
-  FirebaseApi.setupInteractedMessage();
+  // iOS hiện tại chưa có tài khoản Apple Dev để test
+  if (Platform.isAndroid) {
+    final FirebaseApi firebaseApi = FirebaseApi();
+    await firebaseApi.initNotifications();
+    await FirebaseApi.setupFlutterNotifications();
+    FirebaseApi.setupForegroundMessages();
+    FirebaseApi.setupInteractedMessage();
+  }
 
   runApp(const ProviderScope(
     child: AppStartupWidget(),

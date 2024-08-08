@@ -16,7 +16,7 @@ import 'firebase_options.dart';
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   await FirebaseApi.setupFlutterNotifications();
-  FirebaseApi.handleMessage(message);
+  // FirebaseApi.handleMessage(message);
 }
 
 class FirebaseApi {
@@ -24,6 +24,8 @@ class FirebaseApi {
   // create instance of Firebase Messaging
   final FirebaseMessaging _firebaseMessaging = FirebaseMessaging.instance;
   final FirebaseAnalytics _analytics = FirebaseAnalytics.instance;
+
+  static late String? fcmToken;
 
   /// Initialize the [FlutterLocalNotificationsPlugin] package.
   static late FlutterLocalNotificationsPlugin _flutterLocalNotificationsPlugin;
@@ -62,7 +64,7 @@ class FirebaseApi {
     }
 
     // Device Token
-    final fcmToken = await _firebaseMessaging.getToken();
+    fcmToken = await _firebaseMessaging.getToken();
     print("FCM Token: $fcmToken");
 
     // Set the background messaging handler early on, as a named top-level function
@@ -128,7 +130,11 @@ class FirebaseApi {
 
   // Lắng nghe các message trong khi ứng dụng ở trạng thái foreground
   static void setupForegroundMessages() {
-    FirebaseMessaging.onMessage.listen(handleMessage);
+    FirebaseMessaging.onMessage.listen(
+      (RemoteMessage message) {
+        FirebaseApi.showFlutterNotification(message);
+      },
+    );
   }
 
   // Nhận bất kỳ tin nhắn nào khiến ứng dụng mở từ trạng thái terminated
@@ -137,7 +143,8 @@ class FirebaseApi {
         await FirebaseMessaging.instance.getInitialMessage();
 
     if (initialMessage != null) {
-      handleMessage(initialMessage);
+      FirebaseApi.showFlutterNotification(initialMessage);
+      // handleMessage(initialMessage);
     }
 
     // Đồng thời xử lý mọi tương tác khi ứng dụng ở chế độ nền thông qua Stream listener
