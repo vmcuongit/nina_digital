@@ -123,7 +123,55 @@ class DioClient {
         queryParameters: queryParameters,
         cancelToken: cancelToken,
       );
-      return response.data;
+      return response;
+    } on DioException catch (e) {
+      final errorMessage = DioExceptions.fromDioError(e).toString();
+      return _responseError(
+          statusCode: e.response?.statusCode,
+          statusMessage: errorMessage,
+          data: e.response?.data);
+    }
+  }
+
+  Future<Response> uploadFile(String uri, {required String filePath}) async {
+    try {
+      final formData = FormData();
+      formData.files.add(MapEntry(
+        'file',
+        await MultipartFile.fromFile(filePath),
+      ));
+
+      final Response response = await _dio.post(
+        uri,
+        data: formData,
+      );
+      return response;
+    } on DioException catch (e) {
+      final errorMessage = DioExceptions.fromDioError(e).toString();
+      return _responseError(
+          statusCode: e.response?.statusCode,
+          statusMessage: errorMessage,
+          data: e.response?.data);
+    }
+  }
+
+  Future<Response> uploadMultipleFile(String uri,
+      {required List<String> filePaths}) async {
+    try {
+      final formData = FormData();
+      if (filePaths.isNotEmpty) {
+        for (var path in filePaths) {
+          formData.files.add(MapEntry(
+            'files',
+            await MultipartFile.fromFile(path),
+          ));
+        }
+      }
+      final Response response = await _dio.post(
+        uri,
+        data: formData,
+      );
+      return response;
     } on DioException catch (e) {
       final errorMessage = DioExceptions.fromDioError(e).toString();
       return _responseError(

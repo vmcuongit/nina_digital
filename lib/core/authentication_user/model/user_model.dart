@@ -16,6 +16,7 @@ class UserModel with _$UserModel {
     final String? gender,
     final String? birthday,
     final String? crush,
+    final String? deviceToken,
   }) = _UserModel;
 
   factory UserModel.fromJson(Map<String, dynamic> json) =>

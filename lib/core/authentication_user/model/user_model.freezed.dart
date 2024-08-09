@@ -30,6 +30,7 @@ mixin _$UserModel {
   String? get gender => throw _privateConstructorUsedError;
   String? get birthday => throw _privateConstructorUsedError;
   String? get crush => throw _privateConstructorUsedError;
+  String? get deviceToken => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -52,7 +53,8 @@ abstract class $UserModelCopyWith<$Res> {
       String? address,
       String? gender,
       String? birthday,
-      String? crush});
+      String? crush,
+      String? deviceToken});
 }
 
 /// @nodoc
@@ -78,6 +80,7 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
     Object? gender = freezed,
     Object? birthday = freezed,
     Object? crush = freezed,
+    Object? deviceToken = freezed,
   }) {
     return _then(_value.copyWith(
       id: freezed == id
@@ -120,6 +123,10 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
           ? _value.crush
           : crush // ignore: cast_nullable_to_non_nullable
               as String?,
+      deviceToken: freezed == deviceToken
+          ? _value.deviceToken
+          : deviceToken // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -142,7 +149,8 @@ abstract class _$$UserModelImplCopyWith<$Res>
       String? address,
       String? gender,
       String? birthday,
-      String? crush});
+      String? crush,
+      String? deviceToken});
 }
 
 /// @nodoc
@@ -166,6 +174,7 @@ class __$$UserModelImplCopyWithImpl<$Res>
     Object? gender = freezed,
     Object? birthday = freezed,
     Object? crush = freezed,
+    Object? deviceToken = freezed,
   }) {
     return _then(_$UserModelImpl(
       id: freezed == id
@@ -208,6 +217,10 @@ class __$$UserModelImplCopyWithImpl<$Res>
           ? _value.crush
           : crush // ignore: cast_nullable_to_non_nullable
               as String?,
+      deviceToken: freezed == deviceToken
+          ? _value.deviceToken
+          : deviceToken // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -225,7 +238,8 @@ class _$UserModelImpl implements _UserModel {
       this.address,
       this.gender,
       this.birthday,
-      this.crush});
+      this.crush,
+      this.deviceToken});
 
   factory _$UserModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$UserModelImplFromJson(json);
@@ -250,10 +264,12 @@ class _$UserModelImpl implements _UserModel {
   final String? birthday;
   @override
   final String? crush;
+  @override
+  final String? deviceToken;
 
   @override
   String toString() {
-    return 'UserModel(id: $id, username: $username, avatar: $avatar, fullname: $fullname, phone: $phone, email: $email, address: $address, gender: $gender, birthday: $birthday, crush: $crush)';
+    return 'UserModel(id: $id, username: $username, avatar: $avatar, fullname: $fullname, phone: $phone, email: $email, address: $address, gender: $gender, birthday: $birthday, crush: $crush, deviceToken: $deviceToken)';
   }
 
   @override
@@ -273,13 +289,15 @@ class _$UserModelImpl implements _UserModel {
             (identical(other.gender, gender) || other.gender == gender) &&
             (identical(other.birthday, birthday) ||
                 other.birthday == birthday) &&
-            (identical(other.crush, crush) || other.crush == crush));
+            (identical(other.crush, crush) || other.crush == crush) &&
+            (identical(other.deviceToken, deviceToken) ||
+                other.deviceToken == deviceToken));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, id, username, avatar, fullname,
-      phone, email, address, gender, birthday, crush);
+      phone, email, address, gender, birthday, crush, deviceToken);
 
   @JsonKey(ignore: true)
   @override
@@ -306,7 +324,8 @@ abstract class _UserModel implements UserModel {
       final String? address,
       final String? gender,
       final String? birthday,
-      final String? crush}) = _$UserModelImpl;
+      final String? crush,
+      final String? deviceToken}) = _$UserModelImpl;
 
   factory _UserModel.fromJson(Map<String, dynamic> json) =
       _$UserModelImpl.fromJson;
@@ -331,6 +350,8 @@ abstract class _UserModel implements UserModel {
   String? get birthday;
   @override
   String? get crush;
+  @override
+  String? get deviceToken;
   @override
   @JsonKey(ignore: true)
   _$$UserModelImplCopyWith<_$UserModelImpl> get copyWith =>

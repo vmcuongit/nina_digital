@@ -132,4 +132,12 @@ class AuthUserRepository {
     }
     return false;
   }
+
+  Future<dynamic> saveDeviceToken(String token) async {
+    if (!Helper.isNull(userLogin)) {
+      final user = jsonDecode(userLogin!);
+      await _dioClient.put('${ApiUrl.uploadUser}/${user['id']}',
+          data: {'deviceToken': token});
+    }
+  }
 }

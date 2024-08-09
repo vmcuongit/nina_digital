@@ -31,11 +31,11 @@ Future<void> main() async {
   //   FirebaseApi.setupInteractedMessage();
   // }
 
-  final FirebaseApi firebaseApi = FirebaseApi();
-  await firebaseApi.initNotifications();
-  await FirebaseApi.setupFlutterNotifications();
-  FirebaseApi.setupForegroundMessages();
-  FirebaseApi.setupInteractedMessage();
+  // final FirebaseApi firebaseApi = FirebaseApi();
+  // await firebaseApi.initNotifications();
+  // await FirebaseApi.setupFlutterNotifications();
+  // FirebaseApi.setupForegroundMessages();
+  // FirebaseApi.setupInteractedMessage();
 
   runApp(const ProviderScope(
     child: AppStartupWidget(),

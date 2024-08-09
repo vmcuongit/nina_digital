@@ -59,3 +59,50 @@ class AllProductNotifier extends AutoDisposeNotifier<AllProductState> {
         isLastPage: isLastPage);
   }
 }
+
+final productsPromotionProvider =
+    NotifierProvider<ProductPromotionNotifier, Map>(() {
+  return ProductPromotionNotifier();
+});
+
+class ProductPromotionNotifier extends Notifier<Map> {
+  bool _refesh = false;
+
+  @override
+  Map build() {
+    return {};
+  }
+
+  Future<void> refreshProductsPromotion() async {
+    await Future.delayed(
+      const Duration(milliseconds: 500),
+      () {
+        final list = _refesh
+            ? [
+                {
+                  'id': 77,
+                  'namevi': 'SS Galaxy S23 Ultra 5G (8GB/256GB)',
+                  'price': '6666666'
+                },
+                {'id': 85, 'namevi': 'iPhone 14', 'price': '7777777'}
+              ]
+            : [
+                {
+                  'id': 77,
+                  'namevi': 'SS Galaxy S23 Ultra 5G (8GB/256GB)',
+                  'price': '4444444'
+                },
+                {'id': 85, 'namevi': 'iPhone 14', 'price': '5555555'}
+              ];
+        state = toMap(list);
+      },
+    );
+    _refesh = !_refesh;
+  }
+
+  toMap(List<Map> data) {
+    return {
+      for (Map item in data) int.parse(item['id'].toString()): item['price']
+    };
+  }
+}

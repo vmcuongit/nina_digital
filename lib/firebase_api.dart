@@ -154,7 +154,6 @@ class FirebaseApi {
   // Đăng ký vào chủ đề khi người dùng đăng nhập
   static Future<void> subscribeToTopic({String topic = 'all_users'}) async {
     if (await FirebaseMessaging.instance.isSupported()) {
-      print('subscribeToTopic $topic');
       await FirebaseMessaging.instance.subscribeToTopic(topic);
     }
   }
@@ -162,7 +161,6 @@ class FirebaseApi {
   // Hủy đăng ký khi người dùng đăng xuất (nếu cần)
   static Future<void> unsubscribeFromTopic({String topic = 'all_users'}) async {
     if (await FirebaseMessaging.instance.isSupported()) {
-      print('unsubscribeFromTopic $topic');
       await FirebaseMessaging.instance.unsubscribeFromTopic(topic);
     }
   }

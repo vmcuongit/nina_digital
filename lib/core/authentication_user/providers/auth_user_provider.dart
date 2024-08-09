@@ -96,6 +96,10 @@ class AuthUser extends _$AuthUser {
     return response;
   }
 
+  Future<void> saveDeviceToken(String token) async {
+    await _authUserRepository.saveDeviceToken(token);
+  }
+
   Future<void> signOut() async {
     _authUserRepository.clearToken();
     await FirebaseApi.unsubscribeFromTopic();

@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -37,12 +39,19 @@ class _DanhSachSanPham extends ConsumerStatefulWidget {
 }
 
 class __DanhSachSanPhamState extends ConsumerState<_DanhSachSanPham> {
+  late final Timer _timer;
   late final ScrollController _scrollController;
   bool isLastPage = false;
   int currentPage = 1;
 
   @override
   void initState() {
+    _timer = Timer.periodic(
+      const Duration(seconds: 10),
+      (timer) {
+        ref.read(productsPromotionProvider.notifier).refreshProductsPromotion();
+      },
+    );
     _scrollController = ScrollController();
     _scrollController.addListener(_scrollListener);
     super.initState();
@@ -64,6 +73,7 @@ class __DanhSachSanPhamState extends ConsumerState<_DanhSachSanPham> {
   @override
   Widget build(BuildContext context) {
     final result = ref.watch(allProductProvider);
+    final productsPromotion = ref.watch(productsPromotionProvider);
     isLastPage = result.isLastPage;
     currentPage = result.currentPage;
     return (result.isLoading == false)
@@ -84,6 +94,7 @@ class __DanhSachSanPhamState extends ConsumerState<_DanhSachSanPham> {
                         final item = result.products?[index] ?? {};
                         return _ItemProductWidget(
                           product: item,
+                          productsPromotion: productsPromotion,
                         );
                       },
                     ),
@@ -116,6 +127,7 @@ class __DanhSachSanPhamState extends ConsumerState<_DanhSachSanPham> {
 
   @override
   void dispose() {
+    _timer.cancel();
     _scrollController.dispose();
     super.dispose();
   }

@@ -107,19 +107,19 @@ class AccountScreen extends ConsumerWidget with UiMixins {
                 textAlign: TextAlign.center,
               ),
             ),
-            ListTile(
-              title: Theme(
-                data: ThemeData(
-                    textSelectionTheme: const TextSelectionThemeData()
-                        .copyWith(selectionColor: Colors.blue)),
-                child: SelectableText(
-                  'Device Token ${FirebaseApi.fcmToken}',
-                  style: const TextStyle(fontSize: 13),
-                  textAlign: TextAlign.center,
-                  cursorColor: Theme.of(context).primaryColor,
-                ),
-              ),
-            ),
+            // ListTile(
+            //   title: Theme(
+            //     data: ThemeData(
+            //         textSelectionTheme: const TextSelectionThemeData()
+            //             .copyWith(selectionColor: Colors.blue)),
+            //     child: SelectableText(
+            //       'Device Token ${FirebaseApi.fcmToken}',
+            //       style: const TextStyle(fontSize: 13),
+            //       textAlign: TextAlign.center,
+            //       cursorColor: Theme.of(context).primaryColor,
+            //     ),
+            //   ),
+            // ),
             const SizedBox(
               height: 15,
             ),
