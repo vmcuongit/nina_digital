@@ -181,6 +181,26 @@ class DioClient {
     }
   }
 
+  Future<Response> downloadFile(
+      {required String url,
+      required String savePath,
+      Function(int received, int total)? onReceiveProgress}) async {
+    try {
+      final Response response = await _dio.download(
+        url,
+        savePath,
+        onReceiveProgress: onReceiveProgress,
+      );
+      return response;
+    } on DioException catch (e) {
+      final errorMessage = DioExceptions.fromDioError(e).toString();
+      return _responseError(
+          statusCode: e.response?.statusCode,
+          statusMessage: errorMessage,
+          data: e.response?.data);
+    }
+  }
+
   Response _responseError(
       {int? statusCode, String? statusMessage, dynamic data}) {
     return Response(
