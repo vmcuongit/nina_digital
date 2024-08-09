@@ -16,7 +16,7 @@ part 'widgets/input_email_widget.dart';
 part 'widgets/input_phone_widget.dart';
 part 'widgets/input_password_widget.dart';
 part 'widgets/input_repassword_widget.dart';
-part 'widgets/form_widget.dart';
+part 'widgets/form_signup_widget.dart';
 
 final GlobalKey<FormState> _formSignUpKey = GlobalKey<FormState>();
 
@@ -38,7 +38,7 @@ class SignUpScreen extends ConsumerWidget with FormMixins {
             padding:
                 const EdgeInsets.only(top: 50, left: 25, right: 25, bottom: 30),
             width: double.infinity,
-            child: const _FormWidget(),
+            child: const _FormSignUpWidget(),
           ),
         ),
       ),

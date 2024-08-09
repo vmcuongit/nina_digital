@@ -23,13 +23,19 @@ Future<void> main() async {
   );
 
   // iOS hiện tại chưa có tài khoản Apple Dev để test
-  if (Platform.isAndroid) {
-    final FirebaseApi firebaseApi = FirebaseApi();
-    await firebaseApi.initNotifications();
-    await FirebaseApi.setupFlutterNotifications();
-    FirebaseApi.setupForegroundMessages();
-    FirebaseApi.setupInteractedMessage();
-  }
+  // if (Platform.isAndroid) {
+  //   final FirebaseApi firebaseApi = FirebaseApi();
+  //   await firebaseApi.initNotifications();
+  //   await FirebaseApi.setupFlutterNotifications();
+  //   FirebaseApi.setupForegroundMessages();
+  //   FirebaseApi.setupInteractedMessage();
+  // }
+
+  final FirebaseApi firebaseApi = FirebaseApi();
+  await firebaseApi.initNotifications();
+  await FirebaseApi.setupFlutterNotifications();
+  FirebaseApi.setupForegroundMessages();
+  FirebaseApi.setupInteractedMessage();
 
   runApp(const ProviderScope(
     child: AppStartupWidget(),

@@ -1,8 +1,8 @@
 class ApiUrl {
   static const String website = 'https://vikof.kr';
 
-  // static const String domain = 'http://nina-digital.com';
-  static const String domain = 'http://demo11.ninavietnam.com.vn/nina-digital';
+  static const String domain = 'http://nina-digital.com';
+  // static const String domain = 'http://demo11.ninavietnam.com.vn/nina-digital';
 
   static const String baseUrl = '$domain/api-app/v1';
 
@@ -26,4 +26,6 @@ class ApiUrl {
   static const String allProduct = '$baseUrl/product';
 
   static const String address = '$baseUrl/address';
+
+  static const String createOrder = '$baseUrl/orders/create-order';
 }

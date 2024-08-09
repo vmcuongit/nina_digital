@@ -3,6 +3,7 @@ import 'dart:convert';
 
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
+import '../../../firebase_api.dart';
 import '../../../shared/utils/helper.dart';
 import '../model/user_model.dart';
 import '../repositories/auth_user_repository.dart';
@@ -85,6 +86,7 @@ class AuthUser extends _$AuthUser {
         status: AuthStatus.authenticated,
         userLogin: UserModel.fromJson(response['data']),
       );
+      await FirebaseApi.subscribeToTopic();
     } else {
       state = AuthUserState(
         status: AuthStatus.unauthenticated,
@@ -94,8 +96,9 @@ class AuthUser extends _$AuthUser {
     return response;
   }
 
-  void signOut() {
+  Future<void> signOut() async {
     _authUserRepository.clearToken();
+    await FirebaseApi.unsubscribeFromTopic();
     state = AuthUserState(status: AuthStatus.unauthenticated, userLogin: null);
   }
 }

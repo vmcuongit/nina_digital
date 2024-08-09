@@ -8,6 +8,7 @@ import '../../shared/mixins/form_mixin.dart';
 import '../../shared/mixins/ui_mixins.dart';
 import 'doi_dia_chi_screen.dart';
 import 'phuong_thuc_van_chuyen_screen.dart';
+import 'providers/payment_provider.dart';
 
 part 'widgets/custom_icon_widget.dart';
 part 'widgets/wrap_content_widget.dart';

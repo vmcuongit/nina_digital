@@ -68,7 +68,7 @@ class AuthUserInterceptor extends InterceptorsWrapper {
       final tempMap = data as Map;
 
       for (final entry in tempMap.entries) {
-        tempData[entry.key] = entry.value;
+        tempData[entry.key] = entry.value.toString();
       }
       payload = tempData;
     }

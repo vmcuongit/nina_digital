@@ -1,7 +1,7 @@
 part of '../sign_up_screen.dart';
 
-class _FormWidget extends ConsumerWidget with FormMixins {
-  const _FormWidget({super.key});
+class _FormSignUpWidget extends ConsumerWidget with FormMixins {
+  const _FormSignUpWidget({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
